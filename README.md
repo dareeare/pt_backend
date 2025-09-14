@@ -1,4 +1,4 @@
-# README — Backend (medical-center-backend)
+# Backend (pt_backend)
 
 ## Краткое описание
 
