@@ -3,6 +3,8 @@ CREATE DATABASE medicalcenter;
 -- Включаем расширение для работы с UUID
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
+SELECT uuid_generate_v4(); 
+
 CREATE TABLE Doctor (
     doctor_id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     first_name VARCHAR(50) NOT NULL,
