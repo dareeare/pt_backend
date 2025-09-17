@@ -1,8 +1,5 @@
-package medicalcenter.userservice;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+package medicalcenter.userservice.model;
+import jakarta.persistence.*;
 
 import java.util.Date;
 import java.util.UUID;
@@ -12,6 +9,7 @@ import java.util.UUID;
 public class User {
     @Id
     @Column(name = "patient_id")
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column(name = "first_name")
