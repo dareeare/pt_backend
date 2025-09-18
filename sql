@@ -85,6 +85,85 @@ ALTER TABLE ServiceRendered
 ADD CONSTRAINT fk_servicerendered_visit 
 FOREIGN KEY (visit_id) REFERENCES Visit(visit_id);
 
+CREATE TABLE DoctorReviews (
+    review_id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    patient_id UUID NOT NULL REFERENCES Users(user_id),
+    doctor_id UUID NOT NULL REFERENCES Doctors(doctor_id),
+    appointment_id UUID NOT NULL REFERENCES Visit(visit_id),
+    rating INTEGER NOT NULL CHECK (rating >= 1 AND rating <= 5),
+    comment TEXT,
+    is_approved BOOLEAN DEFAULT FALSE,
+    is_edited BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE(appointment_id)
+);
+
+-- Исключения в расписании (отпуск, больничный)
+CREATE TABLE ScheduleExceptions (
+    exception_id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    doctor_id UUID NOT NULL REFERENCES Doctors(doctor_id),
+    exception_date DATE NOT NULL,
+    reason VARCHAR(255),
+    is_working_day BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE(doctor_id, exception_date)
+);
+
+-- Таблица слотов времени для записи
+CREATE TABLE TimeSlots (
+    slot_id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    doctor_id UUID NOT NULL REFERENCES Doctors(doctor_id),
+    slot_date DATE NOT NULL,
+    start_time TIME NOT NULL,
+    end_time TIME NOT NULL,
+    visit_id UUID DEFAULT NULL,
+    UNIQUE(doctor_id, slot_date, start_time),
+    CHECK (start_time < end_time)
+);
+
+CREATE TABLE VerificationCodes (
+    code_id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    phone VARCHAR(20) NOT NULL,
+    code VARCHAR(10) NOT NULL,
+    action_type VARCHAR(20) NOT NULL CHECK (action_type IN ('registration', 'password_reset')),
+    is_used BOOLEAN DEFAULT FALSE,
+    expires_at TIMESTAMP NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE Operators (
+	operator_id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    middle_name VARCHAR(50) NULL,
+  	date_of_birth date NOT NULL,
+  	phone VARCHAR(20),
+    email VARCHAR(100)
+);
+
+CREATE TABLE Manager (
+	manager_id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    middle_name VARCHAR(50) NULL,
+  	date_of_birth date NOT NULL,
+  	phone VARCHAR(20),
+    email VARCHAR(100)
+);
+
+ALTER TABLE ScheduleExceptions
+ADD CONSTRAINT fk_scheduleExceptions_doctor 
+FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id);
+
+ALTER TABLE TimeSlots
+ADD CONSTRAINT fk_timeslots_doctor 
+FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id);
+
+ALTER TABLE TimeSlots
+ADD CONSTRAINT fk_timeslots_visit 
+FOREIGN KEY (visit_id) REFERENCES Visit(visit_id);
+
 -- Добавляем индексы для улучшения производительности
 CREATE INDEX idx_visit_doctor ON Visit(doctor_id);
 CREATE INDEX idx_visit_patient ON Visit(patient_id);
