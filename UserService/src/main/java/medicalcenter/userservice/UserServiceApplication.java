@@ -1,6 +1,6 @@
 package medicalcenter.userservice;
 
-import medicalcenter.userservice.model.User;
+import medicalcenter.userservice.model.Patient;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -18,7 +18,7 @@ public class UserServiceApplication {
             return;
         }
         Configuration configuration = new Configuration()
-                .addAnnotatedClass(User.class)
+                .addAnnotatedClass(Patient.class)
                 .setProperty("hibernate.connection.url", "jdbc:postgresql://localhost:5432/medicalcenter")
                 .setProperty("hibernate.connection.username", "postgres")
                 .setProperty("hibernate.connection.password", "sjsjsqo18ha5")

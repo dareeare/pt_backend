@@ -6,7 +6,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "Patient")
-public class User {
+public class Patient {
     @Id
     @Column(name = "patient_id")
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -33,8 +33,8 @@ public class User {
     @Column(name = "gender")
     private char gender;
 
-    public User() {}
-    public User(String firstName, String lastName, String middleName, String phone, String email, char gender, Date dateOfBirth) {
+    public Patient() {}
+    public Patient(String firstName, String lastName, String middleName, String phone, String email, char gender, Date dateOfBirth) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.middleName = middleName;
@@ -74,5 +74,37 @@ public class User {
 
     public char getGender() {
         return gender;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public void setGender(char gender) {
+        this.gender = gender;
     }
 }
