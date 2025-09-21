@@ -1,9 +1,6 @@
-package medicalcenter.userservice;
+package medicalcenter.userservice.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,9 +12,10 @@ import java.util.UUID;
 @NoArgsConstructor
 @Entity
 @Table(name = "Patient")
-public class User {
+public class Patient {
     @Id
     @Column(name = "patient_id")
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column(name = "first_name")
@@ -42,7 +40,7 @@ public class User {
     private char gender;
 
     @Builder
-    public User(String firstName, String lastName, String middleName, String phone, String email, char gender, Date dateOfBirth) {
+    public Patient(String firstName, String lastName, String middleName, String phone, String email, char gender, Date dateOfBirth) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.middleName = middleName;
