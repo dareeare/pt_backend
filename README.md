@@ -11,47 +11,38 @@ Backend сервиса для веб‑приложения "Медицинск�
 * Java 21+ и Spring Boot
 * Hibernate / JPA
 * PostgreSQL
-* Flyway (или Liquibase) для миграций БД
 * Docker / Docker Compose
 * Maven
 * JUnit 5 (unit/integration tests)
-* Swagger / OpenAPI
 
-## Архитектура — основные модули
+## Архитектура
 
-* `auth` — регистрация по телефону, подтверждение SMS, восстановление пароля, JWT/сессии
-* `users` — управление пациентами, врачами, операторами, менеджерами
-* `services` — каталог медицинных услуг и фильтрация
-* `appointments` — слоты, создание/перенос/отмена визитов, логика блокировок по времени
-* `notifications` — отправка e‑mail и SMS (retry/exponential backoff)
-* `reviews` — модерация отзывов и расчёт рейтинга врача
-* `reports` — агрегированная отчётность и экспорт (XLSX, CSV)
-* `audit` — журнал изменений (who/when/what)
+![All entities](images/er.png)
+![Foreign keys](images/postgresql.png)
 
 ## Быстрый старт (локально)
 
 1. Склонировать репозиторий:
 
 ```bash
-git clone git@github.com:org/medical-center-backend.git
-cd medical-center-backend
+git clone git@github.com:org/pt_backend.git
+cd pt_backend
 ```
 
 2. Создать `.env` (пример в `.env.example`) и задать переменные:
 
-* `SPRING\_DATASOURCE\_URL` (Postgres)
-* `SPRING\_DATASOURCE\_USERNAME`
-* `SPRING\_DATASOURCE\_PASSWORD`
-* `JWT\_SECRET`
+* `SPRING_DATASOURCE_URL` (Postgres)
+* `SPRING_DATASOURCE_USERNAME`
+* `SPRING_DATASOURCE_PASSWORD`
 * SMS / EMAIL провайдеры (API ключи)
-* `SMS\_CODE\_TTL\_ACTIVATION=24h`
-* `SMS\_CODE\_TTL\_RESET=1h`
-* `SESSION\_TIMEOUT=24h`
+* `SMS_CODE_TTL_ACTIVATION=24h`
+* `SMS_CODE_TTL_RESET=1h`
+* `SESSION_TIMEOUT=24h`
 
 3. Запустить БД (Docker Compose):
 
 ```bash
-docker-compose up -d postgres redis
+docker-compose up -d postgres
 ```
 
 4. Запустить приложение:
@@ -63,7 +54,7 @@ mvn clean spring-boot:run
 или собрать Docker image:
 
 ```bash
-docker build -t medical-center-backend .
+docker build -t pt_backend .
 docker-compose up -d
 ```
 
