@@ -1,12 +1,18 @@
 package medicalcenter.userservice;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 import java.util.UUID;
 
+@Data
+@NoArgsConstructor
 @Entity
 @Table(name = "Patient")
 public class User {
@@ -35,7 +41,7 @@ public class User {
     @Column(name = "gender")
     private char gender;
 
-    public User() {}
+    @Builder
     public User(String firstName, String lastName, String middleName, String phone, String email, char gender, Date dateOfBirth) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -44,37 +50,5 @@ public class User {
         this.email = email;
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getMiddleName() {
-        return middleName;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public Date getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public char getGender() {
-        return gender;
     }
 }
