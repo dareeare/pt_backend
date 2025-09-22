@@ -5,19 +5,19 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "Patient")
-public class Patient {
+@Table(name = "Doctor")
+public class Doctor {
     @Id
-    @Column(name = "patient_id")
+    @Column(name = "doctor_id")
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    private UUID doctorId;
 
     @Column(name = "first_name")
     private String firstName;
@@ -34,27 +34,27 @@ public class Patient {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "date_of_birth")
-    private Date dateOfBirth;
+    @Column(name = "specialty")
+    private String specialty;
 
-    @Column(name = "gender")
-    private char gender;
+    @Column(name = "rating")
+    private Float rating;
 
     @OneToMany
     private List<Visit> visits;
 
     @Builder
-    public Patient(String firstName, String lastName, String middleName,
-                   String phone, String email, char gender, Date dateOfBirth,
-                   List<Visit> visits) {
+    public Doctor(String firstName, String lastName, String middleName,
+                  String specialty, String phone, String email, Float rating,
+                  List<Visit> visits) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.middleName = middleName;
+        this.specialty = specialty;
         this.phone = phone;
         this.email = email;
-        this.gender = gender;
-        this.dateOfBirth = dateOfBirth;
         this.visits = visits;
+        this.rating = rating; //возможно надо будет удалить
     }
 
 }
