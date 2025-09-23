@@ -35,9 +35,9 @@ public class PatientService {
     }
 
     @Transactional
-    public void update(UUID id, Patient updatedPerson) {
-        updatedPerson.setId(id);
-        patientRepository.save(updatedPerson);
+    public void update(UUID id, Patient updatedPatient) {
+        updatedPatient.setId(id);
+        patientRepository.save(updatedPatient);
     }
 
     @Transactional

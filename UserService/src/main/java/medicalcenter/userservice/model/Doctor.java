@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -17,7 +16,7 @@ public class Doctor {
     @Id
     @Column(name = "doctor_id")
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID doctorId;
+    private UUID id;
 
     @Column(name = "first_name")
     private String firstName;
