@@ -30,8 +30,8 @@ public class PatientService {
     }
 
     @Transactional
-    public void save(Patient person) {
-        patientRepository.save(person);
+    public void save(Patient patient) {
+        patientRepository.save(patient);
     }
 
     @Transactional
