@@ -3,13 +3,17 @@ package medicalcenter.userservice.model;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.List;
 import java.util.UUID;
 
 @Data
 @NoArgsConstructor
+@ToString(exclude = "visits")
+@EqualsAndHashCode(exclude = "visits")
 @Entity
 @Table(name = "Doctor")
 public class Doctor {
@@ -18,10 +22,10 @@ public class Doctor {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(name = "first_name")
+    @Column(name = "first_name", nullable = false)
     private String firstName;
 
-    @Column(name = "last_name")
+    @Column(name = "last_name", nullable = false)
     private String lastName;
 
     @Column(name = "middle_name")
@@ -33,13 +37,13 @@ public class Doctor {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "specialty")
+    @Column(name = "specialty", nullable = false)
     private String specialty;
 
     @Column(name = "rating")
     private Float rating;
 
-    @OneToMany
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Visit> visits;
 
     @Builder
