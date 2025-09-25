@@ -1,6 +1,7 @@
 package medicalcenter.userservice.controller;
 
 import jakarta.validation.Valid;
+import lombok.extern.log4j.Log4j2;
 import medicalcenter.userservice.model.Patient;
 import medicalcenter.userservice.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,15 +9,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.WebRequest;
 
 import java.util.List;
 import java.util.UUID;
 
 @RestController
 @RequestMapping("/patients")
+@Log4j2
 public class PatientController {
     private final PatientService patientService;
 

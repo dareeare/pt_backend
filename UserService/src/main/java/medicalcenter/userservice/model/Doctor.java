@@ -1,6 +1,11 @@
 package medicalcenter.userservice.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -23,21 +28,28 @@ public class Doctor {
     private UUID id;
 
     @Column(name = "first_name", nullable = false)
+    @NotEmpty(message = "First name should not be empty")
     private String firstName;
 
     @Column(name = "last_name", nullable = false)
+    @NotEmpty(message = "Last name should not be empty")
     private String lastName;
 
     @Column(name = "middle_name")
+    @Size(min = 2, max = 50, message = "Middle name should be between 2 and 50 characters")
     private String middleName;
 
     @Column(name = "phone")
+    @NotEmpty(message = "Phone should not be empty")
+    @Pattern(regexp = "^80(29|33|44|17|25)\\d{7}$")
     private String phone;
 
     @Column(name = "email")
+    @Email
     private String email;
 
     @Column(name = "specialty", nullable = false)
+    @NotBlank(message = "Specialty should not be empty")
     private String specialty;
 
     @Column(name = "rating")

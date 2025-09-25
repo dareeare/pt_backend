@@ -1,6 +1,8 @@
 package medicalcenter.userservice.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.Builder;
 import lombok.Data;
@@ -20,14 +22,17 @@ public class Visit {
     private UUID visitId;
 
     @Column(name = "date_of_visit", nullable = false)
+    @NotNull(message = "Date of visit should have value")
     private LocalDateTime dateOfVisit;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "doctor_id", referencedColumnName = "doctor_id", nullable = false)
+    @NotNull
     private Doctor doctor;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "patient_id", referencedColumnName = "patient_id", nullable = false)
+    @NotNull
     private Patient patient;
 
     @Column(name = "status")
@@ -38,6 +43,7 @@ public class Visit {
     private String symptoms;
 
     @Column(name = "diagnosis")
+    @NotBlank(message = "Diagnosis should not be empty")
     private String diagnosis;
 
     @Column(name = "prescription")

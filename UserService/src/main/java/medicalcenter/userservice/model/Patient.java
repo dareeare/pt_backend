@@ -1,6 +1,7 @@
 package medicalcenter.userservice.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
@@ -47,7 +48,7 @@ public class Patient {
     private String phone;
 
     @Column(name = "email")
-    @Size(max = 100)
+    @Email
     private String email;
 
     @Column(name = "date_of_birth")
