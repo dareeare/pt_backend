@@ -11,7 +11,7 @@ CREATE TABLE Doctor (
     last_name VARCHAR(50) NOT NULL,
     middle_name VARCHAR(50) NULL,
     specialty VARCHAR(100) NOT NULL,
-    phone VARCHAR(20),
+    phone VARCHAR(11) NOT NULL,
     email VARCHAR(100)
 );
 
@@ -20,7 +20,7 @@ CREATE TABLE Patient (
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
     middle_name VARCHAR(50) NULL,
-    phone VARCHAR(20),
+    phone VARCHAR(11) NOT NULL,
     email VARCHAR(100),
     date_of_birth DATE,
     gender CHAR(1) CHECK (gender IN ('M', 'F', 'O')) -- M: Male, F: Female, O: Other
@@ -97,23 +97,13 @@ CREATE TABLE TimeSlots (
     CHECK (start_time < end_time)
 );
 
-CREATE TABLE VerificationCodes (
-    code_id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    phone VARCHAR(20) NOT NULL,
-    code VARCHAR(10) NOT NULL,
-    action_type VARCHAR(20) NOT NULL CHECK (action_type IN ('registration', 'password_reset')),
-    is_used BOOLEAN DEFAULT FALSE,
-    expires_at TIMESTAMP NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
 CREATE TABLE Operators (
 	operator_id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
     middle_name VARCHAR(50) NULL,
   	date_of_birth date NOT NULL,
-  	phone VARCHAR(20),
+  	phone VARCHAR(11) NOT NULL,
     email VARCHAR(100)
 );
 
@@ -123,7 +113,7 @@ CREATE TABLE Manager (
     last_name VARCHAR(50) NOT NULL,
     middle_name VARCHAR(50) NULL,
   	date_of_birth date NOT NULL,
-  	phone VARCHAR(20),
+  	phone VARCHAR(11) NOT NULL,
     email VARCHAR(100)
 );
 
@@ -136,7 +126,6 @@ COMMENT ON TABLE ServiceRendered IS 'Оказанные услуги во вре
 COMMENT ON TABLE DoctorReviews IS 'Отзывы пациентов о врачах';
 COMMENT ON TABLE TimeSlots IS 'Временные слоты для записи на прием';
 COMMENT ON TABLE ScheduleExceptions IS 'Исключения в расписании врачей';
-COMMENT ON TABLE VerificationCodes IS 'Коды верификации для регистрации и сброса пароля';
 COMMENT ON TABLE Operators IS 'Операторы call-центра';
 COMMENT ON TABLE Manager IS 'Менеджеры медицинского центра';
 
@@ -232,12 +221,6 @@ CREATE INDEX idx_timeslots_doctor_date ON TimeSlots(doctor_id, slot_date);
 CREATE INDEX idx_timeslots_date ON TimeSlots(slot_date);
 CREATE INDEX idx_timeslots_available ON TimeSlots(visit_id) WHERE visit_id IS NULL;
 CREATE INDEX idx_timeslots_visit ON TimeSlots(visit_id);
-
-CREATE INDEX idx_verificationcodes_phone ON VerificationCodes(phone);
-CREATE INDEX idx_verificationcodes_code ON VerificationCodes(code);
-CREATE INDEX idx_verificationcodes_expires ON VerificationCodes(expires_at);
-CREATE INDEX idx_verificationcodes_used ON VerificationCodes(is_used);
-CREATE INDEX idx_verificationcodes_created ON VerificationCodes(created_at);
 
 CREATE INDEX idx_operators_phone ON Operators(phone);
 CREATE INDEX idx_operators_email ON Operators(email);
