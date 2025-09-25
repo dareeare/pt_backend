@@ -1,6 +1,5 @@
 package medicalcenter.userservice;
 
-import lombok.extern.log4j.Log4j2;
 import medicalcenter.userservice.model.Patient;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -8,16 +7,13 @@ import org.hibernate.cfg.Configuration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@Log4j2
 public class UserServiceApplication {
 
     public static void main(String[] args) {
         try {
             // Явно загружаем драйвер PostgreSQL
-            log.debug("Loading PostgreSQL driver");
             Class.forName("org.postgresql.Driver");
         } catch (ClassNotFoundException e) {
-            log.error(e.getMessage());
             e.printStackTrace();
             return;
         }
