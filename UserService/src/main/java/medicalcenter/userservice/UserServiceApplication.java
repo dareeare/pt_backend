@@ -1,10 +1,12 @@
 package medicalcenter.userservice;
 
-import medicalcenter.userservice.model.Patient;
+import medicalcenter.userservice.model.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.util.UUID;
 
 @SpringBootApplication
 public class UserServiceApplication {
@@ -19,6 +21,8 @@ public class UserServiceApplication {
         }
         Configuration configuration = new Configuration()
                 .addAnnotatedClass(Patient.class)
+                .addAnnotatedClass(Visit.class)
+                .addAnnotatedClass(Doctor.class)
                 .setProperty("hibernate.connection.url", "jdbc:postgresql://localhost:5432/medicalcenter")
                 .setProperty("hibernate.connection.username", "postgres")
                 .setProperty("hibernate.connection.password", "sjsjsqo18ha5")
@@ -32,8 +36,9 @@ public class UserServiceApplication {
         try {
             session.beginTransaction();
 
-            //User user = session.get(User.class, 1);
-            //System.out.println(user.getFirstName());
+            UUID patientId = UUID.fromString("dc99b312-5ef2-4e76-94b3-41a2ea8434f1");
+            Patient patient = session.get(Patient.class, patientId);
+            System.out.println(patient.getFirstName() +  " " + patient.getLastName());
 
             session.getTransaction().commit();
 
