@@ -1,57 +1,74 @@
 package medicalcenter.userservice.controller;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import medicalcenter.userservice.model.Patient;
-import medicalcenter.userservice.service.PatientService;
-import org.springframework.beans.factory.annotation.Autowired;
+import medicalcenter.userservice.model.dto.PatientCreateEditDto;
+import medicalcenter.userservice.model.dto.PatientReadDto;
+import medicalcenter.userservice.service.impl.PatientService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.print.Pageable;
 import java.util.List;
 import java.util.UUID;
 
 @RestController
 @RequestMapping("/patients")
+@RequiredArgsConstructor
 @Log4j2
 public class PatientController {
     private final PatientService patientService;
 
-    @Autowired
-    public PatientController(PatientService patientService) {
-        this.patientService = patientService;
+    @GetMapping
+    public ResponseEntity<List<PatientReadDto>> getPatients(Pageable pageable) {
+        List<PatientReadDto> all = patientService.findAll(pageable);
+        return getListResponseEntity(all);
     }
 
-    @GetMapping()
-    public List<Patient> getPatients() {
-        return patientService.findAll(); // Jackson конвертирует эти объекты в JSON
+    @GetMapping
+    public ResponseEntity<List<PatientReadDto>> getAllByLastName(@RequestParam String lastName, Pageable pageable) {
+        List<PatientReadDto> all = patientService.findAllByLastName(lastName, pageable);
+        return getListResponseEntity(all);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<PatientReadDto>> getAllByLastFirstName(
+            @RequestParam String lastName,
+            @RequestParam String firstName,
+            Pageable pageable) {
+        List<PatientReadDto> all = patientService.findAllByLastFirstName(lastName, firstName, pageable);
+        return getListResponseEntity(all);
+    }
+
+    private ResponseEntity<List<PatientReadDto>> getListResponseEntity(List<PatientReadDto> all) {
+        if (all.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(all);
     }
 
     @GetMapping("/{id}")
-    public Patient getPatient(@PathVariable("id") UUID id) {
-        return patientService.findOne(id); // Jackson конвертирует в JSON
+    public ResponseEntity<PatientReadDto> getPatient(@PathVariable UUID id) {
+        return ResponseEntity.ok(patientService.findOne(id));
     }
 
     @PostMapping
-    public ResponseEntity<HttpStatus> createPatient(@RequestBody @Valid Patient patient,
-                                                 BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            StringBuilder errors = new StringBuilder();
-            List<FieldError> errorList = bindingResult.getFieldErrors();
-            for (FieldError errorMsg : errorList) {
-                errors.append(errorMsg.getField())
-                        .append(": ")
-                        .append(errorMsg.getDefaultMessage())
-                        .append(";\n");
-            }
-        }
-        patientService.save(patient);
-        //sends HTTP with status 200 and empty body
-        return ResponseEntity.ok(HttpStatus.OK);
-        //возможно придется заменить ResponseEntity<HttpStatus> на Patient
+    public ResponseEntity<PatientReadDto> createPatient(@RequestBody @Valid PatientCreateEditDto dto) {
+        PatientReadDto patient = patientService.save(dto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(patient);
     }
 
+    @PutMapping
+    public ResponseEntity<Void> updatePatient(@RequestParam UUID id, @RequestBody @Valid PatientCreateEditDto dto) {
+        patientService.update(id, dto);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePatient(@PathVariable UUID id) {
+        patientService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }

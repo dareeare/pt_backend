@@ -1,7 +1,7 @@
 package medicalcenter.userservice;
 
 import lombok.extern.log4j.Log4j2;
-import medicalcenter.userservice.model.Patient;
+import medicalcenter.userservice.model.entity.Patient;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

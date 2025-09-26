@@ -1,6 +1,6 @@
 package medicalcenter.userservice.repository;
 
-import medicalcenter.userservice.model.Doctor;
+import medicalcenter.userservice.model.entity.Doctor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

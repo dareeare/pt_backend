@@ -1,12 +1,6 @@
-package medicalcenter.userservice.model;
+package medicalcenter.userservice.model.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Past;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -30,35 +24,24 @@ public class Patient {
     private UUID id;
 
     @Column(name = "first_name", nullable = false)
-    @NotEmpty(message = "First name should not be empty")
-    @Size(min = 2, max = 50, message = "First name should be between 2 and 50 characters")
     private String firstName;
 
     @Column(name = "last_name", nullable = false)
-    @NotEmpty(message = "Last name should not be empty")
-    @Size(min = 2, max = 50, message = "Last name should be between 2 and 50 characters")
     private String lastName;
 
     @Column(name = "middle_name")
-    @Size(min = 2, max = 50, message = "Middle name should be between 2 and 50 characters")
     private String middleName;
 
     @Column(name = "phone")
-    @NotEmpty(message = "Phone should not be empty")
     private String phone;
 
     @Column(name = "email")
-    @Email
     private String email;
 
     @Column(name = "date_of_birth")
-    @NotNull(message = "Date of birth should not be empty")
-    @Past(message = "Date of birth should be in the past")
     private LocalDate dateOfBirth;
 
     @Column(name = "gender")
-    @NotEmpty(message = "Gender should not be empty")
-    @Pattern(regexp = "^[MFO]$", message = "Gender must be one of 'M', 'F', or 'O'")
     private char gender;
 
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
