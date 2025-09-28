@@ -13,6 +13,7 @@ CREATE TABLE Doctor (
     specialty VARCHAR(100) NOT NULL,
     phone VARCHAR(11) NOT NULL,
     email VARCHAR(100),
+	information TEXT,
 	rating DECIMAL(3,2) CHECK (rating >= 1 AND rating <= 5)
 );
 
@@ -32,6 +33,7 @@ CREATE TABLE Service (
     name_of_service VARCHAR(100) NOT NULL,
     cost DECIMAL(10, 2) NOT NULL CHECK (cost >= 0),
     duration_minutes INTEGER NOT NULL CHECK (duration_minutes > 0),
+	information TEXT,
     doctor_id UUID NOT NULL
 );
 
