@@ -12,7 +12,8 @@ CREATE TABLE Doctor (
     middle_name VARCHAR(50) NULL,
     specialty VARCHAR(100) NOT NULL,
     phone VARCHAR(11) NOT NULL,
-    email VARCHAR(100)
+    email VARCHAR(100),
+	rating DECIMAL(3,2) CHECK (rating >= 1 AND rating <= 5)
 );
 
 CREATE TABLE Patient (
@@ -62,16 +63,16 @@ CREATE TABLE ServiceRendered (
 
 CREATE TABLE DoctorReviews (
     review_id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    patient_id UUID NOT NULL REFERENCES Patient(patient_id),
-    doctor_id UUID NOT NULL REFERENCES Doctor(doctor_id),
-    appointment_id UUID NOT NULL REFERENCES Visit(visit_id),
+    patient_id UUID NOT NULL,
+    doctor_id UUID NOT NULL,
+    visit_id UUID NOT NULL,
     rating INTEGER NOT NULL CHECK (rating >= 1 AND rating <= 5),
     comment TEXT,
     is_approved BOOLEAN DEFAULT FALSE,
     is_edited BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    UNIQUE(appointment_id)
+    UNIQUE(visit_id) -- Один отзыв на визит
 );
 
 -- Исключения в расписании (отпуск, больничный)
@@ -129,6 +130,18 @@ COMMENT ON TABLE ScheduleExceptions IS 'Исключения в расписан
 COMMENT ON TABLE Operators IS 'Операторы call-центра';
 COMMENT ON TABLE Manager IS 'Менеджеры медицинского центра';
 
+ALTER TABLE DoctorReviews 
+ADD CONSTRAINT fk_doctorreviews_patient 
+FOREIGN KEY (patient_id) REFERENCES Patient(patient_id);
+
+ALTER TABLE DoctorReviews 
+ADD CONSTRAINT fk_doctorreviews_doctor 
+FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id);
+
+ALTER TABLE DoctorReviews 
+ADD CONSTRAINT fk_doctorreviews_visit 
+FOREIGN KEY (visit_id) REFERENCES Visit(visit_id);
+
 ALTER TABLE ScheduleExceptions
 ADD CONSTRAINT fk_scheduleExceptions_doctor 
 FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id);
@@ -168,10 +181,6 @@ FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id);
 ALTER TABLE ServiceRendered 
 ADD CONSTRAINT fk_servicerendered_visit 
 FOREIGN KEY (visit_id) REFERENCES Visit(visit_id);
-
-ALTER TABLE VerificationCodes
-ADD CONSTRAINT chk_verificationcodes_expires 
-CHECK (expires_at > created_at);
 
 ALTER TABLE Operators
 ADD CONSTRAINT chk_operators_age 
@@ -347,6 +356,3 @@ CREATE TRIGGER trigger_check_time_slot
 BEFORE INSERT OR UPDATE ON TimeSlots
 FOR EACH ROW
 EXECUTE FUNCTION check_time_slot_availability();
-
---добавление рейтинга врача
-ALTER TABLE doctor ADD COLUMN rating float;
