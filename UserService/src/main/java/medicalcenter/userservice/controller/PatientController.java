@@ -6,17 +6,16 @@ import lombok.extern.log4j.Log4j2;
 import medicalcenter.userservice.model.dto.PatientCreateEditDto;
 import medicalcenter.userservice.model.dto.PatientReadDto;
 import medicalcenter.userservice.service.impl.PatientService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Pageable;
 
-import java.awt.print.Pageable;
 import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/patients")
+@RequestMapping("/api/v1/patients")
 @RequiredArgsConstructor
 @Log4j2
 public class PatientController {

@@ -7,8 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.data.domain.Pageable;
 
-import java.awt.print.Pageable;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -41,12 +41,12 @@ public interface PatientRepository extends JpaRepository<Patient, UUID> {
     @Query("SELECT p FROM Patient p WHERE p.phone = :phone")
     Optional<Patient> findByPhone(String phone);
 
-    @Modifying(flushAutomatically = true)
+    @Modifying(flushAutomatically = true, clearAutomatically = true)
     @Query(
             """
                     UPDATE Patient p
                     SET
-                        p.lastName = :last_name,
+                        p.lastName = :lastName,
                         p.firstName = :firstName,
                         p.middleName = :middleName,
                         p.phone = :phone,

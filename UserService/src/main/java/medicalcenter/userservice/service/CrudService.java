@@ -1,6 +1,7 @@
 package medicalcenter.userservice.service;
 
-import java.awt.print.Pageable;
+import org.springframework.data.domain.Pageable;
+
 import java.util.List;
 import java.util.UUID;
 

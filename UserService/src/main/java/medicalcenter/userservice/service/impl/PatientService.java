@@ -12,8 +12,8 @@ import medicalcenter.userservice.repository.PatientRepository;
 import medicalcenter.userservice.service.CrudService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.data.domain.Pageable;
 
-import java.awt.print.Pageable;
 import java.util.List;
 import java.util.UUID;
 
