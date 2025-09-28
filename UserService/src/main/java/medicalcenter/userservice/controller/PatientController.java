@@ -6,6 +6,7 @@ import lombok.extern.log4j.Log4j2;
 import medicalcenter.userservice.model.dto.PatientCreateEditDto;
 import medicalcenter.userservice.model.dto.PatientReadDto;
 import medicalcenter.userservice.service.impl.PatientService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,19 +22,19 @@ import java.util.UUID;
 public class PatientController {
     private final PatientService patientService;
 
-    @GetMapping
+    @GetMapping(params = {"!lastName", "!firstName"})
     public ResponseEntity<List<PatientReadDto>> getPatients(Pageable pageable) {
         List<PatientReadDto> all = patientService.findAll(pageable);
         return getListResponseEntity(all);
     }
 
-    @GetMapping
+    @GetMapping(params = {"lastName", "!firstName"})
     public ResponseEntity<List<PatientReadDto>> getAllByLastName(@RequestParam String lastName, Pageable pageable) {
         List<PatientReadDto> all = patientService.findAllByLastName(lastName, pageable);
         return getListResponseEntity(all);
     }
 
-    @GetMapping
+    @GetMapping(params = {"lastName", "firstName"})
     public ResponseEntity<List<PatientReadDto>> getAllByLastFirstName(
             @RequestParam String lastName,
             @RequestParam String firstName,
