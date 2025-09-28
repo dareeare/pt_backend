@@ -1,0 +1,267 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 OPR/121.0.0.0" version="28.2.5">
+  <diagram id="useCasesMedicalCenter" name="Use Case Diagram - Medical Center">
+    <mxGraphModel dx="3927" dy="2564" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="guest" value="Гость" style="shape=umlActor;" parent="1" vertex="1">
+          <mxGeometry x="796" y="-788" width="60" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="patient" value="Пациент" style="shape=umlActor;" parent="1" vertex="1">
+          <mxGeometry x="20" y="340" width="60" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="doctor" value="Врач" style="shape=umlActor;" parent="1" vertex="1">
+          <mxGeometry x="810" y="940" width="60" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="manager" value="Менеджер" style="shape=umlActor;" parent="1" vertex="1">
+          <mxGeometry x="1710" y="200" width="60" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="operator" value="Оператор" style="shape=umlActor;" parent="1" vertex="1">
+          <mxGeometry x="1810" y="-410" width="60" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="system" value="Система" style="shape=umlActor;" parent="1" vertex="1">
+          <mxGeometry x="1500" y="590" width="60" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="edge1" parent="1" source="guest" target="uc_register" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge2" parent="1" source="guest" target="uc_resetPassword" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge3" parent="1" source="guest" target="uc_viewServices" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge4" parent="1" source="guest" target="uc_searchFilter" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge5" parent="1" source="guest" target="uc_viewDoctorProfile" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge6" parent="1" source="guest" target="uc_viewContacts" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge7" parent="1" source="patient" target="uc_login" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge8" parent="1" source="patient" target="uc_editProfile" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge9" parent="1" source="patient" target="uc_viewSlots" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge10" parent="1" source="patient" target="uc_bookAppointment" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge11" parent="1" source="patient" target="uc_manageAppointment" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge12" parent="1" source="patient" target="uc_futureAppointments" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge13" parent="1" source="patient" target="uc_history" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge14" parent="1" source="patient" target="uc_review" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge15" parent="1" source="doctor" target="uc_viewPatientHistory" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge16" parent="1" source="doctor" target="uc_viewSchedule" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge17" parent="1" source="manager" target="uc_manageDoctors" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge18" parent="1" source="manager" target="uc_analyzeStats" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge19" parent="1" source="operator" target="uc_operatorBooking" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge20" parent="1" source="system" target="uc_notifications" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_notifications" value="Отправка уведомлений" style="ellipse;" parent="1" vertex="1">
+          <mxGeometry x="1195" y="550" width="230" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_operatorBooking" value="Перенести запись по звонку" style="ellipse;" parent="1" vertex="1">
+          <mxGeometry x="1490" y="-440" width="280" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_analyzeStats" value="узнать сколько работал врач" style="ellipse;" parent="1" vertex="1">
+          <mxGeometry x="1310" y="190" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_manageDoctors" value="Добавить врача" style="ellipse;" parent="1" vertex="1">
+          <mxGeometry x="1540" y="70" width="230" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_viewPatientHistory" value="Просматривать историю пациента" style="ellipse;" parent="1" vertex="1">
+          <mxGeometry x="540" y="750" width="260" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_review" value="Оставить отзыв" style="ellipse;" parent="1" vertex="1">
+          <mxGeometry x="-300" y="490" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_history" value="Просматривать историю посещений" style="ellipse;" parent="1" vertex="1">
+          <mxGeometry x="-80" y="535" width="260" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_futureAppointments" value="Просматривать будущие записи" style="ellipse;" parent="1" vertex="1">
+          <mxGeometry x="200" y="470" width="260" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_register" value="Регистрация" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="310" y="-690" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_resetPassword" value="Восстановить пароль" style="ellipse;" parent="1" vertex="1">
+          <mxGeometry x="330" y="-560" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_viewServices" value="Просматривать услуги" style="ellipse;" parent="1" vertex="1">
+          <mxGeometry x="460" y="-470" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_searchFilter" value="Поиск и фильтр услуг" style="ellipse;" parent="1" vertex="1">
+          <mxGeometry x="1090" y="-590" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_manageAppointment" value="Отменить/перенести запись" style="ellipse;" parent="1" vertex="1">
+          <mxGeometry x="440" y="355" width="250" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_bookAppointment" value="Записаться к врачу по телефону" style="ellipse;" parent="1" vertex="1">
+          <mxGeometry x="465" y="180" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_viewContacts" value="Просматривать контакты и схему проезда" style="ellipse;" parent="1" vertex="1">
+          <mxGeometry x="910" y="-430" width="260" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_viewDoctorProfile" value="Просматривать профиль врача" style="ellipse;" parent="1" vertex="1">
+          <mxGeometry x="1190" y="-700" width="240" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_login" value="Авторизация" style="ellipse;" parent="1" vertex="1">
+          <mxGeometry x="-220" y="150" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_editProfile" value="Заполнить профиль" style="ellipse;" parent="1" vertex="1">
+          <mxGeometry y="120" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_viewSlots" value="Просматривать свободные слоты" style="ellipse;" parent="1" vertex="1">
+          <mxGeometry x="210" y="130" width="250" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_viewSchedule" value="Просматривать расписание" style="ellipse;" parent="1" vertex="1">
+          <mxGeometry x="920" y="760" width="230" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="F7Q7nW-4UujaLmm5Dbb6-5" value="Записаться к врачу онлайн" style="ellipse;" vertex="1" parent="1">
+          <mxGeometry x="510" y="270" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="F7Q7nW-4UujaLmm5Dbb6-7" style="exitX=0.718;exitY=0.432;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="patient" target="F7Q7nW-4UujaLmm5Dbb6-5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="180" y="375" as="sourcePoint" />
+            <mxPoint x="767" y="180" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="F7Q7nW-4UujaLmm5Dbb6-8" value="Записаться к врачу по телефону" style="ellipse;" vertex="1" parent="1">
+          <mxGeometry x="675" y="-430" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="F7Q7nW-4UujaLmm5Dbb6-9" style="exitX=0.454;exitY=0.788;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="guest" target="F7Q7nW-4UujaLmm5Dbb6-8">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1008" y="-600" as="sourcePoint" />
+            <mxPoint x="780" y="-420" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="F7Q7nW-4UujaLmm5Dbb6-10" style="entryX=1;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="manager" target="F7Q7nW-4UujaLmm5Dbb6-11">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1608" y="120" as="sourcePoint" />
+            <mxPoint x="1380" y="368" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="F7Q7nW-4UujaLmm5Dbb6-11" value="Добавить услугу" style="ellipse;" vertex="1" parent="1">
+          <mxGeometry x="1380" y="310" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="F7Q7nW-4UujaLmm5Dbb6-12" style="entryX=1;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" target="F7Q7nW-4UujaLmm5Dbb6-13" source="manager">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1770" y="370" as="sourcePoint" />
+            <mxPoint x="1600" y="538" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="F7Q7nW-4UujaLmm5Dbb6-13" value="Удалить услугу" style="ellipse;" vertex="1" parent="1">
+          <mxGeometry x="1900" y="300" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="F7Q7nW-4UujaLmm5Dbb6-14" style="entryX=1;entryY=0;entryDx=0;entryDy=0;exitX=0.354;exitY=0.774;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" target="F7Q7nW-4UujaLmm5Dbb6-15" source="manager">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1580" y="290" as="sourcePoint" />
+            <mxPoint x="1410" y="458" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="F7Q7nW-4UujaLmm5Dbb6-15" value="Редактировать услугу" style="ellipse;" vertex="1" parent="1">
+          <mxGeometry x="1630" y="355" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="F7Q7nW-4UujaLmm5Dbb6-17" value="удалить врача" style="ellipse;" vertex="1" parent="1">
+          <mxGeometry x="1260" y="90" width="230" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="F7Q7nW-4UujaLmm5Dbb6-18" style="entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.3333333333333333;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="manager" target="F7Q7nW-4UujaLmm5Dbb6-17">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1550" y="160" as="sourcePoint" />
+            <mxPoint x="1440" y="120" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="F7Q7nW-4UujaLmm5Dbb6-19" style="entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.25;exitY=0.1;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="manager" target="F7Q7nW-4UujaLmm5Dbb6-20">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1548" y="40" as="sourcePoint" />
+            <mxPoint x="1360" y="-40" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="F7Q7nW-4UujaLmm5Dbb6-20" value="Узнать сколько заработал медцентр с услуг" style="ellipse;" vertex="1" parent="1">
+          <mxGeometry x="1800" y="100" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="F7Q7nW-4UujaLmm5Dbb6-21" style="exitX=0;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.546;entryY=0.017;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="F7Q7nW-4UujaLmm5Dbb6-22" source="operator">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1570" y="-227.99999999999977" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="F7Q7nW-4UujaLmm5Dbb6-22" value="Создать запись по звонку" style="ellipse;" vertex="1" parent="1">
+          <mxGeometry x="1460" y="-280" width="280" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="F7Q7nW-4UujaLmm5Dbb6-23" style="exitX=0.75;exitY=0.1;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" target="F7Q7nW-4UujaLmm5Dbb6-24" source="patient">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="500" y="-90" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="F7Q7nW-4UujaLmm5Dbb6-24" value="отменить запись по звонку" style="ellipse;" vertex="1" parent="1">
+          <mxGeometry x="-360" y="250" width="280" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="F7Q7nW-4UujaLmm5Dbb6-25" style="exitX=0.25;exitY=0.1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.44;entryY=0.933;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="F7Q7nW-4UujaLmm5Dbb6-26" source="patient">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="500" y="-70" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="F7Q7nW-4UujaLmm5Dbb6-26" value="Отменить запись онлайн" style="ellipse;" vertex="1" parent="1">
+          <mxGeometry x="-390" y="370" width="280" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="F7Q7nW-4UujaLmm5Dbb6-28" edge="1" parent="1" target="F7Q7nW-4UujaLmm5Dbb6-29" source="operator">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1610" y="-320" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="F7Q7nW-4UujaLmm5Dbb6-29" value="Отменить запись по звонку" style="ellipse;" vertex="1" parent="1">
+          <mxGeometry x="1770" y="-540" width="280" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="F7Q7nW-4UujaLmm5Dbb6-30" style="exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" target="F7Q7nW-4UujaLmm5Dbb6-31" source="operator">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1800" y="-584" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="F7Q7nW-4UujaLmm5Dbb6-31" value="Просмотр расписания врачей" style="ellipse;" vertex="1" parent="1">
+          <mxGeometry x="2000" y="-440" width="280" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="F7Q7nW-4UujaLmm5Dbb6-32" style="exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" target="F7Q7nW-4UujaLmm5Dbb6-33" source="operator">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1930" y="-490" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="F7Q7nW-4UujaLmm5Dbb6-33" value="просмотр услуг" style="ellipse;" vertex="1" parent="1">
+          <mxGeometry x="1990" y="-250" width="280" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="F7Q7nW-4UujaLmm5Dbb6-34" style="exitX=1;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" target="F7Q7nW-4UujaLmm5Dbb6-35" source="operator">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2170" y="-370" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="F7Q7nW-4UujaLmm5Dbb6-35" value="просмотр врачей, оказывающие определенные услуги" style="ellipse;" vertex="1" parent="1">
+          <mxGeometry x="1690" y="-180" width="330" height="102" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
