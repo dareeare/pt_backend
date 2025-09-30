@@ -254,52 +254,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- Триггеры для обновления времени изменения
-CREATE TRIGGER trigger_doctor_updated
-BEFORE UPDATE ON Doctor
-FOR EACH ROW
-EXECUTE FUNCTION update_modified_time();
-
-CREATE TRIGGER trigger_patient_updated
-BEFORE UPDATE ON Patient
-FOR EACH ROW
-EXECUTE FUNCTION update_modified_time();
-
-CREATE TRIGGER trigger_service_updated
-BEFORE UPDATE ON Service
-FOR EACH ROW
-EXECUTE FUNCTION update_modified_time();
-
-CREATE TRIGGER trigger_visit_updated
-BEFORE UPDATE ON Visit
-FOR EACH ROW
-EXECUTE FUNCTION update_modified_time();
-
-CREATE TRIGGER trigger_schedule_updated
-BEFORE UPDATE ON Schedule
-FOR EACH ROW
-EXECUTE FUNCTION update_modified_time();
-
-CREATE TRIGGER trigger_servicerendered_updated
-BEFORE UPDATE ON ServiceRendered
-FOR EACH ROW
-EXECUTE FUNCTION update_modified_time();
-
-CREATE TRIGGER trigger_doctorreviews_updated
-BEFORE UPDATE ON DoctorReviews
-FOR EACH ROW
-EXECUTE FUNCTION update_modified_time();
-
-CREATE TRIGGER trigger_operators_updated
-BEFORE UPDATE ON Operators
-FOR EACH ROW
-EXECUTE FUNCTION update_modified_time();
-
-CREATE TRIGGER trigger_manager_updated
-BEFORE UPDATE ON Manager
-FOR EACH ROW
-EXECUTE FUNCTION update_modified_time();
-
 -- Триггер для обновления рейтинга врача
 CREATE OR REPLACE FUNCTION update_doctor_rating()
 RETURNS TRIGGER AS $$
@@ -358,9 +312,3 @@ CREATE TRIGGER trigger_check_time_slot
 BEFORE INSERT OR UPDATE ON TimeSlots
 FOR EACH ROW
 EXECUTE FUNCTION check_time_slot_availability();
-
---добавление рейтинга врача
-ALTER TABLE doctor ADD COLUMN rating float;
-
---дропаем проблемный (один из многих) тригер
-DROP TRIGGER trigger_patient_updated ON patient;
