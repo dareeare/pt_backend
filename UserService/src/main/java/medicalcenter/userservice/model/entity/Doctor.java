@@ -1,4 +1,4 @@
-package medicalcenter.userservice.model;
+package medicalcenter.userservice.model.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;

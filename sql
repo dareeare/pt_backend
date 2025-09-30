@@ -358,3 +358,9 @@ CREATE TRIGGER trigger_check_time_slot
 BEFORE INSERT OR UPDATE ON TimeSlots
 FOR EACH ROW
 EXECUTE FUNCTION check_time_slot_availability();
+
+--добавление рейтинга врача
+ALTER TABLE doctor ADD COLUMN rating float;
+
+--дропаем проблемный (один из многих) тригер
+DROP TRIGGER trigger_patient_updated ON patient;

@@ -1,7 +1,7 @@
-package medicalcenter.userservice.service;
+package medicalcenter.userservice.service.impl;
 
 import lombok.extern.log4j.Log4j2;
-import medicalcenter.userservice.model.Doctor;
+import medicalcenter.userservice.model.entity.Doctor;
 import medicalcenter.userservice.repository.DoctorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
