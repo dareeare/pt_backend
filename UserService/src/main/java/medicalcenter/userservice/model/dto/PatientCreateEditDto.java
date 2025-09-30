@@ -31,6 +31,6 @@ public record PatientCreateEditDto(
 
         @NotEmpty(message = "Gender should not be empty")
         @Pattern(regexp = "^[MFO]$", message = "Gender must be one of 'M', 'F', or 'O'")
-        char gender
+        String gender
 ) {
 }

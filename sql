@@ -367,3 +367,6 @@ EXECUTE FUNCTION check_time_slot_availability();
 
 --добавление рейтинга врача
 ALTER TABLE doctor ADD COLUMN rating float;
+
+--дропаем проблемный (один из многих) тригер
+DROP TRIGGER trigger_patient_updated ON patient;
