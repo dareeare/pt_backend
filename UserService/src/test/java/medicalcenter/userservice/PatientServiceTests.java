@@ -239,7 +239,7 @@ public class PatientServiceTests {
                 "999",
                 "new@ex",
                 LocalDate.of(2000,12,12),
-                "F"
+                'F'
         );
 
 

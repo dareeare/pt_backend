@@ -64,5 +64,5 @@ public interface PatientRepository extends JpaRepository<Patient, UUID> {
             @Param("phone") String phone,
             @Param("email") String email,
             @Param("dateOfBirth") LocalDate dateOfBirth,
-            @Param("gender") String gender);
+            @Param("gender") char gender);
 }

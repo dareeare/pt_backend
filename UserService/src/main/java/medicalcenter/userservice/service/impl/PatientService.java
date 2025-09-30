@@ -86,7 +86,7 @@ public class PatientService implements CrudService<PatientCreateEditDto, Patient
                 updatedPatient.phone(),
                 updatedPatient.email(),
                 updatedPatient.dateOfBirth(),
-                updatedPatient.gender()
+                updatedPatient.gender().charAt(0)
         );
         if (updated == 0) {
             throw new UpdateException(id);
