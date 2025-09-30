@@ -39,7 +39,7 @@ public class PatientService implements CrudService<PatientCreateEditDto, Patient
 
     @Override
     public List<PatientReadDto> findAllByLastFirstName(String lastName, String firstName, Pageable pageable) {
-        return patientMapper.toDto(patientRepository.findAllByLastFirstName(firstName, lastName, pageable));
+        return patientMapper.toDto(patientRepository.findAllByLastFirstName(lastName, firstName, pageable));
     }
 
     @Override

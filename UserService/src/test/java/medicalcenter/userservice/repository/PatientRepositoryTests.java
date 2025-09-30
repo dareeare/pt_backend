@@ -202,7 +202,7 @@ public class PatientRepositoryTests {
                 .lastName("Mikhailov")
                 .middleName(null)
                 .phone("+380501112233")
-                .email("s@ex")
+                .email("ser@ex")
                 .gender('M')
                 .dateOfBirth(LocalDate.of(1977,7,7))
                 .build();

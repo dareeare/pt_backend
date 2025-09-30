@@ -21,25 +21,30 @@ import java.util.UUID;
 public class PatientController {
     private final PatientService patientService;
 
-    @GetMapping(params = {"!lastName", "!firstName"})
+    @GetMapping(params = {"!lastName", "!firstName", "!phone"})
     public ResponseEntity<List<PatientReadDto>> getPatients(Pageable pageable) {
         List<PatientReadDto> all = patientService.findAll(pageable);
         return getListResponseEntity(all);
     }
 
-    @GetMapping(params = {"lastName", "!firstName"})
+    @GetMapping(params = {"lastName", "!firstName", "!phone"})
     public ResponseEntity<List<PatientReadDto>> getAllByLastName(@RequestParam String lastName, Pageable pageable) {
         List<PatientReadDto> all = patientService.findAllByLastName(lastName, pageable);
         return getListResponseEntity(all);
     }
 
-    @GetMapping(params = {"lastName", "firstName"})
+    @GetMapping(params = {"lastName", "firstName", "!phone"})
     public ResponseEntity<List<PatientReadDto>> getAllByLastFirstName(
             @RequestParam String lastName,
             @RequestParam String firstName,
             Pageable pageable) {
         List<PatientReadDto> all = patientService.findAllByLastFirstName(lastName, firstName, pageable);
         return getListResponseEntity(all);
+    }
+
+    @GetMapping(params = {"phone", "!lastName", "!firstName"})
+    public ResponseEntity<PatientReadDto> getPatientByPhone(@RequestParam String phone) {
+        return ResponseEntity.ok(patientService.findByPhone(phone));
     }
 
     private ResponseEntity<List<PatientReadDto>> getListResponseEntity(List<PatientReadDto> all) {
@@ -60,8 +65,8 @@ public class PatientController {
         return ResponseEntity.status(HttpStatus.CREATED).body(patient);
     }
 
-    @PutMapping
-    public ResponseEntity<Void> updatePatient(@RequestParam UUID id, @RequestBody @Valid PatientCreateEditDto dto) {
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> updatePatient(@PathVariable UUID id, @RequestBody @Valid PatientCreateEditDto dto) {
         patientService.update(id, dto);
         return ResponseEntity.ok().build();
     }
