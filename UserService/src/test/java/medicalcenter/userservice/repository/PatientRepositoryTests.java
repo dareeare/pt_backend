@@ -1,7 +1,6 @@
-package medicalcenter.userservice;
+package medicalcenter.userservice.repository;
 
 import medicalcenter.userservice.model.entity.Patient;
-import medicalcenter.userservice.repository.PatientRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
-public class PatientServiceTests {
+public class PatientRepositoryTests {
 
     @Autowired
     private PatientRepository repository;
@@ -203,7 +202,7 @@ public class PatientServiceTests {
                 .lastName("Mikhailov")
                 .middleName(null)
                 .phone("+380501112233")
-                .email("s@ex")
+                .email("ser@ex")
                 .gender('M')
                 .dateOfBirth(LocalDate.of(1977,7,7))
                 .build();
@@ -239,7 +238,7 @@ public class PatientServiceTests {
                 "999",
                 "new@ex",
                 LocalDate.of(2000,12,12),
-                "F"
+                'F'
         );
 
 
