@@ -1,7 +1,6 @@
-package medicalcenter.userservice;
+package medicalcenter.userservice.repository;
 
 import medicalcenter.userservice.model.entity.Patient;
-import medicalcenter.userservice.repository.PatientRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
-public class PatientServiceTests {
+public class PatientRepositoryTests {
 
     @Autowired
     private PatientRepository repository;
