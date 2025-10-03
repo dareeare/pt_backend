@@ -8,6 +8,13 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 import java.util.UUID;
 
+/**
+ * Сущность представляет сотрудника call-центра медицинского центра.
+ * Операторы отвечают за прием звонков, запись пациентов и консультации.
+ *
+ * Пример: "Оператор Сидорова А.И., телефон: +375298759356"
+ */
+
 @Data
 @NoArgsConstructor
 @Entity

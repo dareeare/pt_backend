@@ -11,6 +11,15 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+/**
+ * Центральная сущность, представляющая визит пациента к врачу.
+ * Содержит медицинскую информацию: симптомы, диагноз, назначения.
+ * Имеет статусы: 'scheduled', 'completed', 'cancelled'.
+ * Связана с оказанными услугами, отзывом и временным слотом.
+ *
+ * Пример: "Визит пациента Петрова к кардиологу 15.01.2024 10:00"
+ */
+
 @Data
 @NoArgsConstructor
 @Entity

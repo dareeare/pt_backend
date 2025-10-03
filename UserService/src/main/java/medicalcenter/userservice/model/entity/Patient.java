@@ -11,6 +11,15 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Сущность представляет пациента медицинского центра.
+ * Содержит демографические данные: ФИО, контакты, дата рождения, пол.
+ * Связана с историей визитов через коллекцию visits.
+ * CHECK-constraint ограничивает значения поля gender ('M', 'F', 'O').
+ *
+ * Пример: "Пациент: Петров Иван Сергеевич, 01.01.1980, M"
+ */
+
 @Data
 @NoArgsConstructor
 @ToString(exclude = "visits")
