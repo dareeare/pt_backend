@@ -1,4 +1,4 @@
-package medicalcenter.userservice.model.dto.scheduleexceptions;
+package medicalcenter.userservice.model.dto.scheduleexception;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

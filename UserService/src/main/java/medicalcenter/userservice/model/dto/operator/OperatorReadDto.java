@@ -1,4 +1,4 @@
-package medicalcenter.userservice.model.dto.operators;
+package medicalcenter.userservice.model.dto.operator;
 
 import java.time.LocalDate;
 import java.util.UUID;

@@ -1,4 +1,4 @@
-package medicalcenter.userservice.model.dto.timeslots;
+package medicalcenter.userservice.model.dto.timeslot;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

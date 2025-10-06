@@ -1,4 +1,4 @@
-package medicalcenter.userservice.model.dto.scheduleexceptions;
+package medicalcenter.userservice.model.dto.scheduleexception;
 
 import jakarta.validation.constraints.*;
 import java.time.LocalDate;

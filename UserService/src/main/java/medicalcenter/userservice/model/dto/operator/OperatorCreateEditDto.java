@@ -1,4 +1,4 @@
-package medicalcenter.userservice.model.dto.operators;
+package medicalcenter.userservice.model.dto.operator;
 
 import jakarta.validation.constraints.*;
 import java.time.LocalDate;
