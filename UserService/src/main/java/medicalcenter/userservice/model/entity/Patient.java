@@ -51,14 +51,14 @@ public class Patient {
     private LocalDate dateOfBirth;
 
     @Column(name = "gender")
-    private char gender;
+    private String gender;
 
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Visit> visits;
 
     @Builder
     public Patient(String firstName, String lastName, String middleName,
-                   String phone, String email, char gender, LocalDate dateOfBirth,
+                   String phone, String email, String gender, LocalDate dateOfBirth,
                    List<Visit> visits) {
         this.firstName = firstName;
         this.lastName = lastName;

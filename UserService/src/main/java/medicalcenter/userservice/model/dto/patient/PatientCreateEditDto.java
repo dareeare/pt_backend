@@ -30,6 +30,7 @@ public record PatientCreateEditDto(
         LocalDate dateOfBirth,
 
         @NotEmpty(message = "Gender should not be empty")
+        @Size(max = 1, message = "Gender consists of 1 character")
         @Pattern(regexp = "^[MFO]$", message = "Gender must be one of 'M', 'F', or 'O'")
         String gender
 ) {
