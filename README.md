@@ -25,16 +25,97 @@ Backend сервиса для веб‑приложения "Медицинск�
 ![guest abilities](images/guest.png)
 ![manager abilities](images/manager.png)
 ![operator abilities](images/operator.png)
-![dr_system abilities](images/doctor_system.png)
 
-## API
-1. /api/v1/patients
-2. /api/v1/patients/{id}
-3. /api/v1/doctors
-4. /api/v1/doctors/{id}
-5. /api/v1/specializations
-6. /api/v1/visits/{id}/status
-7. /api/v1/schedules/doctor/{id}
-8. /api/v1/services/{id}
-9. /api/v1/operators/{id}
-10. /api/v1/managers
+
+## Medical Center API Endpoints
+
+### Patients
+- `GET /patients`
+- `GET /patients/{id}`
+- `GET /patients/search/by-lastname?lastName={lastName}`
+- `GET /patients/search/by-fullname?lastName={lastName}&firstName={firstName}&middleName={middleName}`
+- `GET /patients/search/by-phone?phone={phone}`
+- `POST /patients`
+- `PUT /patients/{id}`
+- `DELETE /patients/{id}`
+
+### Doctors
+- `GET /doctors`
+- `GET /doctors/{id}`
+- `GET /doctors/search/by-specialty?specialty={specialty}`
+- `GET /doctors/search/by-rating?minRating={minRating}`
+- `GET /doctors/{id}/rating`
+- `GET /doctors/{id}/rating/stats`
+- `POST /doctors`
+- `PUT /doctors/{id}`
+- `DELETE /doctors/{id}`
+
+### Services
+- `GET /services`
+- `GET /services/{id}`
+- `GET /services/search/by-doctor?doctorId={doctorId}`
+- `GET /services/search/by-cost?minCost={minCost}&maxCost={maxCost}`
+- `POST /services`
+- `PUT /services/{id}`
+- `DELETE /services/{id}`
+
+### Visits
+- `GET /visits`
+- `GET /visits/{id}`
+- `GET /visits/search/by-doctor?doctorId={doctorId}`
+- `GET /visits/search/by-patient?patientId={patientId}`
+- `GET /visits/search/by-status?status={status}`
+- `POST /visits`
+- `PUT /visits/{id}`
+- `DELETE /visits/{id}`
+
+### Schedule
+- `GET /schedules`
+- `GET /schedules/search/by-doctor?doctorId={doctorId}`
+- `GET /schedules/search/by-date?workDay={yyyy-MM-dd}`
+- `POST /schedules`
+- `PUT /schedules/{id}`
+- `DELETE /schedules/{id}`
+
+### TimeSlots
+- `GET /timeslots`
+- `GET /timeslots/search/by-doctor?doctorId={doctorId}`
+- `GET /timeslots/available`
+- `GET /timeslots/available/by-doctor?doctorId={doctorId}`
+- `GET /timeslots/search/by-date?slotDate={yyyy-MM-dd}`
+- `PUT /timeslots/{id}/book?visitId={visitId}`
+- `PUT /timeslots/{id}/release`
+
+### DoctorReviews
+- `GET /reviews`
+- `GET /reviews/search/by-doctor?doctorId={doctorId}`
+- `GET /reviews/search/by-patient?patientId={patientId}`
+- `GET /reviews/search/by-visit?visitId={visitId}`
+- `POST /reviews`
+- `PUT /reviews/{id}/approve`
+- `PUT /reviews/{id}`
+- `DELETE /reviews/{id}`
+
+### ServiceRendered
+- `GET /service-rendered`
+- `GET /service-rendered/search/by-visit?visitId={visitId}`
+- `GET /service-rendered/visit/{visitId}/total-cost`
+- `POST /service-rendered`
+
+### ScheduleExceptions
+- `GET /schedule-exceptions`
+- `GET /schedule-exceptions/search/by-doctor?doctorId={doctorId}`
+- `POST /schedule-exceptions`
+
+### Operators
+- `GET /operators`
+- `POST /operators`
+
+### Managers
+- `GET /managers`
+- `POST /managers`
+
+### Common Parameters
+- `page` - page number (starts from 0)
+- `size` - page size (default: 20)
+- `sort` - sorting field (e.g., `lastName,asc`)
