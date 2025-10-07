@@ -25,7 +25,7 @@ CREATE TABLE Patient (
     phone VARCHAR(11) NOT NULL,
     email VARCHAR(100),
     date_of_birth DATE,
-    gender CHAR(1) CHECK (gender IN ('M', 'F', 'O')) -- M: Male, F: Female, O: Other
+    gender VARCHAR(1) CHECK (gender IN ('M', 'F', 'O')) -- M: Male, F: Female, O: Other
 );
 
 CREATE TABLE Service (
