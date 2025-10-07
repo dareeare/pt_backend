@@ -9,7 +9,7 @@ import org.mapstruct.MappingConstants;
 import java.util.List;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
-public interface OperatorsMapper {
+public interface OperatorMapper {
     Operator toEntity(OperatorCreateEditDto dto);
     
     Operator toEntity(OperatorReadDto dto);

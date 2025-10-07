@@ -28,7 +28,7 @@ public class Visit {
     @Id
     @Column(name = "visit_id")
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID visitId;
+    private UUID id;
 
     @Column(name = "date_of_visit", nullable = false)
     @NotNull(message = "Date of visit should have value")
