@@ -4,7 +4,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import medicalcenter.userservice.model.dto.PatientCreateEditDto;
-import medicalcenter.userservice.model.dto.PatientReadDto;
+import medicalcenter.userservice.model.dto.patient.*;
 import medicalcenter.userservice.service.impl.PatientService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
