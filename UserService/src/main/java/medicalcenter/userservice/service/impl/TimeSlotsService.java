@@ -79,7 +79,7 @@ public class TimeSlotsService implements CrudService<TimeSlotCreateEditDto, Time
                 updatedTimeSlot.slotDate(),
                 updatedTimeSlot.startTime(),
                 updatedTimeSlot.endTime(),
-                updatedTimeSlot.visitId()
+                updatedTimeSlot.visit()
         );
         if (updated == 0) {
             throw new UpdateException(id);

@@ -3,13 +3,14 @@ package medicalcenter.userservice.mapper;
 import medicalcenter.userservice.model.dto.doctorreview.DoctorReviewCreateEditDto;
 import medicalcenter.userservice.model.dto.doctorreview.DoctorReviewReadDto;
 import medicalcenter.userservice.model.entity.DoctorReview;
+import org.mapstruct.Builder;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 
 import java.util.List;
 
-@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING, builder = @Builder(disableBuilder = true))
 public interface DoctorReviewsMapper {
     
     @Mapping(target = "patient", ignore = true)
