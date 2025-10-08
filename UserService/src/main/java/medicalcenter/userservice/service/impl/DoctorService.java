@@ -1,54 +1,107 @@
 package medicalcenter.userservice.service.impl;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import medicalcenter.userservice.exception.NotFoundException;
+import medicalcenter.userservice.exception.UpdateException;
+import medicalcenter.userservice.mapper.DoctorMapper;
+import medicalcenter.userservice.model.dto.doctor.DoctorCreateEditDto;
+import medicalcenter.userservice.model.dto.doctor.DoctorReadDto;
 import medicalcenter.userservice.model.entity.Doctor;
 import medicalcenter.userservice.repository.DoctorRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import medicalcenter.userservice.service.CrudService;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
-@Transactional
+@Transactional(readOnly = true)
+@RequiredArgsConstructor
 @Log4j2
-public class DoctorService {
+public class DoctorService implements CrudService<DoctorCreateEditDto, DoctorReadDto> {
     private final DoctorRepository doctorRepository;
+    private final DoctorMapper doctorMapper;
 
-    @Autowired
-    public DoctorService(DoctorRepository doctorRepository) {
-        this.doctorRepository = doctorRepository;
-    }
-
-    public List<Doctor> findAll() {
+    @Override
+    public List<DoctorReadDto> findAll(Pageable pageable) {
         log.debug("findAll() method is called from DoctorService");
-        return doctorRepository.findAll();
+        return doctorMapper.toDto(doctorRepository.findAll(pageable).getContent());
     }
 
-    public Doctor findOne(UUID id) {
-        log.debug("finding doctor by id: {}", id);
-        Optional<Doctor> foundPatient = doctorRepository.findById(id);
-        return foundPatient.orElse(null);
+    @Override
+    public List<DoctorReadDto> findAllByLastName(String lastName, Pageable pageable) {
+        return doctorMapper.toDto(doctorRepository.findAllByLastName(lastName, pageable));
     }
 
+    @Override
+    public List<DoctorReadDto> findAllByLastFirstName(String lastName, String firstName, Pageable pageable) {
+        return doctorMapper.toDto(doctorRepository.findAllByLastFirstName(firstName, lastName, pageable));
+    }
+
+    @Override
+    public DoctorReadDto findOne(UUID id) {
+        log.debug("finding doctor with id: {}", id);
+        Doctor doctor = doctorRepository.findById(id).orElseThrow(() -> new NotFoundException(id));
+        return doctorMapper.toDto(doctor);
+    }
+
+    @Override
+    public DoctorReadDto findByFullName(String lastName, String firstName, String middleName) {
+        Doctor doctor = doctorRepository.findByFullName(lastName, firstName, middleName)
+                .orElseThrow(NotFoundException::new);
+        return doctorMapper.toDto(doctor);
+    }
+
+    @Override
+    public DoctorReadDto findByPhone(String phone) {
+        Doctor doctor = doctorRepository.findByPhone(phone).orElseThrow(NotFoundException::new);
+        return doctorMapper.toDto(doctor);
+    }
+
+    @Override
     @Transactional
-    public void save(Doctor person) {
-        log.debug("saving doctor: {}", person);
-        doctorRepository.save(person);
+    public DoctorReadDto save(DoctorCreateEditDto doctor) {
+        log.debug("saving doctor: {}", doctor);
+        Doctor entity = doctorMapper.toEntity(doctor);
+        return doctorMapper.toDto(doctorRepository.save(entity));
     }
 
+    @Override
     @Transactional
-    public void update(UUID id, Doctor updatedDoctor) {
-        log.debug("updating doctor's id from {} to {}", id, updatedDoctor.getId());
-        updatedDoctor.setId(id);
-        doctorRepository.save(updatedDoctor);
+    public void update(UUID id, DoctorCreateEditDto updatedDoctor) {
+        log.debug("updating doctor with id {}", id);
+        Doctor doctor = doctorRepository.findById(id).orElseThrow(() -> new NotFoundException(id));
+        int updated = doctorRepository.updateById(
+                id,
+                updatedDoctor.lastName(),
+                updatedDoctor.firstName(),
+                updatedDoctor.middleName(),
+                updatedDoctor.specialty(),
+                updatedDoctor.phone(),
+                updatedDoctor.email(),
+                updatedDoctor.information(),
+                updatedDoctor.rating()
+        );
+        if (updated == 0) {
+            throw new UpdateException(id);
+        }
     }
 
+    @Override
     @Transactional
     public void delete(UUID id) {
         log.debug("deleting doctor with id: {}", id);
         doctorRepository.deleteById(id);
+    }
+
+    public List<DoctorReadDto> findBySpecialty(String specialty, Pageable pageable) {
+        return doctorMapper.toDto(doctorRepository.findBySpecialty(specialty, pageable));
+    }
+
+    public List<DoctorReadDto> findByRatingGreaterThanEqual(Double minRating, Pageable pageable) {
+        return doctorMapper.toDto(doctorRepository.findByRatingGreaterThanEqual(minRating, pageable));
     }
 }

@@ -11,6 +11,15 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Сущность представляет пациента медицинского центра.
+ * Содержит демографические данные: ФИО, контакты, дата рождения, пол.
+ * Связана с историей визитов через коллекцию visits.
+ * CHECK-constraint ограничивает значения поля gender ('M', 'F', 'O').
+ *
+ * Пример: "Пациент: Петров Иван Сергеевич, 01.01.1980, M"
+ */
+
 @Data
 @NoArgsConstructor
 @ToString(exclude = "visits")
@@ -42,14 +51,14 @@ public class Patient {
     private LocalDate dateOfBirth;
 
     @Column(name = "gender")
-    private char gender;
+    private String gender;
 
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Visit> visits;
 
     @Builder
     public Patient(String firstName, String lastName, String middleName,
-                   String phone, String email, char gender, LocalDate dateOfBirth,
+                   String phone, String email, String gender, LocalDate dateOfBirth,
                    List<Visit> visits) {
         this.firstName = firstName;
         this.lastName = lastName;
