@@ -1,6 +1,8 @@
 package medicalcenter.userservice.model.dto.timeslot;
 
 import jakarta.validation.constraints.*;
+import medicalcenter.userservice.model.entity.Visit;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.UUID;
@@ -19,6 +21,7 @@ public record TimeSlotCreateEditDto(
         @NotNull(message = "End time should not be null")
         LocalTime endTime,
 
-        UUID visitId
+        @NotNull(message = "Visit should not be null")
+        Visit visit
 ) {
 }

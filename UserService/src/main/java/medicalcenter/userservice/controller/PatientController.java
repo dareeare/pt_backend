@@ -6,6 +6,7 @@ import lombok.extern.log4j.Log4j2;
 import medicalcenter.userservice.model.dto.PatientCreateEditDto;
 import medicalcenter.userservice.model.dto.patient.*;
 import medicalcenter.userservice.service.impl.PatientService;
+import medicalcenter.userservice.util.ControllerUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,48 +16,49 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/v1/patients")
+@RequestMapping("/api/patients")
 @RequiredArgsConstructor
 @Log4j2
 public class PatientController {
     private final PatientService patientService;
 
-    @GetMapping(params = {"!lastName", "!firstName", "!phone"})
+    @GetMapping(params = {"!lastName", "!firstName", "!phone", "!middleName"})
     public ResponseEntity<List<PatientReadDto>> getPatients(Pageable pageable) {
         List<PatientReadDto> all = patientService.findAll(pageable);
-        return getListResponseEntity(all);
+        return ControllerUtil.getListResponseEntity(all);
     }
 
-    @GetMapping(params = {"lastName", "!firstName", "!phone"})
+    @GetMapping(params = {"lastName", "!firstName", "!phone", "!middleName"})
     public ResponseEntity<List<PatientReadDto>> getAllByLastName(@RequestParam String lastName, Pageable pageable) {
         List<PatientReadDto> all = patientService.findAllByLastName(lastName, pageable);
-        return getListResponseEntity(all);
+        return ControllerUtil.getListResponseEntity(all);
     }
 
-    @GetMapping(params = {"lastName", "firstName", "!phone"})
+    @GetMapping(params = {"lastName", "firstName", "!phone", "!middleName"})
     public ResponseEntity<List<PatientReadDto>> getAllByLastFirstName(
             @RequestParam String lastName,
             @RequestParam String firstName,
             Pageable pageable) {
         List<PatientReadDto> all = patientService.findAllByLastFirstName(lastName, firstName, pageable);
-        return getListResponseEntity(all);
+        return ControllerUtil.getListResponseEntity(all);
     }
 
-    @GetMapping(params = {"phone", "!lastName", "!firstName"})
+    @GetMapping(params = {"phone", "!lastName", "!firstName", "!middleName"})
     public ResponseEntity<PatientReadDto> getPatientByPhone(@RequestParam String phone) {
         return ResponseEntity.ok(patientService.findByPhone(phone));
-    }
-
-    private ResponseEntity<List<PatientReadDto>> getListResponseEntity(List<PatientReadDto> all) {
-        if (all.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.ok(all);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<PatientReadDto> getPatient(@PathVariable UUID id) {
         return ResponseEntity.ok(patientService.findOne(id));
+    }
+
+    @GetMapping(params = {"lastName", "firstName", "middleName", "!phone"})
+    public ResponseEntity<PatientReadDto> getByFullName(
+            @RequestParam String lastName,
+            @RequestParam String firstName,
+            @RequestParam String middleName) {
+        return ResponseEntity.ok(patientService.findByFullName(lastName, firstName, middleName));
     }
 
     @PostMapping
