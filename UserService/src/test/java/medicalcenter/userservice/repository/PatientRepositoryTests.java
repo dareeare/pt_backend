@@ -35,7 +35,7 @@ public class PatientRepositoryTests {
                 .middleName(null)
                 .phone("0000")
                 .email("save@ex")
-                .gender('M')
+                .gender("M")
                 .dateOfBirth(LocalDate.of(1999, 9, 9))
                 .build();
         Patient saved = repository.save(p);
@@ -56,7 +56,7 @@ public class PatientRepositoryTests {
                 .middleName(null)
                 .phone("1111")
                 .email("del@ex")
-                .gender('F')
+                .gender("F")
                 .dateOfBirth(LocalDate.of(1980, 1, 1))
                 .build();
         repository.save(p);
@@ -77,7 +77,7 @@ public class PatientRepositoryTests {
                 .middleName("S.")
                 .phone("123")
                 .email("ivan@example.com")
-                .gender('M')
+                .gender("M")
                 .dateOfBirth(LocalDate.of(1990,1,1))
                 .build();
         Patient p2 = Patient.builder()
@@ -86,7 +86,7 @@ public class PatientRepositoryTests {
                 .middleName("A.")
                 .phone("456")
                 .email("petr@example.com")
-                .gender('M')
+                .gender("M")
                 .dateOfBirth(LocalDate.of(1985,5,5))
                 .build();
         Patient p3 = Patient.builder()
@@ -95,7 +95,7 @@ public class PatientRepositoryTests {
                 .middleName("B.")
                 .phone("789")
                 .email("ivan@example.com")
-                .gender('F')
+                .gender("F")
                 .dateOfBirth(LocalDate.of(1992,2,2))
                 .build();
 
@@ -119,7 +119,7 @@ public class PatientRepositoryTests {
                     .middleName(null)
                     .phone("p" + i)
                     .email("k" + i + "@ex")
-                    .gender('M')
+                    .gender("M")
                     .dateOfBirth(LocalDate.of(1990,1,1))
                     .build());
         }
@@ -143,7 +143,7 @@ public class PatientRepositoryTests {
                 .middleName(null)
                 .phone("11")
                 .email("a@ex")
-                .gender('F')
+                .gender("F")
                 .dateOfBirth(LocalDate.of(1991,3,3))
                 .build());
         repository.save(Patient.builder()
@@ -152,7 +152,7 @@ public class PatientRepositoryTests {
                 .middleName(null)
                 .phone("22")
                 .email("b@ex")
-                .gender('F')
+                .gender("F")
                 .dateOfBirth(LocalDate.of(1992,4,4))
                 .build());
         repository.save(Patient.builder()
@@ -161,7 +161,7 @@ public class PatientRepositoryTests {
                 .middleName(null)
                 .phone("33")
                 .email("c@ex")
-                .gender('F')
+                .gender("F")
                 .dateOfBirth(LocalDate.of(1993,5,5))
                 .build());
 
@@ -181,7 +181,7 @@ public class PatientRepositoryTests {
                 .middleName("Petrovna")
                 .phone("100")
                 .email("olga@ex")
-                .gender('F')
+                .gender("F")
                 .dateOfBirth(LocalDate.of(1988,6,6))
                 .build();
         repository.save(p);
@@ -203,7 +203,7 @@ public class PatientRepositoryTests {
                 .middleName(null)
                 .phone("+380501112233")
                 .email("ser@ex")
-                .gender('M')
+                .gender("M")
                 .dateOfBirth(LocalDate.of(1977,7,7))
                 .build();
         repository.save(p);
@@ -223,7 +223,7 @@ public class PatientRepositoryTests {
                 .middleName("OldMiddle")
                 .phone("000")
                 .email("old@ex")
-                .gender('M')
+                .gender("M")
                 .dateOfBirth(LocalDate.of(1970,1,1))
                 .build();
         repository.save(p);
@@ -238,7 +238,7 @@ public class PatientRepositoryTests {
                 "999",
                 "new@ex",
                 LocalDate.of(2000,12,12),
-                'F'
+                "F"
         );
 
 
@@ -254,6 +254,6 @@ public class PatientRepositoryTests {
         assertThat(ap.getPhone()).isEqualTo("999");
         assertThat(ap.getEmail()).isEqualTo("new@ex");
         assertThat(ap.getDateOfBirth()).isEqualTo(LocalDate.of(2000,12,12));
-        assertThat(ap.getGender()).isEqualTo('F');
+        assertThat(ap.getGender()).isEqualTo("F");
     }
 }
