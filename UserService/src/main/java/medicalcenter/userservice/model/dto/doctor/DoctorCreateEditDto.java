@@ -20,7 +20,7 @@ public record DoctorCreateEditDto(
         String specialty,
 
         @NotEmpty(message = "Phone should not be empty")
-        @Pattern(regexp = "^\\d{11}$", message = "Phone must contain 11 digits")
+        @Pattern(regexp = "^80(29|17|33|44|25)\\d{7}$", message = "Phone must have format 80(29|17|33|44|25) followed by 7 digits")
         String phone,
 
         @Email(message = "Email should be valid")
@@ -28,7 +28,7 @@ public record DoctorCreateEditDto(
 
         String information,
 
-        @DecimalMin(value = "1.00", message = "Rating must be at least 1.00")
+        @DecimalMin(value = "0.00", message = "Rating must be at least 0.00")
         @DecimalMax(value = "5.00", message = "Rating must be at most 5.00")
         BigDecimal rating
 ) {

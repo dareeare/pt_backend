@@ -20,7 +20,7 @@ public record OperatorCreateEditDto(
         LocalDate dateOfBirth,
 
         @NotEmpty(message = "Phone should not be empty")
-        @Pattern(regexp = "^\\d{11}$", message = "Phone must contain 11 digits")
+        @Pattern(regexp = "^80(29|17|33|44|25)\\d{7}$", message = "Phone must have format 80(29|17|33|44|25) followed by 7 digits")
         String phone,
 
         @Email(message = "Email should be valid")

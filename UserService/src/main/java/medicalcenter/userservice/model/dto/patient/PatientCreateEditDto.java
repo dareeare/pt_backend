@@ -21,6 +21,7 @@ public record PatientCreateEditDto(
         String middleName,
 
         @NotEmpty(message = "Phone should not be empty")
+        @Pattern(regexp = "^80(29|17|33|44|25)\\d{7}$", message = "Phone must have format 80(29|17|33|44|25) followed by 7 digits")
         String phone,
 
         @Email
