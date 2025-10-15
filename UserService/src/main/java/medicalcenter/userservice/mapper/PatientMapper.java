@@ -1,7 +1,6 @@
 package medicalcenter.userservice.mapper;
 
-import medicalcenter.userservice.model.dto.PatientCreateEditDto;
-import medicalcenter.userservice.model.dto.patient.PatientReadDto;
+import medicalcenter.userservice.model.dto.patient.*;
 import medicalcenter.userservice.model.entity.Patient;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;

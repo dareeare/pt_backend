@@ -5,7 +5,6 @@ import lombok.extern.log4j.Log4j2;
 import medicalcenter.userservice.exception.NotFoundException;
 import medicalcenter.userservice.exception.UpdateException;
 import medicalcenter.userservice.mapper.PatientMapper;
-import medicalcenter.userservice.model.dto.PatientCreateEditDto;
 import medicalcenter.userservice.model.dto.patient.*;
 import medicalcenter.userservice.model.entity.Patient;
 import medicalcenter.userservice.repository.PatientRepository;
