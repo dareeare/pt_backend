@@ -31,7 +31,7 @@ public interface DoctorReviewRepository extends JpaRepository<DoctorReview, UUID
     @Query("SELECT AVG(dr.rating) FROM DoctorReview dr WHERE dr.doctor.id = :doctorId AND dr.isApproved = true")
     Double findAverageRatingByDoctorId(@Param("doctorId") UUID doctorId);
 
-    @Query("SELECT COUNT(dr) FROM DoctorReviews dr WHERE dr.doctor.id = :doctorId AND dr.isApproved = true")
+    @Query("SELECT COUNT(dr) FROM DoctorReview dr WHERE dr.doctor.id = :doctorId AND dr.isApproved = true")
     Long countApprovedReviewsByDoctorId(@Param("doctorId") UUID doctorId);
 
     @Modifying(flushAutomatically = true, clearAutomatically = true)
