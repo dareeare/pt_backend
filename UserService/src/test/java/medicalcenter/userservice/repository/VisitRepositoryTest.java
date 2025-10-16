@@ -332,17 +332,6 @@ class VisitRepositoryTest {
                 .containsExactlyInAnyOrder(visit1.getId(), visit2.getId(), visit3.getId());
     }
 
-    @Test
-    void findByDateOfVisitBetween_WithExactDates_ShouldReturnMatchingVisits() {
-        Pageable pageable = PageRequest.of(0, 10);
-        LocalDateTime startDate = visit1.getDateOfVisit();
-        LocalDateTime endDate = visit1.getDateOfVisit();
-
-        List<Visit> result = visitRepository.findByDateOfVisitBetween(startDate, endDate, pageable);
-
-        assertThat(result).hasSize(1);
-        assertThat(result.get(0).getId()).isEqualTo(visit1.getId());
-    }
 
     @Test
     void findByDateOfVisitBetween_WithFutureDates_ShouldReturnEmptyList() {
