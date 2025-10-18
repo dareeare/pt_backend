@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.*;
         "spring.jpa.hibernate.ddl-auto=create-drop",
         "spring.jpa.show-sql=true"
 })
-class DoctorRepositoryTest {
+class DoctorRepositoryTests {
 
     @Autowired
     private DoctorRepository doctorRepository;

@@ -9,7 +9,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import medicalcenter.userservice.model.dto.patient.*;
 import medicalcenter.userservice.service.impl.PatientService;
 import medicalcenter.userservice.util.ControllerUtil;
@@ -24,7 +24,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/patients")
 @RequiredArgsConstructor
-@Log4j2
+@Slf4j
 @Tag(name = "Patients Management", description = "API для управления пациентами медицинского центра")
 public class PatientController {
     private final PatientService patientService;
