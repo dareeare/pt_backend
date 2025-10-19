@@ -15,7 +15,9 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import medicalcenter.authservice.model.RoleEnum;
+import org.springframework.security.core.GrantedAuthority;
 
+import java.io.Serial;
 import java.util.List;
 
 @Data
@@ -23,7 +25,9 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "roles")
-public class Role {
+public class Role implements GrantedAuthority {
+    @Serial
+    private static final long serialVersionUID = 6861071139393534260L;
     @Id
     @GeneratedValue
     private Long id;
@@ -36,4 +40,9 @@ public class Role {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private List<User> users;
+
+    @Override
+    public String getAuthority() {
+        return role.name();
+    }
 }
