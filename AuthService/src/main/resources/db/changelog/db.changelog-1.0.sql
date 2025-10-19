@@ -16,6 +16,8 @@ CREATE TABLE IF NOT EXISTS users
     password   VARCHAR(255)                 NOT NULL,
     first_name VARCHAR(100),
     last_name  VARCHAR(100),
+    verification_code VARCHAR(64),
+    verification_expiration TIMESTAMP,
     birth_date DATE,
     avatar_url TEXT,
     email_verified BOOLEAN DEFAULT FALSE,

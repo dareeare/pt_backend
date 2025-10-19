@@ -10,6 +10,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -18,10 +19,13 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serial;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -40,6 +44,33 @@ public class User implements UserDetails {
     @Column(nullable = false, length = 256)
     private String password;
 
+    @Column
+    private String firstName;
+
+    @Column
+    private String lastName;
+
+    @Column
+    private LocalDate birthDate;
+
+    @Column
+    private String avatarUrl;
+
+    @Column(name = "email_verified")
+    private Boolean isEmailVerified;
+
+    @Column
+    private Boolean isActive;
+
+    @Column
+    private String verificationCode;
+
+    @Column
+    private LocalDateTime verificationExpiration;
+
+    @Column(nullable = false, unique = true)
+    private String email;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(nullable = false, name = "role_id")
     @ToString.Exclude
@@ -54,5 +85,10 @@ public class User implements UserDetails {
     @Override
     public String getUsername() {
         return phone;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return isActive;
     }
 }

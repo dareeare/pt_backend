@@ -1,17 +1,19 @@
 package medicalcenter.authservice.service;
 
 import lombok.RequiredArgsConstructor;
-import medicalcenter.authservice.model.repository.UserRepository;
+import medicalcenter.authservice.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class UserService {
+public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
 
-    public UserDetails loadUserByPhone(String phone) throws UsernameNotFoundException {
+    @Override
+    public UserDetails loadUserByUsername(String phone) throws UsernameNotFoundException {
         return userRepository
                 .findByPhone(phone)
                 .orElseThrow(() -> new UsernameNotFoundException("Failed to retrieve user with phone: " + phone));

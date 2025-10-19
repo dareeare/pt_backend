@@ -1,4 +1,4 @@
-package medicalcenter.authservice.model.repository;
+package medicalcenter.authservice.repository;
 
 import medicalcenter.authservice.model.entity.RefreshToken;
 import medicalcenter.authservice.model.entity.User;

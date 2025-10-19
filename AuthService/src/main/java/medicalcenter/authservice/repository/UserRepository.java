@@ -1,4 +1,4 @@
-package medicalcenter.authservice.model.repository;
+package medicalcenter.authservice.repository;
 
 import medicalcenter.authservice.model.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,4 +9,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByPhone(String phone);
 
     boolean existsByPhone(String phone);
+
+    Optional<User> findByEmail(String email);
 }
