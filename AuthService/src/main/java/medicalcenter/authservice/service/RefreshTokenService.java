@@ -8,7 +8,6 @@ import medicalcenter.authservice.model.entity.User;
 import medicalcenter.authservice.repository.RefreshTokenRepository;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
 
 @Service
