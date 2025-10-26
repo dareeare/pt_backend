@@ -2,6 +2,7 @@ package medicalcenter.authservice.service;
 
 import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import medicalcenter.authservice.exception.AlreadyExistsException;
 import medicalcenter.authservice.exception.NotFoundException;
 import medicalcenter.authservice.model.RoleEnum;
@@ -27,6 +28,7 @@ import java.util.Random;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class AuthService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
@@ -36,8 +38,11 @@ public class AuthService {
     private final EmailService emailService;
 
     public void register(RegisterUserDto request) {
+        log.trace("register method in AuthService");
         if (userRepository.existsByPhone(request.phone())) {
-            throw new AlreadyExistsException("User with email '%s' already exisits".formatted(request.phone()));
+            String message = "User with email '%s' already exisits".formatted(request.phone());
+            log.error(message);
+            throw new AlreadyExistsException(message);
         }
 
         Role role = new Role(1L, RoleEnum.ROLE_DOCTOR, List.of());
@@ -63,11 +68,14 @@ public class AuthService {
     }
 
     public JwtResponse login(LoginRequest request) {
+        log.trace("login method in AuthService");
         User user = userRepository.findByPhone(request.phone())
                 .orElseThrow(() -> new NotFoundException("Failed to retrieve user"));
 
         if (!user.getIsActive()) {
-            throw new RuntimeException("Account not verified. Please verify it.");
+            String message = "Account not verified. Please verify it.";
+            log.error(message);
+            throw new RuntimeException(message);
         }
 
         Authentication authentication = authenticationManager.authenticate(
@@ -83,6 +91,7 @@ public class AuthService {
     }
     
     public JwtResponse refresh(RefreshTokenRequest request) {
+        log.trace("refresh method in AuthService");
         RefreshToken refreshToken = refreshTokenService.findByToken(request.token());
         refreshToken = refreshTokenService.verifyExpiration(refreshToken);
 
@@ -93,11 +102,14 @@ public class AuthService {
     }
 
     public void verifyUser(VerifyUserDto input) {
+        log.trace("verifyUser method in AuthService");
         Optional<User> optional = userRepository.findByEmail(input.email());
         if (optional.isPresent()) {
             User user = optional.get();
             if (user.getVerificationExpiration().isBefore(LocalDateTime.now())) {
-                throw new RuntimeException("Verification code has expired");
+                String message = "Verification code has expired";
+                log.error(message);
+                throw new RuntimeException(message);
             }
             if (user.getVerificationCode().equals(input.verificationCode())) {
                 user.setIsActive(true);
@@ -105,30 +117,40 @@ public class AuthService {
                 user.setVerificationExpiration(null);
                 userRepository.save(user);
             } else {
-                throw new RuntimeException("Invalid verification code.");
+                String message = "Invalid verification code.";
+                log.error(message);
+                throw new RuntimeException(message);
             }
         } else {
-            throw new RuntimeException("User not found.");
+            String message = "User not found.";
+            log.error(message);
+            throw new RuntimeException(message);
         }
     }
 
     public void resendVerificationCode(String email) {
+        log.trace("refreshVerificationCode method");
         Optional<User> optionalUser = userRepository.findByEmail(email);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
             if (user.isEnabled()) {
-                throw new RuntimeException("Account is already verified");
+                String message = "Account is already verified";
+                log.error(message);
+                throw new RuntimeException(message);
             }
             user.setVerificationCode(generateVerificationCode());
             user.setVerificationExpiration(LocalDateTime.now().plusHours(1));
             sendVerificationEmail(user);
             userRepository.save(user);
         } else {
-            throw new RuntimeException("User not found");
+            String message = "User not found";
+            log.error(message);
+            throw new RuntimeException(message);
         }
     }
 
     private void sendVerificationEmail(User user) {
+        log.trace("Sending verification email");
         String subject = "Account Verification";
         String verificationCode = "VERIFICATION CODE " + user.getVerificationCode();
         String htmlMessage = "<html>"
@@ -147,11 +169,14 @@ public class AuthService {
         try {
             emailService.sendVerificationEmail(user.getEmail(), subject, htmlMessage);
         } catch (MessagingException e) {
-            throw new RuntimeException("Failed to send a message", e);
+            String message = "Failed to send a message";
+            log.error(message);
+            throw new RuntimeException(message, e);
         }
     }
     
     private String generateVerificationCode() {
+        log.trace("generating verification code");
         Random random = new Random();
         int code = random.nextInt(900000) + 100000;
         return String.valueOf(code);
