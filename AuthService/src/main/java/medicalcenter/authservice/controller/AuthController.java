@@ -52,8 +52,9 @@ public class AuthController {
     @PostMapping("/resend")
     public ResponseEntity<?> resend(@RequestParam String email) {
         try {
-            authService.resendVerificationCode(email);
-            return ResponseEntity.ok("Verification code resend successfully");
+            boolean resent = authService.resendVerificationCode(email);
+            String message = resent ? "Verification code resent successfully" : "Account is already verified";
+            return ResponseEntity.ok(message);
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

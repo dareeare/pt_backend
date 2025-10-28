@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import medicalcenter.authservice.model.entity.User;
 
 import javax.crypto.SecretKey;
 import java.util.Date;
@@ -34,6 +35,11 @@ public class JwtService {
         claims.put("roles", userDetails.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .toList());
+        if (userDetails instanceof User u) {
+            if (u.getFirstName() != null) claims.put("firstName", u.getFirstName());
+            if (u.getLastName() != null) claims.put("lastName", u.getLastName());
+            if (u.getAvatarUrl() != null) claims.put("avatarUrl", u.getAvatarUrl());
+        }
         return createToken(claims, userDetails.getUsername(), accessTokenExpiration);
     }
 

@@ -119,3 +119,32 @@ Backend сервиса для веб‑приложения "Медицинск�
 - `page` - page number (starts from 0)
 - `size` - page size (default: 20)
 - `sort` - sorting field (e.g., `lastName,asc`)
+
+## Network setup: backend on one machine, frontend on another
+
+(private LAN over VPN)
+
+Radmin VPN creates a virtual LAN. The frontend connects to the backend over the VPN IP without exposing to the Internet.
+
+1) Install Radmin VPN on backend and frontend PCs, join the same VPN network (same network name/password).
+2) On the backend PC, find the VPN IPv4 in Radmin UI (usually 26.x.x.x).
+3) Allow inbound ports in Windows Firewall (backend PC):
+```powershell
+netsh advfirewall firewall add rule name="AuthService_8080" dir=in action=allow protocol=TCP localport=8080
+netsh advfirewall firewall add rule name="UserService_8081" dir=in action=allow protocol=TCP localport=8081
+```
+4) Run services locally as usual (AuthService on 8080, UserService on 8081).
+5) On the frontend PC, set Angular proxy targets to `http://<VPN_IP>:8080` and `http://<VPN_IP>:8081` (see medCenter/README.md), then `npm start`.
+
+Troubleshooting:
+- Ensure both PCs are in the same Radmin network and can ping each other.
+- If ports are blocked, temporarily disable firewall or create explicit inbound rules for 8080/8081.
+
+### Option C — Cloudflare Tunnel (fallback if ngrok is blocked)
+
+No account required for quick tests.
+```bash
+cloudflared tunnel --url http://localhost:8080   # AuthService
+cloudflared tunnel --url http://localhost:8081   # UserService
+```
+Use the shown `https://*.trycloudflare.com` URLs as Angular proxy targets.

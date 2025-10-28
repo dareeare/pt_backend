@@ -101,6 +101,7 @@ public class AuthService {
             }
             if (user.getVerificationCode().equals(input.verificationCode())) {
                 user.setIsActive(true);
+                user.setIsEmailVerified(true);
                 user.setVerificationCode(null);
                 user.setVerificationExpiration(null);
                 userRepository.save(user);
@@ -112,20 +113,20 @@ public class AuthService {
         }
     }
 
-    public void resendVerificationCode(String email) {
+    public boolean resendVerificationCode(String email) {
         Optional<User> optionalUser = userRepository.findByEmail(email);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
-            if (user.isEnabled()) {
-                throw new RuntimeException("Account is already verified");
+            if (Boolean.TRUE.equals(user.getIsActive())) {
+                return false; // already verified
             }
             user.setVerificationCode(generateVerificationCode());
             user.setVerificationExpiration(LocalDateTime.now().plusHours(1));
             sendVerificationEmail(user);
             userRepository.save(user);
-        } else {
-            throw new RuntimeException("User not found");
+            return true; // resent
         }
+        throw new RuntimeException("User not found");
     }
 
     private void sendVerificationEmail(User user) {
