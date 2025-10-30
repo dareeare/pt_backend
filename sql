@@ -312,3 +312,28 @@ CREATE TRIGGER trigger_check_time_slot
 BEFORE INSERT OR UPDATE ON TimeSlots
 FOR EACH ROW
 EXECUTE FUNCTION check_time_slot_availability();
+
+CREATE TABLE IF NOT EXISTS chat_messages
+(
+    id             uuid PRIMARY KEY,
+    sender_id      uuid          NULL,
+    sender_name    VARCHAR(255)  NULL,
+    content        TEXT          NOT NULL,
+    timestamp      TIMESTAMPTZ   NOT NULL DEFAULT now(),
+    type           VARCHAR(32)   NOT NULL DEFAULT 'USER',
+    attachment_url VARCHAR(1024) NULL
+);
+
+-- Ограничение: допускаемые значения для type (соответствует MessageType enum)
+ALTER TABLE chat_messages
+    ADD CONSTRAINT chk_chat_messages_type
+        CHECK (type IN ('USER', 'OPERATOR', 'SYSTEM'));
+
+-- Индекс на timestamp для быстрой выборки последних сообщений
+CREATE INDEX IF NOT EXISTS idx_chat_messages_timestamp ON chat_messages (timestamp DESC);
+
+-- Индекс на sender_id для поиска по отправителю (опционально, полезно для фильтрации)
+CREATE INDEX IF NOT EXISTS idx_chat_messages_sender_id ON chat_messages (sender_id);
+
+-- (Опционально) индекс на sender_name, если будете часто искать по имени
+CREATE INDEX IF NOT EXISTS idx_chat_messages_sender_name ON chat_messages (sender_name);
