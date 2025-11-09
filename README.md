@@ -139,12 +139,3 @@ netsh advfirewall firewall add rule name="UserService_8081" dir=in action=allow 
 Troubleshooting:
 - Ensure both PCs are in the same Radmin network and can ping each other.
 - If ports are blocked, temporarily disable firewall or create explicit inbound rules for 8080/8081.
-
-### Option C — Cloudflare Tunnel (fallback if ngrok is blocked)
-
-No account required for quick tests.
-```bash
-cloudflared tunnel --url http://localhost:8080   # AuthService
-cloudflared tunnel --url http://localhost:8081   # UserService
-```
-Use the shown `https://*.trycloudflare.com` URLs as Angular proxy targets.

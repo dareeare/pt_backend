@@ -1,52 +1,72 @@
-2025-10-28T17:28:46.926+03:00  INFO 24184 --- [AuthService] [main] m.authservice.AuthServiceApplication     : Starting AuthServiceApplication using Java 22.0.2 with PID 24184 (D:\medBack\AuthService\target\classes started by Дмитрий in D:\medBack\AuthService)
-2025-10-28T17:28:46.929+03:00  INFO 24184 --- [AuthService] [main] m.authservice.AuthServiceApplication     : No active profile set, falling back to 1 default profile: "default"
-2025-10-28T17:28:47.651+03:00  INFO 24184 --- [AuthService] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-10-28T17:28:47.712+03:00  INFO 24184 --- [AuthService] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 51 ms. Found 2 JPA repository interfaces.
-2025-10-28T17:28:48.261+03:00  INFO 24184 --- [AuthService] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8083 (http)
-2025-10-28T17:28:48.277+03:00  INFO 24184 --- [AuthService] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-10-28T17:28:48.278+03:00  INFO 24184 --- [AuthService] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.46]
-2025-10-28T17:28:48.336+03:00  INFO 24184 --- [AuthService] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-10-28T17:28:48.337+03:00  INFO 24184 --- [AuthService] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1358 ms
-2025-10-28T17:28:48.375+03:00  WARN 24184 --- [AuthService] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-10-28T17:28:48.471+03:00  INFO 24184 --- [AuthService] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-10-28T17:28:48.651+03:00  INFO 24184 --- [AuthService] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@437bd805
-2025-10-28T17:28:48.653+03:00  INFO 24184 --- [AuthService] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-10-28T17:28:48.809+03:00  INFO 24184 --- [AuthService] [main] liquibase.database                       : Set default schema name to public
-2025-10-28T17:28:49.092+03:00  INFO 24184 --- [AuthService] [main] liquibase.changelog                      : Reading from public.databasechangelog
-2025-10-28T17:28:49.146+03:00  INFO 24184 --- [AuthService] [main] liquibase.ui                             : Database is up to date, no changesets to execute
-2025-10-28T17:28:49.150+03:00  INFO 24184 --- [AuthService] [main] liquibase.changelog                      : Reading from public.databasechangelog
-2025-10-28T17:28:49.163+03:00  INFO 24184 --- [AuthService] [main] liquibase.util                           : UPDATE SUMMARY
-2025-10-28T17:28:49.164+03:00  INFO 24184 --- [AuthService] [main] liquibase.util                           : Run:                          0
-2025-10-28T17:28:49.164+03:00  INFO 24184 --- [AuthService] [main] liquibase.util                           : Previously run:               5
-2025-10-28T17:28:49.164+03:00  INFO 24184 --- [AuthService] [main] liquibase.util                           : Filtered out:                 0
-2025-10-28T17:28:49.164+03:00  INFO 24184 --- [AuthService] [main] liquibase.util                           : -------------------------------
-2025-10-28T17:28:49.164+03:00  INFO 24184 --- [AuthService] [main] liquibase.util                           : Total change sets:            5
-2025-10-28T17:28:49.165+03:00  INFO 24184 --- [AuthService] [main] liquibase.util                           : Update summary generated
-2025-10-28T17:28:49.166+03:00  INFO 24184 --- [AuthService] [main] liquibase.command                        : Command execution complete
-2025-10-28T17:28:49.675+03:00  INFO 24184 --- [AuthService] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-10-28T17:28:49.724+03:00  INFO 24184 --- [AuthService] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.29.Final
-2025-10-28T17:28:49.757+03:00  INFO 24184 --- [AuthService] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2025-10-28T17:28:50.007+03:00  INFO 24184 --- [AuthService] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-10-28T17:28:50.060+03:00  WARN 24184 --- [AuthService] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-10-28T17:28:50.077+03:00  INFO 24184 --- [AuthService] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
-	Database driver: undefined/unknown
-	Database version: 16.10
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-2025-10-28T17:28:51.117+03:00  INFO 24184 --- [AuthService] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-10-28T17:28:51.121+03:00  INFO 24184 --- [AuthService] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-10-28T17:28:51.635+03:00  INFO 24184 --- [AuthService] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
-2025-10-28T17:28:51.635+03:00  WARN 24184 --- [AuthService] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
-2025-10-28T17:28:51.670+03:00  INFO 24184 --- [AuthService] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2025-10-28T17:28:52.472+03:00  INFO 24184 --- [AuthService] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8083 (http) with context path '/'
-2025-10-28T17:28:52.480+03:00  INFO 24184 --- [AuthService] [main] m.authservice.AuthServiceApplication     : Started AuthServiceApplication in 6.119 seconds (process running for 6.49)
-2025-10-28T17:31:37.103+03:00  INFO 24184 --- [AuthService] [http-nio-8083-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-10-28T17:31:37.103+03:00  INFO 24184 --- [AuthService] [http-nio-8083-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-10-28T17:31:37.104+03:00  INFO 24184 --- [AuthService] [http-nio-8083-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2025-10-28T17:54:10.635+03:00  WARN 24184 --- [AuthService] [http-nio-8083-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content-Type 'text/plain;charset=UTF-8' is not supported]
-2025-10-28T18:07:37.919+03:00  WARN 24184 --- [AuthService] [http-nio-8083-exec-9] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content-Type 'text/plain;charset=UTF-8' is not supported]
-2025-10-28T18:55:42.666+03:00  WARN 24184 --- [AuthService] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=31m53s130ms962µs100ns).
-2025-10-28T21:02:21.555+03:00  WARN 24184 --- [AuthService] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h46m38s668ms192µs900ns).
+2025-10-29T02:17:36.818+03:00  WARN 24184 --- [AuthService] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@463411ae (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2025-10-29T02:17:39.110+03:00  WARN 24184 --- [AuthService] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@24f92591 (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2025-10-29T02:17:41.006+03:00  WARN 24184 --- [AuthService] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@64cf70e6 (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2025-10-29T02:17:49.402+03:00  WARN 24184 --- [AuthService] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@23345819 (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2025-10-29T02:18:09.202+03:00  WARN 24184 --- [AuthService] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@734721d1 (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2025-10-29T02:18:37.290+03:00  WARN 24184 --- [AuthService] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@6de54e14 (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2025-10-29T02:18:47.821+03:00  WARN 24184 --- [AuthService] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@432c568d (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2025-10-29T02:18:50.187+03:00  WARN 24184 --- [AuthService] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@69bb471f (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2025-10-29T02:19:07.681+03:00  WARN 24184 --- [AuthService] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@1ddeec5f (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2025-10-29T02:19:15.337+03:00  WARN 24184 --- [AuthService] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@5ba0171a (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2025-10-29T02:19:17.330+03:00  WARN 24184 --- [AuthService] [HikariPool-1:connection-adder] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Pool is empty, failed to create/setup connection (5c787859-346d-4f68-b0a4-4feb2ca8931c)
+
+org.postgresql.util.PSQLException: Подсоединение по адресу localhost:5435 отклонено. Проверьте что хост и порт указаны правильно и что postmaster принимает TCP/IP-подсоединения.
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:373) ~[postgresql-42.7.7.jar:42.7.7]
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:57) ~[postgresql-42.7.7.jar:42.7.7]
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:277) ~[postgresql-42.7.7.jar:42.7.7]
+	at org.postgresql.Driver.makeConnection(Driver.java:448) ~[postgresql-42.7.7.jar:42.7.7]
+	at org.postgresql.Driver.connect(Driver.java:298) ~[postgresql-42.7.7.jar:42.7.7]
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:144) ~[HikariCP-6.3.3.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:370) ~[HikariCP-6.3.3.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:207) ~[HikariCP-6.3.3.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:488) ~[HikariCP-6.3.3.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:752) ~[HikariCP-6.3.3.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:731) ~[HikariCP-6.3.3.jar:na]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1570) ~[na:na]
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:542) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:592) ~[na:na]
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327) ~[na:na]
+	at java.base/java.net.Socket.connect(Socket.java:752) ~[na:na]
+	at org.postgresql.core.PGStream.createSocket(PGStream.java:261) ~[postgresql-42.7.7.jar:42.7.7]
+	at org.postgresql.core.PGStream.<init>(PGStream.java:122) ~[postgresql-42.7.7.jar:42.7.7]
+	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:146) ~[postgresql-42.7.7.jar:42.7.7]
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:289) ~[postgresql-42.7.7.jar:42.7.7]
+	... 14 common frames omitted
+
+2025-10-29T02:20:22.780+03:00  WARN 24184 --- [AuthService] [HikariPool-1:connection-adder] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Pool is empty, failed to create/setup connection (d0f059ff-e339-4cc4-bebf-3dbb87ab2756)
+
+org.postgresql.util.PSQLException: Подсоединение по адресу localhost:5435 отклонено. Проверьте что хост и порт указаны правильно и что postmaster принимает TCP/IP-подсоединения.
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:373) ~[postgresql-42.7.7.jar:42.7.7]
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:57) ~[postgresql-42.7.7.jar:42.7.7]
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:277) ~[postgresql-42.7.7.jar:42.7.7]
+	at org.postgresql.Driver.makeConnection(Driver.java:448) ~[postgresql-42.7.7.jar:42.7.7]
+	at org.postgresql.Driver.connect(Driver.java:298) ~[postgresql-42.7.7.jar:42.7.7]
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:144) ~[HikariCP-6.3.3.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:370) ~[HikariCP-6.3.3.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:207) ~[HikariCP-6.3.3.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:488) ~[HikariCP-6.3.3.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:752) ~[HikariCP-6.3.3.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:731) ~[HikariCP-6.3.3.jar:na]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1570) ~[na:na]
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:542) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:592) ~[na:na]
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327) ~[na:na]
+	at java.base/java.net.Socket.connect(Socket.java:752) ~[na:na]
+	at org.postgresql.core.PGStream.createSocket(PGStream.java:261) ~[postgresql-42.7.7.jar:42.7.7]
+	at org.postgresql.core.PGStream.<init>(PGStream.java:122) ~[postgresql-42.7.7.jar:42.7.7]
+	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:146) ~[postgresql-42.7.7.jar:42.7.7]
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:289) ~[postgresql-42.7.7.jar:42.7.7]
+	... 14 common frames omitted
+
