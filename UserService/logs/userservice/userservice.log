@@ -1,2 +1,1217 @@
 2025-11-12T13:01:30.058+03:00  INFO 11872 --- [medical-center-userservice] [MessageBroker-12] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 8 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(8)-CONNECTED(8)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 276], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 251], sockJsScheduler[pool size = 12, active threads = 2, queued tasks = 0, completed tasks = 4903]
 2025-11-12T13:01:32.018+03:00  WARN 11872 --- [medical-center-userservice] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=14h36m57s488ms191µs700ns).
+2025-11-12T14:24:37.427+03:00  WARN 11872 --- [medical-center-userservice] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h19m33s477ms706µs).
+2025-11-12T14:24:40.577+03:00  INFO 11872 --- [medical-center-userservice] [MessageBroker-2] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 8 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(8)-CONNECTED(8)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 276], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 251], sockJsScheduler[pool size = 12, active threads = 2, queued tasks = 0, completed tasks = 15466]
+2025-11-12T14:28:56.975+03:00  INFO 1368 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : Starting UserServiceApplication using Java 24.0.2 with PID 1368 (D:\medBack\UserService\target\classes started by Дмитрий in D:\medBack\UserService)
+2025-11-12T14:28:56.978+03:00 DEBUG 1368 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : Running with Spring Boot v3.5.5, Spring v6.2.10
+2025-11-12T14:28:56.980+03:00  INFO 1368 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : The following 1 profile is active: "dev"
+2025-11-12T14:28:57.909+03:00  INFO 1368 --- [medical-center-userservice] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-12T14:28:58.030+03:00  INFO 1368 --- [medical-center-userservice] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 111 ms. Found 12 JPA repository interfaces.
+2025-11-12T14:28:59.146+03:00  INFO 1368 --- [medical-center-userservice] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-11-12T14:28:59.175+03:00  INFO 1368 --- [medical-center-userservice] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-12T14:28:59.177+03:00  INFO 1368 --- [medical-center-userservice] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.44]
+2025-11-12T14:28:59.284+03:00  INFO 1368 --- [medical-center-userservice] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-12T14:28:59.289+03:00  INFO 1368 --- [medical-center-userservice] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2256 ms
+2025-11-12T14:28:59.514+03:00  INFO 1368 --- [medical-center-userservice] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-12T14:28:59.615+03:00  INFO 1368 --- [medical-center-userservice] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.26.Final
+2025-11-12T14:28:59.673+03:00  INFO 1368 --- [medical-center-userservice] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-11-12T14:29:00.166+03:00  INFO 1368 --- [medical-center-userservice] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-12T14:29:00.214+03:00  INFO 1368 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-12T14:29:00.427+03:00  INFO 1368 --- [medical-center-userservice] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@213835b6
+2025-11-12T14:29:00.429+03:00  INFO 1368 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-12T14:29:00.496+03:00  WARN 1368 --- [medical-center-userservice] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-12T14:29:00.539+03:00  INFO 1368 --- [medical-center-userservice] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 16.10
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-12T14:29:02.648+03:00  INFO 1368 --- [medical-center-userservice] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-12T14:29:04.337+03:00  INFO 1368 --- [medical-center-userservice] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-12T14:29:04.361+03:00  WARN 1368 --- [medical-center-userservice] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'presenceEventListener' defined in file [D:\medBack\UserService\target\classes\medicalcenter\userservice\configuration\PresenceEventListener.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'chatService': Lookup method resolution failed
+2025-11-12T14:29:04.363+03:00  INFO 1368 --- [medical-center-userservice] [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-12T14:29:04.383+03:00  INFO 1368 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-11-12T14:29:04.390+03:00  INFO 1368 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-11-12T14:29:04.398+03:00  INFO 1368 --- [medical-center-userservice] [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-11-12T14:29:04.418+03:00  INFO 1368 --- [medical-center-userservice] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-11-12T14:29:04.455+03:00 ERROR 1368 --- [medical-center-userservice] [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'presenceEventListener' defined in file [D:\medBack\UserService\target\classes\medicalcenter\userservice\configuration\PresenceEventListener.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'chatService': Lookup method resolution failed
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1395) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1232) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1222) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1188) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1123) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:987) ~[spring-context-6.2.10.jar:6.2.10]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627) ~[spring-context-6.2.10.jar:6.2.10]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.5.5.jar:3.5.5]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) ~[spring-boot-3.5.5.jar:3.5.5]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.5.5.jar:3.5.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.5.5.jar:3.5.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361) ~[spring-boot-3.5.5.jar:3.5.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) ~[spring-boot-3.5.5.jar:3.5.5]
+	at medicalcenter.userservice.UserServiceApplication.main(UserServiceApplication.java:10) ~[classes/:na]
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'chatService': Lookup method resolution failed
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.checkLookupMethods(AutowiredAnnotationBeanPostProcessor.java:498) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:368) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineConstructorsFromBeanPostProcessors(AbstractAutowireCapableBeanFactory.java:1334) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1229) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1690) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1635) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791) ~[spring-beans-6.2.10.jar:6.2.10]
+	... 21 common frames omitted
+Caused by: java.lang.IllegalStateException: Failed to introspect Class [medicalcenter.userservice.service.ChatService] from ClassLoader [jdk.internal.loader.ClassLoaders$AppClassLoader@11a4022a]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:483) ~[spring-core-6.2.10.jar:6.2.10]
+	at org.springframework.util.ReflectionUtils.doWithLocalMethods(ReflectionUtils.java:320) ~[spring-core-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.checkLookupMethods(AutowiredAnnotationBeanPostProcessor.java:476) ~[spring-beans-6.2.10.jar:6.2.10]
+	... 34 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: MessageType
+	at java.base/java.lang.Class.getDeclaredMethods0(Native Method) ~[na:na]
+	at java.base/java.lang.Class.privateGetDeclaredMethods(Class.java:3035) ~[na:na]
+	at java.base/java.lang.Class.getDeclaredMethods(Class.java:2331) ~[na:na]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:465) ~[spring-core-6.2.10.jar:6.2.10]
+	... 36 common frames omitted
+Caused by: java.lang.ClassNotFoundException: MessageType
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:580) ~[na:na]
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:490) ~[na:na]
+	... 40 common frames omitted
+
+2025-11-12T14:30:04.595+03:00  WARN 11872 --- [medical-center-userservice] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@29960a2a (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2025-11-12T14:30:20.356+03:00  WARN 11872 --- [medical-center-userservice] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@758b9daf (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2025-11-12T14:30:23.469+03:00  WARN 11872 --- [medical-center-userservice] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@410be349 (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2025-11-12T14:30:30.324+03:00  WARN 11872 --- [medical-center-userservice] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@26426d6f (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2025-11-12T14:30:36.511+03:00  WARN 11872 --- [medical-center-userservice] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@7c026ac2 (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2025-11-12T14:30:37.715+03:00  WARN 11872 --- [medical-center-userservice] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@5711ef9b (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2025-11-12T14:31:10.180+03:00  WARN 11872 --- [medical-center-userservice] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@372b3d16 (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2025-11-12T14:31:21.841+03:00  WARN 11872 --- [medical-center-userservice] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@54ec3136 (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2025-11-12T14:31:23.608+03:00  WARN 11872 --- [medical-center-userservice] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@62f43e17 (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2025-11-12T14:31:31.928+03:00  WARN 11872 --- [medical-center-userservice] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@3a96d54f (Соединение уже было закрыто). Possibly consider using a shorter maxLifetime value.
+2025-11-12T14:31:39.074+03:00  INFO 10404 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : Starting UserServiceApplication using Java 24.0.2 with PID 10404 (D:\medBack\UserService\target\classes started by Дмитрий in D:\medBack\UserService)
+2025-11-12T14:31:39.076+03:00 DEBUG 10404 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : Running with Spring Boot v3.5.5, Spring v6.2.10
+2025-11-12T14:31:39.077+03:00  INFO 10404 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : The following 1 profile is active: "dev"
+2025-11-12T14:31:40.022+03:00  INFO 10404 --- [medical-center-userservice] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-12T14:31:40.237+03:00  INFO 10404 --- [medical-center-userservice] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 203 ms. Found 12 JPA repository interfaces.
+2025-11-12T14:31:40.777+03:00  INFO 10404 --- [medical-center-userservice] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-11-12T14:31:40.792+03:00  INFO 10404 --- [medical-center-userservice] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-12T14:31:40.793+03:00  INFO 10404 --- [medical-center-userservice] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.44]
+2025-11-12T14:31:40.852+03:00  INFO 10404 --- [medical-center-userservice] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-12T14:31:40.853+03:00  INFO 10404 --- [medical-center-userservice] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1733 ms
+2025-11-12T14:31:41.048+03:00  INFO 10404 --- [medical-center-userservice] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-12T14:31:41.099+03:00  INFO 10404 --- [medical-center-userservice] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.26.Final
+2025-11-12T14:31:41.135+03:00  INFO 10404 --- [medical-center-userservice] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-11-12T14:31:41.533+03:00  INFO 10404 --- [medical-center-userservice] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-12T14:31:41.563+03:00  INFO 10404 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-12T14:31:41.705+03:00  INFO 10404 --- [medical-center-userservice] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4fa91d5b
+2025-11-12T14:31:41.708+03:00  INFO 10404 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-12T14:31:41.749+03:00  WARN 10404 --- [medical-center-userservice] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-12T14:31:41.772+03:00  INFO 10404 --- [medical-center-userservice] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 16.10
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-12T14:31:42.808+03:00  INFO 10404 --- [medical-center-userservice] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-12T14:31:43.660+03:00  INFO 10404 --- [medical-center-userservice] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-12T14:31:43.673+03:00  WARN 10404 --- [medical-center-userservice] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'presenceEventListener' defined in file [D:\medBack\UserService\target\classes\medicalcenter\userservice\configuration\PresenceEventListener.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'chatService': Lookup method resolution failed
+2025-11-12T14:31:43.673+03:00  INFO 10404 --- [medical-center-userservice] [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-12T14:31:43.676+03:00  INFO 10404 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-11-12T14:31:43.681+03:00  INFO 10404 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-11-12T14:31:43.685+03:00  INFO 10404 --- [medical-center-userservice] [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-11-12T14:31:43.695+03:00  INFO 10404 --- [medical-center-userservice] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-11-12T14:31:43.711+03:00 ERROR 10404 --- [medical-center-userservice] [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'presenceEventListener' defined in file [D:\medBack\UserService\target\classes\medicalcenter\userservice\configuration\PresenceEventListener.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'chatService': Lookup method resolution failed
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1395) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1232) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1222) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1188) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1123) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:987) ~[spring-context-6.2.10.jar:6.2.10]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627) ~[spring-context-6.2.10.jar:6.2.10]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.5.5.jar:3.5.5]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) ~[spring-boot-3.5.5.jar:3.5.5]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.5.5.jar:3.5.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.5.5.jar:3.5.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361) ~[spring-boot-3.5.5.jar:3.5.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) ~[spring-boot-3.5.5.jar:3.5.5]
+	at medicalcenter.userservice.UserServiceApplication.main(UserServiceApplication.java:10) ~[classes/:na]
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'chatService': Lookup method resolution failed
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.checkLookupMethods(AutowiredAnnotationBeanPostProcessor.java:498) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:368) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineConstructorsFromBeanPostProcessors(AbstractAutowireCapableBeanFactory.java:1334) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1229) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1690) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1635) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791) ~[spring-beans-6.2.10.jar:6.2.10]
+	... 21 common frames omitted
+Caused by: java.lang.IllegalStateException: Failed to introspect Class [medicalcenter.userservice.service.ChatService] from ClassLoader [jdk.internal.loader.ClassLoaders$AppClassLoader@11a4022a]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:483) ~[spring-core-6.2.10.jar:6.2.10]
+	at org.springframework.util.ReflectionUtils.doWithLocalMethods(ReflectionUtils.java:320) ~[spring-core-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.checkLookupMethods(AutowiredAnnotationBeanPostProcessor.java:476) ~[spring-beans-6.2.10.jar:6.2.10]
+	... 34 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: MessageType
+	at java.base/java.lang.Class.getDeclaredMethods0(Native Method) ~[na:na]
+	at java.base/java.lang.Class.privateGetDeclaredMethods(Class.java:3035) ~[na:na]
+	at java.base/java.lang.Class.getDeclaredMethods(Class.java:2331) ~[na:na]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:465) ~[spring-core-6.2.10.jar:6.2.10]
+	... 36 common frames omitted
+Caused by: java.lang.ClassNotFoundException: MessageType
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:580) ~[na:na]
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:490) ~[na:na]
+	... 40 common frames omitted
+
+2025-11-12T14:32:05.240+03:00  INFO 26360 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : Starting UserServiceApplication using Java 24.0.2 with PID 26360 (D:\medBack\UserService\target\classes started by Дмитрий in D:\medBack\UserService)
+2025-11-12T14:32:05.242+03:00 DEBUG 26360 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : Running with Spring Boot v3.5.5, Spring v6.2.10
+2025-11-12T14:32:05.244+03:00  INFO 26360 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : The following 1 profile is active: "dev"
+2025-11-12T14:32:06.034+03:00  INFO 26360 --- [medical-center-userservice] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-12T14:32:06.152+03:00  INFO 26360 --- [medical-center-userservice] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 108 ms. Found 12 JPA repository interfaces.
+2025-11-12T14:32:06.663+03:00  INFO 26360 --- [medical-center-userservice] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-11-12T14:32:06.679+03:00  INFO 26360 --- [medical-center-userservice] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-12T14:32:06.680+03:00  INFO 26360 --- [medical-center-userservice] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.44]
+2025-11-12T14:32:06.732+03:00  INFO 26360 --- [medical-center-userservice] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-12T14:32:06.733+03:00  INFO 26360 --- [medical-center-userservice] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1438 ms
+2025-11-12T14:32:06.873+03:00  INFO 26360 --- [medical-center-userservice] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-12T14:32:06.918+03:00  INFO 26360 --- [medical-center-userservice] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.26.Final
+2025-11-12T14:32:06.947+03:00  INFO 26360 --- [medical-center-userservice] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-11-12T14:32:07.212+03:00  INFO 26360 --- [medical-center-userservice] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-12T14:32:07.240+03:00  INFO 26360 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-12T14:32:07.379+03:00  INFO 26360 --- [medical-center-userservice] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4ad1a276
+2025-11-12T14:32:07.382+03:00  INFO 26360 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-12T14:32:07.410+03:00  WARN 26360 --- [medical-center-userservice] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-12T14:32:07.433+03:00  INFO 26360 --- [medical-center-userservice] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 16.10
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-12T14:32:08.563+03:00  INFO 26360 --- [medical-center-userservice] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-12T14:32:09.494+03:00  INFO 26360 --- [medical-center-userservice] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-12T14:32:09.508+03:00  WARN 26360 --- [medical-center-userservice] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'presenceEventListener' defined in file [D:\medBack\UserService\target\classes\medicalcenter\userservice\configuration\PresenceEventListener.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'chatService': Lookup method resolution failed
+2025-11-12T14:32:09.509+03:00  INFO 26360 --- [medical-center-userservice] [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-12T14:32:09.512+03:00  INFO 26360 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-11-12T14:32:09.516+03:00  INFO 26360 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-11-12T14:32:09.520+03:00  INFO 26360 --- [medical-center-userservice] [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-11-12T14:32:09.532+03:00  INFO 26360 --- [medical-center-userservice] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-11-12T14:32:09.546+03:00 ERROR 26360 --- [medical-center-userservice] [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'presenceEventListener' defined in file [D:\medBack\UserService\target\classes\medicalcenter\userservice\configuration\PresenceEventListener.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'chatService': Lookup method resolution failed
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1395) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1232) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1222) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1188) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1123) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:987) ~[spring-context-6.2.10.jar:6.2.10]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627) ~[spring-context-6.2.10.jar:6.2.10]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.5.5.jar:3.5.5]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) ~[spring-boot-3.5.5.jar:3.5.5]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.5.5.jar:3.5.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.5.5.jar:3.5.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361) ~[spring-boot-3.5.5.jar:3.5.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) ~[spring-boot-3.5.5.jar:3.5.5]
+	at medicalcenter.userservice.UserServiceApplication.main(UserServiceApplication.java:10) ~[classes/:na]
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'chatService': Lookup method resolution failed
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.checkLookupMethods(AutowiredAnnotationBeanPostProcessor.java:498) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:368) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineConstructorsFromBeanPostProcessors(AbstractAutowireCapableBeanFactory.java:1334) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1229) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1690) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1635) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791) ~[spring-beans-6.2.10.jar:6.2.10]
+	... 21 common frames omitted
+Caused by: java.lang.IllegalStateException: Failed to introspect Class [medicalcenter.userservice.service.ChatService] from ClassLoader [jdk.internal.loader.ClassLoaders$AppClassLoader@11a4022a]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:483) ~[spring-core-6.2.10.jar:6.2.10]
+	at org.springframework.util.ReflectionUtils.doWithLocalMethods(ReflectionUtils.java:320) ~[spring-core-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.checkLookupMethods(AutowiredAnnotationBeanPostProcessor.java:476) ~[spring-beans-6.2.10.jar:6.2.10]
+	... 34 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: ChatMessage
+	at java.base/java.lang.Class.getDeclaredMethods0(Native Method) ~[na:na]
+	at java.base/java.lang.Class.privateGetDeclaredMethods(Class.java:3035) ~[na:na]
+	at java.base/java.lang.Class.getDeclaredMethods(Class.java:2331) ~[na:na]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:465) ~[spring-core-6.2.10.jar:6.2.10]
+	... 36 common frames omitted
+Caused by: java.lang.ClassNotFoundException: ChatMessage
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:580) ~[na:na]
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:490) ~[na:na]
+	... 40 common frames omitted
+
+2025-11-12T14:33:44.518+03:00  INFO 13188 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : Starting UserServiceApplication using Java 24.0.2 with PID 13188 (D:\medBack\UserService\target\classes started by Дмитрий in D:\medBack\UserService)
+2025-11-12T14:33:44.521+03:00 DEBUG 13188 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : Running with Spring Boot v3.5.5, Spring v6.2.10
+2025-11-12T14:33:44.523+03:00  INFO 13188 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : The following 1 profile is active: "dev"
+2025-11-12T14:33:45.550+03:00  INFO 13188 --- [medical-center-userservice] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-12T14:33:45.729+03:00  INFO 13188 --- [medical-center-userservice] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 168 ms. Found 12 JPA repository interfaces.
+2025-11-12T14:33:46.368+03:00  INFO 13188 --- [medical-center-userservice] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-11-12T14:33:46.382+03:00  INFO 13188 --- [medical-center-userservice] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-12T14:33:46.383+03:00  INFO 13188 --- [medical-center-userservice] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.44]
+2025-11-12T14:33:46.440+03:00  INFO 13188 --- [medical-center-userservice] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-12T14:33:46.440+03:00  INFO 13188 --- [medical-center-userservice] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1814 ms
+2025-11-12T14:33:46.588+03:00  INFO 13188 --- [medical-center-userservice] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-12T14:33:46.660+03:00  INFO 13188 --- [medical-center-userservice] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.26.Final
+2025-11-12T14:33:46.703+03:00  INFO 13188 --- [medical-center-userservice] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-11-12T14:33:47.133+03:00  INFO 13188 --- [medical-center-userservice] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-12T14:33:47.169+03:00  INFO 13188 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-12T14:33:47.309+03:00  INFO 13188 --- [medical-center-userservice] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@54defd69
+2025-11-12T14:33:47.312+03:00  INFO 13188 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-12T14:33:47.340+03:00  WARN 13188 --- [medical-center-userservice] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-12T14:33:47.363+03:00  INFO 13188 --- [medical-center-userservice] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 16.10
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-12T14:33:48.451+03:00  INFO 13188 --- [medical-center-userservice] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-12T14:33:49.224+03:00  INFO 13188 --- [medical-center-userservice] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-12T14:33:49.237+03:00  WARN 13188 --- [medical-center-userservice] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'presenceEventListener' defined in file [D:\medBack\UserService\target\classes\medicalcenter\userservice\configuration\PresenceEventListener.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'chatService': Lookup method resolution failed
+2025-11-12T14:33:49.237+03:00  INFO 13188 --- [medical-center-userservice] [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-12T14:33:49.241+03:00  INFO 13188 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-11-12T14:33:49.248+03:00  INFO 13188 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-11-12T14:33:49.252+03:00  INFO 13188 --- [medical-center-userservice] [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-11-12T14:33:49.264+03:00  INFO 13188 --- [medical-center-userservice] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-11-12T14:33:49.278+03:00 ERROR 13188 --- [medical-center-userservice] [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'presenceEventListener' defined in file [D:\medBack\UserService\target\classes\medicalcenter\userservice\configuration\PresenceEventListener.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'chatService': Lookup method resolution failed
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1395) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1232) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1222) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1188) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1123) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:987) ~[spring-context-6.2.10.jar:6.2.10]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627) ~[spring-context-6.2.10.jar:6.2.10]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.5.5.jar:3.5.5]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) ~[spring-boot-3.5.5.jar:3.5.5]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.5.5.jar:3.5.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.5.5.jar:3.5.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361) ~[spring-boot-3.5.5.jar:3.5.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) ~[spring-boot-3.5.5.jar:3.5.5]
+	at medicalcenter.userservice.UserServiceApplication.main(UserServiceApplication.java:10) ~[classes/:na]
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'chatService': Lookup method resolution failed
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.checkLookupMethods(AutowiredAnnotationBeanPostProcessor.java:498) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:368) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineConstructorsFromBeanPostProcessors(AbstractAutowireCapableBeanFactory.java:1334) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1229) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1690) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1635) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791) ~[spring-beans-6.2.10.jar:6.2.10]
+	... 21 common frames omitted
+Caused by: java.lang.IllegalStateException: Failed to introspect Class [medicalcenter.userservice.service.ChatService] from ClassLoader [jdk.internal.loader.ClassLoaders$AppClassLoader@11a4022a]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:483) ~[spring-core-6.2.10.jar:6.2.10]
+	at org.springframework.util.ReflectionUtils.doWithLocalMethods(ReflectionUtils.java:320) ~[spring-core-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.checkLookupMethods(AutowiredAnnotationBeanPostProcessor.java:476) ~[spring-beans-6.2.10.jar:6.2.10]
+	... 34 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: ChatMessage
+	at java.base/java.lang.Class.getDeclaredMethods0(Native Method) ~[na:na]
+	at java.base/java.lang.Class.privateGetDeclaredMethods(Class.java:3035) ~[na:na]
+	at java.base/java.lang.Class.getDeclaredMethods(Class.java:2331) ~[na:na]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:465) ~[spring-core-6.2.10.jar:6.2.10]
+	... 36 common frames omitted
+Caused by: java.lang.ClassNotFoundException: ChatMessage
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:580) ~[na:na]
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:490) ~[na:na]
+	... 40 common frames omitted
+
+2025-11-12T14:38:21.233+03:00  INFO 11000 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : Starting UserServiceApplication using Java 24.0.2 with PID 11000 (D:\medBack\UserService\target\classes started by Дмитрий in D:\medBack\UserService)
+2025-11-12T14:38:21.236+03:00 DEBUG 11000 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : Running with Spring Boot v3.5.5, Spring v6.2.10
+2025-11-12T14:38:21.237+03:00  INFO 11000 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : The following 1 profile is active: "dev"
+2025-11-12T14:38:22.135+03:00  INFO 11000 --- [medical-center-userservice] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-12T14:38:22.286+03:00  INFO 11000 --- [medical-center-userservice] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 138 ms. Found 12 JPA repository interfaces.
+2025-11-12T14:38:22.921+03:00  INFO 11000 --- [medical-center-userservice] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-11-12T14:38:22.937+03:00  INFO 11000 --- [medical-center-userservice] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-12T14:38:22.939+03:00  INFO 11000 --- [medical-center-userservice] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.44]
+2025-11-12T14:38:23.004+03:00  INFO 11000 --- [medical-center-userservice] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-12T14:38:23.005+03:00  INFO 11000 --- [medical-center-userservice] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1714 ms
+2025-11-12T14:38:23.199+03:00  INFO 11000 --- [medical-center-userservice] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-12T14:38:23.251+03:00  INFO 11000 --- [medical-center-userservice] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.26.Final
+2025-11-12T14:38:23.287+03:00  INFO 11000 --- [medical-center-userservice] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-11-12T14:38:23.708+03:00  INFO 11000 --- [medical-center-userservice] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-12T14:38:23.738+03:00  INFO 11000 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-12T14:38:23.886+03:00  INFO 11000 --- [medical-center-userservice] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@28f05b0c
+2025-11-12T14:38:23.888+03:00  INFO 11000 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-12T14:38:23.918+03:00  WARN 11000 --- [medical-center-userservice] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-12T14:38:23.940+03:00  INFO 11000 --- [medical-center-userservice] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 16.10
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-12T14:38:24.950+03:00  INFO 11000 --- [medical-center-userservice] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-12T14:38:25.748+03:00  INFO 11000 --- [medical-center-userservice] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-12T14:38:26.168+03:00  INFO 11000 --- [medical-center-userservice] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-11-12T14:38:27.475+03:00  WARN 11000 --- [medical-center-userservice] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-12T14:38:27.962+03:00  INFO 11000 --- [medical-center-userservice] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
+2025-11-12T14:38:27.972+03:00  INFO 11000 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : Started UserServiceApplication in 7.214 seconds (process running for 7.54)
+2025-11-12T14:41:43.348+03:00  INFO 11000 --- [medical-center-userservice] [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-12T14:41:43.362+03:00  INFO 11000 --- [medical-center-userservice] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-12T14:41:43.377+03:00  INFO 11000 --- [medical-center-userservice] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 7 ms
+2025-11-12T14:41:43.465+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-1] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:41:46.401+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-2] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:42:07.849+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-3] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:42:12.890+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-4] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:42:18.344+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-5] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:42:24.344+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-6] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:42:30.344+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-7] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:42:36.336+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-8] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:42:40.694+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-8] m.userservice.exception.ApiErrorHandler  : Handler dispatch failed: java.lang.NoSuchMethodError: 'void org.springframework.web.method.ControllerAdviceBean.<init>(java.lang.Object)'
+2025-11-12T14:42:42.353+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-9] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:42:48.346+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-10] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:42:54.368+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-2] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:43:00.531+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-1] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:43:06.345+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-4] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:43:12.348+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-3] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:43:18.345+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-5] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:43:23.370+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-6] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:43:28.394+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-7] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:43:33.422+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-8] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:43:38.453+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-9] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:43:43.471+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-3] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:43:49.352+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-5] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:43:55.342+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-6] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:44:00.811+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-7] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:44:01.338+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-8] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:44:05.838+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-9] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:44:07.352+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-2] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:44:10.863+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-10] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:44:13.342+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-1] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:44:15.902+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-4] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:44:19.351+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-3] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:44:21.030+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-5] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:44:25.360+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-6] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:44:26.063+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-7] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:44:31.349+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-8] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:44:31.358+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-9] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:44:37.355+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-2] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:44:37.356+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-10] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:44:43.357+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-1] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:44:43.361+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-4] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:44:49.348+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-3] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:44:49.348+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-5] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:44:55.342+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-6] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:44:55.342+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-7] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:45:01.347+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-8] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:45:01.353+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-9] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:45:07.344+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-2] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:45:07.352+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-10] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:45:13.349+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-1] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:45:13.349+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-4] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:45:19.340+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-3] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:45:19.346+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-5] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:45:25.348+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-6] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:45:25.354+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-7] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:45:31.346+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-8] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:45:31.354+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-9] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:45:37.344+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-2] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:45:37.359+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-10] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:45:43.344+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-4] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:45:43.349+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-1] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:45:48.954+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-3] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:45:49.369+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-5] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:45:54.347+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-6] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:45:55.340+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-7] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:46:00.337+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-8] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:46:01.349+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-9] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:46:06.379+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-2] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:46:07.341+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-10] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:46:12.336+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-4] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:46:13.349+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-1] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:46:29.364+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-3] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:46:35.333+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-5] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:46:41.352+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-6] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:46:47.343+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-7] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:46:53.353+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-8] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:46:59.369+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-9] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:47:05.337+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-2] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:47:11.333+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-10] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:47:17.344+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-4] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:47:23.341+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-1] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:47:29.353+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-3] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:47:35.350+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-5] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:47:41.344+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-6] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:47:58.345+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-7] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:48:14.338+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-8] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:48:23.390+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-9] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:48:31.340+03:00 ERROR 11000 --- [medical-center-userservice] [http-nio-8081-exec-2] m.userservice.exception.ApiErrorHandler  : No static resource ws-support/info.
+2025-11-12T14:51:42.884+03:00  INFO 25188 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : Starting UserServiceApplication using Java 24.0.2 with PID 25188 (D:\medBack\UserService\target\classes started by Дмитрий in D:\medBack\UserService)
+2025-11-12T14:51:42.886+03:00 DEBUG 25188 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : Running with Spring Boot v3.5.5, Spring v6.2.10
+2025-11-12T14:51:42.887+03:00  INFO 25188 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : The following 1 profile is active: "dev"
+2025-11-12T14:51:43.963+03:00  INFO 25188 --- [medical-center-userservice] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-12T14:51:44.106+03:00  INFO 25188 --- [medical-center-userservice] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 130 ms. Found 12 JPA repository interfaces.
+2025-11-12T14:51:44.800+03:00  INFO 25188 --- [medical-center-userservice] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-11-12T14:51:44.832+03:00  INFO 25188 --- [medical-center-userservice] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-12T14:51:44.834+03:00  INFO 25188 --- [medical-center-userservice] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.44]
+2025-11-12T14:51:44.932+03:00  INFO 25188 --- [medical-center-userservice] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-12T14:51:44.933+03:00  INFO 25188 --- [medical-center-userservice] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1998 ms
+2025-11-12T14:51:45.183+03:00  INFO 25188 --- [medical-center-userservice] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-12T14:51:45.348+03:00  INFO 25188 --- [medical-center-userservice] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.26.Final
+2025-11-12T14:51:45.497+03:00  INFO 25188 --- [medical-center-userservice] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-11-12T14:51:46.992+03:00  INFO 25188 --- [medical-center-userservice] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-12T14:51:47.034+03:00  INFO 25188 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-12T14:51:47.254+03:00  INFO 25188 --- [medical-center-userservice] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@573a078
+2025-11-12T14:51:47.258+03:00  INFO 25188 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-12T14:51:47.304+03:00  WARN 25188 --- [medical-center-userservice] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-12T14:51:47.331+03:00  INFO 25188 --- [medical-center-userservice] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 16.10
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-12T14:51:49.175+03:00  INFO 25188 --- [medical-center-userservice] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-12T14:51:50.405+03:00  INFO 25188 --- [medical-center-userservice] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-12T14:51:50.860+03:00  INFO 25188 --- [medical-center-userservice] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-11-12T14:51:53.620+03:00  WARN 25188 --- [medical-center-userservice] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'chatService' defined in file [D:\medBack\UserService\target\classes\medicalcenter\userservice\service\ChatService.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'org.springframework.messaging.simp.SimpMessagingTemplate' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2025-11-12T14:51:53.622+03:00  INFO 25188 --- [medical-center-userservice] [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-12T14:51:53.625+03:00  INFO 25188 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-11-12T14:51:53.632+03:00  INFO 25188 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-11-12T14:51:53.637+03:00  INFO 25188 --- [medical-center-userservice] [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-11-12T14:51:53.651+03:00  INFO 25188 --- [medical-center-userservice] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-11-12T14:51:53.702+03:00 ERROR 25188 --- [medical-center-userservice] [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in medicalcenter.userservice.service.ChatService required a bean of type 'org.springframework.messaging.simp.SimpMessagingTemplate' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'org.springframework.messaging.simp.SimpMessagingTemplate' in your configuration.
+
+2025-11-12T14:52:32.102+03:00  INFO 8604 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : Starting UserServiceApplication using Java 24.0.2 with PID 8604 (D:\medBack\UserService\target\classes started by Дмитрий in D:\medBack\UserService)
+2025-11-12T14:52:32.104+03:00 DEBUG 8604 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : Running with Spring Boot v3.5.5, Spring v6.2.10
+2025-11-12T14:52:32.105+03:00  INFO 8604 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : The following 1 profile is active: "dev"
+2025-11-12T14:52:32.917+03:00  INFO 8604 --- [medical-center-userservice] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-12T14:52:33.024+03:00  INFO 8604 --- [medical-center-userservice] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 97 ms. Found 12 JPA repository interfaces.
+2025-11-12T14:52:33.522+03:00  INFO 8604 --- [medical-center-userservice] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-11-12T14:52:33.536+03:00  INFO 8604 --- [medical-center-userservice] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-12T14:52:33.537+03:00  INFO 8604 --- [medical-center-userservice] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.44]
+2025-11-12T14:52:33.594+03:00  INFO 8604 --- [medical-center-userservice] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-12T14:52:33.594+03:00  INFO 8604 --- [medical-center-userservice] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1442 ms
+2025-11-12T14:52:33.749+03:00  INFO 8604 --- [medical-center-userservice] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-12T14:52:33.790+03:00  INFO 8604 --- [medical-center-userservice] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.26.Final
+2025-11-12T14:52:33.819+03:00  INFO 8604 --- [medical-center-userservice] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-11-12T14:52:34.085+03:00  INFO 8604 --- [medical-center-userservice] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-12T14:52:34.112+03:00  INFO 8604 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-12T14:52:34.253+03:00  INFO 8604 --- [medical-center-userservice] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@573a078
+2025-11-12T14:52:34.255+03:00  INFO 8604 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-12T14:52:34.284+03:00  WARN 8604 --- [medical-center-userservice] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-12T14:52:34.306+03:00  INFO 8604 --- [medical-center-userservice] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 16.10
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-12T14:52:35.622+03:00  INFO 8604 --- [medical-center-userservice] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-12T14:52:36.493+03:00  INFO 8604 --- [medical-center-userservice] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-12T14:52:36.984+03:00  INFO 8604 --- [medical-center-userservice] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-11-12T14:52:38.702+03:00  WARN 8604 --- [medical-center-userservice] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'chatService' defined in file [D:\medBack\UserService\target\classes\medicalcenter\userservice\service\ChatService.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'org.springframework.messaging.simp.SimpMessagingTemplate' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2025-11-12T14:52:38.704+03:00  INFO 8604 --- [medical-center-userservice] [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-12T14:52:38.707+03:00  INFO 8604 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-11-12T14:52:38.711+03:00  INFO 8604 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-11-12T14:52:38.715+03:00  INFO 8604 --- [medical-center-userservice] [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-11-12T14:52:38.732+03:00  INFO 8604 --- [medical-center-userservice] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-11-12T14:52:38.783+03:00 ERROR 8604 --- [medical-center-userservice] [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in medicalcenter.userservice.service.ChatService required a bean of type 'org.springframework.messaging.simp.SimpMessagingTemplate' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'org.springframework.messaging.simp.SimpMessagingTemplate' in your configuration.
+
+2025-11-12T14:53:30.274+03:00  INFO 25400 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : Starting UserServiceApplication using Java 24.0.2 with PID 25400 (D:\medBack\UserService\target\classes started by Дмитрий in D:\medBack\UserService)
+2025-11-12T14:53:30.284+03:00 DEBUG 25400 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : Running with Spring Boot v3.5.5, Spring v6.2.10
+2025-11-12T14:53:30.286+03:00  INFO 25400 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : The following 1 profile is active: "dev"
+2025-11-12T14:53:31.218+03:00  INFO 25400 --- [medical-center-userservice] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-12T14:53:31.378+03:00  INFO 25400 --- [medical-center-userservice] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 131 ms. Found 12 JPA repository interfaces.
+2025-11-12T14:53:32.046+03:00  INFO 25400 --- [medical-center-userservice] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-11-12T14:53:32.070+03:00  INFO 25400 --- [medical-center-userservice] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-12T14:53:32.072+03:00  INFO 25400 --- [medical-center-userservice] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.44]
+2025-11-12T14:53:32.150+03:00  INFO 25400 --- [medical-center-userservice] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-12T14:53:32.152+03:00  INFO 25400 --- [medical-center-userservice] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1801 ms
+2025-11-12T14:53:32.424+03:00  INFO 25400 --- [medical-center-userservice] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-12T14:53:32.468+03:00  INFO 25400 --- [medical-center-userservice] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.26.Final
+2025-11-12T14:53:32.499+03:00  INFO 25400 --- [medical-center-userservice] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-11-12T14:53:32.767+03:00  INFO 25400 --- [medical-center-userservice] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-12T14:53:32.794+03:00  INFO 25400 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-12T14:53:33.001+03:00  INFO 25400 --- [medical-center-userservice] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@28f05b0c
+2025-11-12T14:53:33.004+03:00  INFO 25400 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-12T14:53:33.034+03:00  WARN 25400 --- [medical-center-userservice] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-12T14:53:33.057+03:00  INFO 25400 --- [medical-center-userservice] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 16.10
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-12T14:53:34.132+03:00  INFO 25400 --- [medical-center-userservice] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-12T14:53:34.936+03:00  INFO 25400 --- [medical-center-userservice] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-12T14:53:35.190+03:00  INFO 25400 --- [medical-center-userservice] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-11-12T14:53:36.452+03:00  WARN 25400 --- [medical-center-userservice] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'chatService' defined in file [D:\medBack\UserService\target\classes\medicalcenter\userservice\service\ChatService.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'org.springframework.messaging.simp.SimpMessagingTemplate' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2025-11-12T14:53:36.454+03:00  INFO 25400 --- [medical-center-userservice] [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-12T14:53:36.457+03:00  INFO 25400 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-11-12T14:53:36.462+03:00  INFO 25400 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-11-12T14:53:36.467+03:00  INFO 25400 --- [medical-center-userservice] [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-11-12T14:53:36.481+03:00  INFO 25400 --- [medical-center-userservice] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-11-12T14:53:36.505+03:00 ERROR 25400 --- [medical-center-userservice] [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in medicalcenter.userservice.service.ChatService required a bean of type 'org.springframework.messaging.simp.SimpMessagingTemplate' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'org.springframework.messaging.simp.SimpMessagingTemplate' in your configuration.
+
+2025-11-12T14:54:08.239+03:00  INFO 25712 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : Starting UserServiceApplication using Java 24.0.2 with PID 25712 (D:\medBack\UserService\target\classes started by Дмитрий in D:\medBack\UserService)
+2025-11-12T14:54:08.241+03:00 DEBUG 25712 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : Running with Spring Boot v3.5.5, Spring v6.2.10
+2025-11-12T14:54:08.243+03:00  INFO 25712 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : The following 1 profile is active: "dev"
+2025-11-12T14:54:09.429+03:00  INFO 25712 --- [medical-center-userservice] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-12T14:54:09.542+03:00  INFO 25712 --- [medical-center-userservice] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 104 ms. Found 12 JPA repository interfaces.
+2025-11-12T14:54:10.329+03:00  INFO 25712 --- [medical-center-userservice] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-11-12T14:54:10.347+03:00  INFO 25712 --- [medical-center-userservice] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-12T14:54:10.348+03:00  INFO 25712 --- [medical-center-userservice] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.44]
+2025-11-12T14:54:10.424+03:00  INFO 25712 --- [medical-center-userservice] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-12T14:54:10.425+03:00  INFO 25712 --- [medical-center-userservice] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2109 ms
+2025-11-12T14:54:10.628+03:00  INFO 25712 --- [medical-center-userservice] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-12T14:54:10.692+03:00  INFO 25712 --- [medical-center-userservice] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.26.Final
+2025-11-12T14:54:10.727+03:00  INFO 25712 --- [medical-center-userservice] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-11-12T14:54:11.028+03:00  INFO 25712 --- [medical-center-userservice] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-12T14:54:11.056+03:00  INFO 25712 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-12T14:54:11.227+03:00  INFO 25712 --- [medical-center-userservice] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@573a078
+2025-11-12T14:54:11.229+03:00  INFO 25712 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-12T14:54:11.269+03:00  WARN 25712 --- [medical-center-userservice] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-12T14:54:11.300+03:00  INFO 25712 --- [medical-center-userservice] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 16.10
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-12T14:54:12.764+03:00  INFO 25712 --- [medical-center-userservice] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-12T14:54:13.766+03:00  INFO 25712 --- [medical-center-userservice] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-12T14:54:14.048+03:00  INFO 25712 --- [medical-center-userservice] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-11-12T14:54:15.572+03:00  WARN 25712 --- [medical-center-userservice] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'chatService' defined in file [D:\medBack\UserService\target\classes\medicalcenter\userservice\service\ChatService.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'org.springframework.messaging.simp.SimpMessagingTemplate' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2025-11-12T14:54:15.573+03:00  INFO 25712 --- [medical-center-userservice] [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-12T14:54:15.576+03:00  INFO 25712 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-11-12T14:54:15.581+03:00  INFO 25712 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-11-12T14:54:15.586+03:00  INFO 25712 --- [medical-center-userservice] [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-11-12T14:54:15.598+03:00  INFO 25712 --- [medical-center-userservice] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-11-12T14:54:15.621+03:00 ERROR 25712 --- [medical-center-userservice] [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in medicalcenter.userservice.service.ChatService required a bean of type 'org.springframework.messaging.simp.SimpMessagingTemplate' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'org.springframework.messaging.simp.SimpMessagingTemplate' in your configuration.
+
+2025-11-12T14:56:36.560+03:00  INFO 19876 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : Starting UserServiceApplication using Java 24.0.2 with PID 19876 (D:\medBack\UserService\target\classes started by Дмитрий in D:\medBack\UserService)
+2025-11-12T14:56:36.562+03:00 DEBUG 19876 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : Running with Spring Boot v3.5.5, Spring v6.2.10
+2025-11-12T14:56:36.563+03:00  INFO 19876 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : The following 1 profile is active: "dev"
+2025-11-12T14:56:37.718+03:00  INFO 19876 --- [medical-center-userservice] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-12T14:56:37.836+03:00  INFO 19876 --- [medical-center-userservice] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 107 ms. Found 12 JPA repository interfaces.
+2025-11-12T14:56:38.348+03:00  INFO 19876 --- [medical-center-userservice] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-11-12T14:56:38.363+03:00  INFO 19876 --- [medical-center-userservice] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-12T14:56:38.364+03:00  INFO 19876 --- [medical-center-userservice] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.44]
+2025-11-12T14:56:38.417+03:00  INFO 19876 --- [medical-center-userservice] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-12T14:56:38.418+03:00  INFO 19876 --- [medical-center-userservice] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1808 ms
+2025-11-12T14:56:38.556+03:00  INFO 19876 --- [medical-center-userservice] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-12T14:56:38.598+03:00  INFO 19876 --- [medical-center-userservice] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.26.Final
+2025-11-12T14:56:38.628+03:00  INFO 19876 --- [medical-center-userservice] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-11-12T14:56:38.947+03:00  INFO 19876 --- [medical-center-userservice] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-12T14:56:38.974+03:00  INFO 19876 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-12T14:56:39.139+03:00  INFO 19876 --- [medical-center-userservice] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@df7d1d4
+2025-11-12T14:56:39.141+03:00  INFO 19876 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-12T14:56:39.171+03:00  WARN 19876 --- [medical-center-userservice] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-12T14:56:39.193+03:00  INFO 19876 --- [medical-center-userservice] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 16.10
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-12T14:56:40.540+03:00  INFO 19876 --- [medical-center-userservice] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-12T14:56:41.466+03:00  INFO 19876 --- [medical-center-userservice] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-12T14:56:41.738+03:00  INFO 19876 --- [medical-center-userservice] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-11-12T14:56:43.489+03:00  WARN 19876 --- [medical-center-userservice] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-12T14:56:44.248+03:00  INFO 19876 --- [medical-center-userservice] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2025-11-12T14:56:44.249+03:00  INFO 19876 --- [medical-center-userservice] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@6087f264]]
+2025-11-12T14:56:44.251+03:00  INFO 19876 --- [medical-center-userservice] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2025-11-12T14:56:44.482+03:00  INFO 19876 --- [medical-center-userservice] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
+2025-11-12T14:56:44.491+03:00  INFO 19876 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : Started UserServiceApplication in 8.469 seconds (process running for 9.044)
+2025-11-12T14:57:07.680+03:00  INFO 19876 --- [medical-center-userservice] [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-12T14:57:07.681+03:00  INFO 19876 --- [medical-center-userservice] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-12T14:57:07.682+03:00  INFO 19876 --- [medical-center-userservice] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-11-12T14:57:07.862+03:00 ERROR 19876 --- [medical-center-userservice] [http-nio-8081-exec-8] m.userservice.exception.ApiErrorHandler  : No static resource api/chat/messages.
+2025-11-12T14:57:07.862+03:00 ERROR 19876 --- [medical-center-userservice] [http-nio-8081-exec-4] m.userservice.exception.ApiErrorHandler  : No static resource api/chat/online-users.
+2025-11-12T14:57:07.862+03:00 ERROR 19876 --- [medical-center-userservice] [http-nio-8081-exec-7] m.userservice.exception.ApiErrorHandler  : No static resource api/chat/messages.
+2025-11-12T14:57:12.030+03:00 ERROR 19876 --- [medical-center-userservice] [http-nio-8081-exec-5] m.userservice.exception.ApiErrorHandler  : No static resource api/chat/messages.
+2025-11-12T14:57:12.030+03:00 ERROR 19876 --- [medical-center-userservice] [http-nio-8081-exec-6] m.userservice.exception.ApiErrorHandler  : No static resource api/chat/online-users.
+2025-11-12T14:57:21.059+03:00 ERROR 19876 --- [medical-center-userservice] [http-nio-8081-exec-2] m.userservice.exception.ApiErrorHandler  : No static resource api/chat/messages.
+2025-11-12T14:57:21.059+03:00 ERROR 19876 --- [medical-center-userservice] [http-nio-8081-exec-3] m.userservice.exception.ApiErrorHandler  : No static resource api/chat/online-users.
+2025-11-12T14:57:24.235+03:00 ERROR 19876 --- [medical-center-userservice] [http-nio-8081-exec-8] m.userservice.exception.ApiErrorHandler  : No static resource api/chat/messages.
+2025-11-12T14:57:36.322+03:00 ERROR 19876 --- [medical-center-userservice] [http-nio-8081-exec-4] m.userservice.exception.ApiErrorHandler  : No static resource api/chat/messages.
+2025-11-12T14:57:41.077+03:00 ERROR 19876 --- [medical-center-userservice] [http-nio-8081-exec-3] m.userservice.exception.ApiErrorHandler  : No static resource api/chat/messages.
+2025-11-12T14:57:41.078+03:00 ERROR 19876 --- [medical-center-userservice] [http-nio-8081-exec-9] m.userservice.exception.ApiErrorHandler  : No static resource api/chat/online-users.
+2025-11-12T14:57:44.247+03:00  INFO 19876 --- [medical-center-userservice] [MessageBroker-2] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[2 current WS(2)-HttpStream(0)-HttpPoll(0), 6 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(6)-CONNECTED(6)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 24, active threads = 0, queued tasks = 0, completed tasks = 81], outboundChannel[pool size = 10, active threads = 0, queued tasks = 0, completed tasks = 10], sockJsScheduler[pool size = 12, active threads = 1, queued tasks = 3, completed tasks = 8]
+2025-11-12T15:00:21.884+03:00  INFO 5968 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : Starting UserServiceApplication using Java 24.0.2 with PID 5968 (D:\medBack\UserService\target\classes started by Дмитрий in D:\medBack\UserService)
+2025-11-12T15:00:21.887+03:00 DEBUG 5968 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : Running with Spring Boot v3.5.5, Spring v6.2.10
+2025-11-12T15:00:21.894+03:00  INFO 5968 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : The following 1 profile is active: "dev"
+2025-11-12T15:00:23.194+03:00  INFO 5968 --- [medical-center-userservice] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-12T15:00:23.330+03:00  INFO 5968 --- [medical-center-userservice] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 124 ms. Found 12 JPA repository interfaces.
+2025-11-12T15:00:24.065+03:00  INFO 5968 --- [medical-center-userservice] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-11-12T15:00:24.090+03:00  INFO 5968 --- [medical-center-userservice] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-12T15:00:24.091+03:00  INFO 5968 --- [medical-center-userservice] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.44]
+2025-11-12T15:00:24.208+03:00  INFO 5968 --- [medical-center-userservice] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-12T15:00:24.209+03:00  INFO 5968 --- [medical-center-userservice] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2260 ms
+2025-11-12T15:00:24.491+03:00  INFO 5968 --- [medical-center-userservice] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-12T15:00:24.571+03:00  INFO 5968 --- [medical-center-userservice] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.26.Final
+2025-11-12T15:00:24.624+03:00  INFO 5968 --- [medical-center-userservice] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-11-12T15:00:25.675+03:00  INFO 5968 --- [medical-center-userservice] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-12T15:00:25.723+03:00  INFO 5968 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-12T15:00:25.896+03:00  INFO 5968 --- [medical-center-userservice] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4ad1a276
+2025-11-12T15:00:25.898+03:00  INFO 5968 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-12T15:00:25.949+03:00  WARN 5968 --- [medical-center-userservice] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-12T15:00:25.988+03:00  INFO 5968 --- [medical-center-userservice] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 16.10
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-12T15:00:27.618+03:00  INFO 5968 --- [medical-center-userservice] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-12T15:00:28.543+03:00  INFO 5968 --- [medical-center-userservice] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-12T15:00:29.240+03:00  INFO 5968 --- [medical-center-userservice] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-11-12T15:00:31.023+03:00  WARN 5968 --- [medical-center-userservice] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-12T15:00:31.607+03:00  INFO 5968 --- [medical-center-userservice] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2025-11-12T15:00:31.609+03:00  INFO 5968 --- [medical-center-userservice] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@296c6cc1]]
+2025-11-12T15:00:31.611+03:00  INFO 5968 --- [medical-center-userservice] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2025-11-12T15:00:31.638+03:00  INFO 5968 --- [medical-center-userservice] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
+2025-11-12T15:00:31.653+03:00  INFO 5968 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : Started UserServiceApplication in 10.379 seconds (process running for 11.042)
+2025-11-12T15:00:36.408+03:00  INFO 5968 --- [medical-center-userservice] [http-nio-8081-exec-4] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-12T15:00:36.409+03:00  INFO 5968 --- [medical-center-userservice] [http-nio-8081-exec-4] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-12T15:00:36.411+03:00  INFO 5968 --- [medical-center-userservice] [http-nio-8081-exec-4] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-11-12T15:00:36.535+03:00  INFO 5968 --- [medical-center-userservice] [http-nio-8081-exec-5] m.u.configuration.PresenceEventListener  : WebSocket connected: gfvibyx3
+2025-11-12T15:00:36.535+03:00  INFO 5968 --- [medical-center-userservice] [http-nio-8081-exec-3] m.u.configuration.PresenceEventListener  : WebSocket connected: fmtzt42p
+2025-11-12T15:00:36.536+03:00  INFO 5968 --- [medical-center-userservice] [http-nio-8081-exec-3] m.userservice.service.ChatService        : User fmtzt42p is now online. Total online: 2
+2025-11-12T15:00:36.536+03:00  INFO 5968 --- [medical-center-userservice] [http-nio-8081-exec-5] m.userservice.service.ChatService        : User gfvibyx3 is now online. Total online: 2
+2025-11-12T15:00:36.723+03:00  WARN 5968 --- [medical-center-userservice] [http-nio-8081-exec-6] ration$PageModule$WarningLoggingModifier : Serializing PageImpl instances as-is is not supported, meaning that there is no guarantee about the stability of the resulting JSON structure!
+	For a stable JSON structure, please use Spring Data's PagedModel (globally via @EnableSpringDataWebSupport(pageSerializationMode = VIA_DTO))
+	or Spring HATEOAS and Spring Data's PagedResourcesAssembler as documented in https://docs.spring.io/spring-data/commons/reference/repositories/core-extensions.html#core.web.pageables.
+
+2025-11-12T15:00:50.200+03:00  INFO 5968 --- [medical-center-userservice] [http-nio-8081-exec-9] m.u.configuration.PresenceEventListener  : WebSocket disconnected: fmtzt42p
+2025-11-12T15:00:50.200+03:00  INFO 5968 --- [medical-center-userservice] [http-nio-8081-exec-10] m.u.configuration.PresenceEventListener  : WebSocket disconnected: gfvibyx3
+2025-11-12T15:00:50.202+03:00  INFO 5968 --- [medical-center-userservice] [http-nio-8081-exec-9] m.userservice.service.ChatService        : User fmtzt42p is now offline. Total online: 0
+2025-11-12T15:00:50.202+03:00  INFO 5968 --- [medical-center-userservice] [http-nio-8081-exec-10] m.userservice.service.ChatService        : User gfvibyx3 is now offline. Total online: 0
+2025-11-12T15:01:27.402+03:00  INFO 5968 --- [medical-center-userservice] [http-nio-8081-exec-3] m.u.configuration.PresenceEventListener  : WebSocket connected: kjtenx5v
+2025-11-12T15:01:27.404+03:00  INFO 5968 --- [medical-center-userservice] [http-nio-8081-exec-3] m.userservice.service.ChatService        : User kjtenx5v is now online. Total online: 1
+2025-11-12T15:01:27.425+03:00  INFO 5968 --- [medical-center-userservice] [http-nio-8081-exec-8] m.u.configuration.PresenceEventListener  : WebSocket connected: rg5muqxg
+2025-11-12T15:01:27.426+03:00  INFO 5968 --- [medical-center-userservice] [http-nio-8081-exec-8] m.userservice.service.ChatService        : User rg5muqxg is now online. Total online: 2
+2025-11-12T15:01:31.603+03:00  INFO 5968 --- [medical-center-userservice] [MessageBroker-7] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[2 current WS(2)-HttpStream(0)-HttpPoll(0), 4 total, 0 closed abnormally (0 connect failure, 0 send limit, 2 transport error)], stompSubProtocol[processed CONNECT(4)-CONNECTED(4)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 24, active threads = 0, queued tasks = 0, completed tasks = 30], outboundChannel[pool size = 11, active threads = 0, queued tasks = 0, completed tasks = 11], sockJsScheduler[pool size = 12, active threads = 1, queued tasks = 3, completed tasks = 12]
+2025-11-12T15:01:51.153+03:00  INFO 8396 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : Starting UserServiceApplication using Java 24.0.2 with PID 8396 (D:\medBack\UserService\target\classes started by Дмитрий in D:\medBack\UserService)
+2025-11-12T15:01:51.157+03:00 DEBUG 8396 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : Running with Spring Boot v3.5.5, Spring v6.2.10
+2025-11-12T15:01:51.159+03:00  INFO 8396 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : The following 1 profile is active: "dev"
+2025-11-12T15:01:52.141+03:00  INFO 8396 --- [medical-center-userservice] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-12T15:01:52.262+03:00  INFO 8396 --- [medical-center-userservice] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 111 ms. Found 12 JPA repository interfaces.
+2025-11-12T15:01:52.898+03:00  INFO 8396 --- [medical-center-userservice] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-11-12T15:01:52.922+03:00  INFO 8396 --- [medical-center-userservice] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-12T15:01:52.923+03:00  INFO 8396 --- [medical-center-userservice] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.44]
+2025-11-12T15:01:53.019+03:00  INFO 8396 --- [medical-center-userservice] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-12T15:01:53.020+03:00  INFO 8396 --- [medical-center-userservice] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1760 ms
+2025-11-12T15:01:53.293+03:00  INFO 8396 --- [medical-center-userservice] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-12T15:01:53.368+03:00  INFO 8396 --- [medical-center-userservice] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.26.Final
+2025-11-12T15:01:53.421+03:00  INFO 8396 --- [medical-center-userservice] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-11-12T15:01:53.709+03:00  INFO 8396 --- [medical-center-userservice] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-12T15:01:53.736+03:00  INFO 8396 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-12T15:01:53.905+03:00  INFO 8396 --- [medical-center-userservice] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@df7d1d4
+2025-11-12T15:01:53.908+03:00  INFO 8396 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-12T15:01:53.940+03:00  WARN 8396 --- [medical-center-userservice] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-12T15:01:53.962+03:00  INFO 8396 --- [medical-center-userservice] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 16.10
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-12T15:01:55.394+03:00  INFO 8396 --- [medical-center-userservice] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-12T15:01:56.410+03:00  INFO 8396 --- [medical-center-userservice] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-12T15:01:57.254+03:00  WARN 8396 --- [medical-center-userservice] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'chatRestController': Lookup method resolution failed
+2025-11-12T15:01:57.256+03:00  INFO 8396 --- [medical-center-userservice] [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-12T15:01:57.260+03:00  INFO 8396 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-11-12T15:01:57.266+03:00  INFO 8396 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-11-12T15:01:57.269+03:00  INFO 8396 --- [medical-center-userservice] [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-11-12T15:01:57.281+03:00  INFO 8396 --- [medical-center-userservice] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-11-12T15:01:57.302+03:00 ERROR 8396 --- [medical-center-userservice] [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'chatRestController': Lookup method resolution failed
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.checkLookupMethods(AutowiredAnnotationBeanPostProcessor.java:498) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:368) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineConstructorsFromBeanPostProcessors(AbstractAutowireCapableBeanFactory.java:1334) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1229) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1222) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1188) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1123) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:987) ~[spring-context-6.2.10.jar:6.2.10]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627) ~[spring-context-6.2.10.jar:6.2.10]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.5.5.jar:3.5.5]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) ~[spring-boot-3.5.5.jar:3.5.5]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.5.5.jar:3.5.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.5.5.jar:3.5.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361) ~[spring-boot-3.5.5.jar:3.5.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) ~[spring-boot-3.5.5.jar:3.5.5]
+	at medicalcenter.userservice.UserServiceApplication.main(UserServiceApplication.java:10) ~[classes/:na]
+Caused by: java.lang.IllegalStateException: Failed to introspect Class [medicalcenter.userservice.controller.ChatRestController] from ClassLoader [jdk.internal.loader.ClassLoaders$AppClassLoader@11a4022a]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:483) ~[spring-core-6.2.10.jar:6.2.10]
+	at org.springframework.util.ReflectionUtils.doWithLocalMethods(ReflectionUtils.java:320) ~[spring-core-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.checkLookupMethods(AutowiredAnnotationBeanPostProcessor.java:476) ~[spring-beans-6.2.10.jar:6.2.10]
+	... 21 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: MessageType
+	at java.base/java.lang.Class.getDeclaredMethods0(Native Method) ~[na:na]
+	at java.base/java.lang.Class.privateGetDeclaredMethods(Class.java:3035) ~[na:na]
+	at java.base/java.lang.Class.getDeclaredMethods(Class.java:2331) ~[na:na]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:465) ~[spring-core-6.2.10.jar:6.2.10]
+	... 23 common frames omitted
+Caused by: java.lang.ClassNotFoundException: MessageType
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:580) ~[na:na]
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:490) ~[na:na]
+	... 27 common frames omitted
+
+2025-11-12T15:02:54.539+03:00  INFO 18508 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : Starting UserServiceApplication using Java 24.0.2 with PID 18508 (D:\medBack\UserService\target\classes started by Дмитрий in D:\medBack\UserService)
+2025-11-12T15:02:54.541+03:00 DEBUG 18508 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : Running with Spring Boot v3.5.5, Spring v6.2.10
+2025-11-12T15:02:54.543+03:00  INFO 18508 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : The following 1 profile is active: "dev"
+2025-11-12T15:02:55.626+03:00  INFO 18508 --- [medical-center-userservice] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-12T15:02:55.787+03:00  INFO 18508 --- [medical-center-userservice] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 144 ms. Found 12 JPA repository interfaces.
+2025-11-12T15:02:56.380+03:00  INFO 18508 --- [medical-center-userservice] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-11-12T15:02:56.398+03:00  INFO 18508 --- [medical-center-userservice] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-12T15:02:56.399+03:00  INFO 18508 --- [medical-center-userservice] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.44]
+2025-11-12T15:02:56.470+03:00  INFO 18508 --- [medical-center-userservice] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-12T15:02:56.470+03:00  INFO 18508 --- [medical-center-userservice] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1876 ms
+2025-11-12T15:02:56.661+03:00  INFO 18508 --- [medical-center-userservice] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-12T15:02:56.717+03:00  INFO 18508 --- [medical-center-userservice] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.26.Final
+2025-11-12T15:02:56.763+03:00  INFO 18508 --- [medical-center-userservice] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-11-12T15:02:57.229+03:00  INFO 18508 --- [medical-center-userservice] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-12T15:02:57.259+03:00  INFO 18508 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-12T15:02:57.440+03:00  INFO 18508 --- [medical-center-userservice] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@df7d1d4
+2025-11-12T15:02:57.443+03:00  INFO 18508 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-12T15:02:57.475+03:00  WARN 18508 --- [medical-center-userservice] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-12T15:02:57.498+03:00  INFO 18508 --- [medical-center-userservice] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 16.10
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-12T15:02:58.854+03:00  INFO 18508 --- [medical-center-userservice] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-12T15:02:59.800+03:00  INFO 18508 --- [medical-center-userservice] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-12T15:03:00.150+03:00  WARN 18508 --- [medical-center-userservice] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'chatRestController': Lookup method resolution failed
+2025-11-12T15:03:00.152+03:00  INFO 18508 --- [medical-center-userservice] [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-12T15:03:00.156+03:00  INFO 18508 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-11-12T15:03:00.162+03:00  INFO 18508 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-11-12T15:03:00.167+03:00  INFO 18508 --- [medical-center-userservice] [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-11-12T15:03:00.180+03:00  INFO 18508 --- [medical-center-userservice] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-11-12T15:03:00.196+03:00 ERROR 18508 --- [medical-center-userservice] [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'chatRestController': Lookup method resolution failed
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.checkLookupMethods(AutowiredAnnotationBeanPostProcessor.java:498) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:368) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineConstructorsFromBeanPostProcessors(AbstractAutowireCapableBeanFactory.java:1334) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1229) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1222) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1188) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1123) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:987) ~[spring-context-6.2.10.jar:6.2.10]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627) ~[spring-context-6.2.10.jar:6.2.10]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.5.5.jar:3.5.5]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) ~[spring-boot-3.5.5.jar:3.5.5]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.5.5.jar:3.5.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.5.5.jar:3.5.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361) ~[spring-boot-3.5.5.jar:3.5.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) ~[spring-boot-3.5.5.jar:3.5.5]
+	at medicalcenter.userservice.UserServiceApplication.main(UserServiceApplication.java:10) ~[classes/:na]
+Caused by: java.lang.IllegalStateException: Failed to introspect Class [medicalcenter.userservice.controller.ChatRestController] from ClassLoader [jdk.internal.loader.ClassLoaders$AppClassLoader@11a4022a]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:483) ~[spring-core-6.2.10.jar:6.2.10]
+	at org.springframework.util.ReflectionUtils.doWithLocalMethods(ReflectionUtils.java:320) ~[spring-core-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.checkLookupMethods(AutowiredAnnotationBeanPostProcessor.java:476) ~[spring-beans-6.2.10.jar:6.2.10]
+	... 21 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: SendMessageRequest
+	at java.base/java.lang.Class.getDeclaredMethods0(Native Method) ~[na:na]
+	at java.base/java.lang.Class.privateGetDeclaredMethods(Class.java:3035) ~[na:na]
+	at java.base/java.lang.Class.getDeclaredMethods(Class.java:2331) ~[na:na]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:465) ~[spring-core-6.2.10.jar:6.2.10]
+	... 23 common frames omitted
+Caused by: java.lang.ClassNotFoundException: SendMessageRequest
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:580) ~[na:na]
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:490) ~[na:na]
+	... 27 common frames omitted
+
+2025-11-12T15:04:49.878+03:00  INFO 9680 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : Starting UserServiceApplication using Java 24.0.2 with PID 9680 (D:\medBack\UserService\target\classes started by Дмитрий in D:\medBack\UserService)
+2025-11-12T15:04:49.879+03:00 DEBUG 9680 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : Running with Spring Boot v3.5.5, Spring v6.2.10
+2025-11-12T15:04:49.880+03:00  INFO 9680 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : The following 1 profile is active: "dev"
+2025-11-12T15:04:50.718+03:00  INFO 9680 --- [medical-center-userservice] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-12T15:04:50.826+03:00  INFO 9680 --- [medical-center-userservice] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 100 ms. Found 12 JPA repository interfaces.
+2025-11-12T15:04:51.461+03:00  INFO 9680 --- [medical-center-userservice] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-11-12T15:04:51.659+03:00  INFO 9680 --- [medical-center-userservice] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-12T15:04:51.662+03:00  INFO 9680 --- [medical-center-userservice] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.44]
+2025-11-12T15:04:51.788+03:00  INFO 9680 --- [medical-center-userservice] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-12T15:04:51.789+03:00  INFO 9680 --- [medical-center-userservice] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1864 ms
+2025-11-12T15:04:51.958+03:00  INFO 9680 --- [medical-center-userservice] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-12T15:04:52.027+03:00  INFO 9680 --- [medical-center-userservice] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.26.Final
+2025-11-12T15:04:52.072+03:00  INFO 9680 --- [medical-center-userservice] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-11-12T15:04:52.390+03:00  INFO 9680 --- [medical-center-userservice] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-12T15:04:52.426+03:00  INFO 9680 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-12T15:04:52.623+03:00  INFO 9680 --- [medical-center-userservice] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@2a5c6b76
+2025-11-12T15:04:52.625+03:00  INFO 9680 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-12T15:04:52.673+03:00  WARN 9680 --- [medical-center-userservice] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-12T15:04:52.705+03:00  INFO 9680 --- [medical-center-userservice] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 16.10
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-12T15:04:54.459+03:00  INFO 9680 --- [medical-center-userservice] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-12T15:04:55.399+03:00  INFO 9680 --- [medical-center-userservice] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-12T15:04:55.877+03:00  WARN 9680 --- [medical-center-userservice] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'chatRestController': Lookup method resolution failed
+2025-11-12T15:04:55.879+03:00  INFO 9680 --- [medical-center-userservice] [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-12T15:04:55.882+03:00  INFO 9680 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-11-12T15:04:55.888+03:00  INFO 9680 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-11-12T15:04:55.893+03:00  INFO 9680 --- [medical-center-userservice] [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-11-12T15:04:55.924+03:00  INFO 9680 --- [medical-center-userservice] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-11-12T15:04:55.957+03:00 ERROR 9680 --- [medical-center-userservice] [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'chatRestController': Lookup method resolution failed
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.checkLookupMethods(AutowiredAnnotationBeanPostProcessor.java:498) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:368) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineConstructorsFromBeanPostProcessors(AbstractAutowireCapableBeanFactory.java:1334) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1229) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1222) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1188) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1123) ~[spring-beans-6.2.10.jar:6.2.10]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:987) ~[spring-context-6.2.10.jar:6.2.10]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627) ~[spring-context-6.2.10.jar:6.2.10]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.5.5.jar:3.5.5]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) ~[spring-boot-3.5.5.jar:3.5.5]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.5.5.jar:3.5.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.5.5.jar:3.5.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361) ~[spring-boot-3.5.5.jar:3.5.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) ~[spring-boot-3.5.5.jar:3.5.5]
+	at medicalcenter.userservice.UserServiceApplication.main(UserServiceApplication.java:10) ~[classes/:na]
+Caused by: java.lang.IllegalStateException: Failed to introspect Class [medicalcenter.userservice.controller.ChatRestController] from ClassLoader [jdk.internal.loader.ClassLoaders$AppClassLoader@11a4022a]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:483) ~[spring-core-6.2.10.jar:6.2.10]
+	at org.springframework.util.ReflectionUtils.doWithLocalMethods(ReflectionUtils.java:320) ~[spring-core-6.2.10.jar:6.2.10]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.checkLookupMethods(AutowiredAnnotationBeanPostProcessor.java:476) ~[spring-beans-6.2.10.jar:6.2.10]
+	... 21 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: SendMessageRequest
+	at java.base/java.lang.Class.getDeclaredMethods0(Native Method) ~[na:na]
+	at java.base/java.lang.Class.privateGetDeclaredMethods(Class.java:3035) ~[na:na]
+	at java.base/java.lang.Class.getDeclaredMethods(Class.java:2331) ~[na:na]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:465) ~[spring-core-6.2.10.jar:6.2.10]
+	... 23 common frames omitted
+Caused by: java.lang.ClassNotFoundException: SendMessageRequest
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:580) ~[na:na]
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:490) ~[na:na]
+	... 27 common frames omitted
+
+2025-11-12T15:05:18.424+03:00  INFO 5968 --- [medical-center-userservice] [http-nio-8081-exec-2] m.u.configuration.PresenceEventListener  : WebSocket disconnected: rg5muqxg
+2025-11-12T15:05:18.424+03:00  INFO 5968 --- [medical-center-userservice] [http-nio-8081-exec-4] m.u.configuration.PresenceEventListener  : WebSocket disconnected: kjtenx5v
+2025-11-12T15:05:18.424+03:00  INFO 5968 --- [medical-center-userservice] [http-nio-8081-exec-2] m.userservice.service.ChatService        : User rg5muqxg is now offline. Total online: 1
+2025-11-12T15:05:18.425+03:00  INFO 5968 --- [medical-center-userservice] [http-nio-8081-exec-4] m.userservice.service.ChatService        : User kjtenx5v is now offline. Total online: 0
+2025-11-12T15:08:35.539+03:00  INFO 26436 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : Starting UserServiceApplication using Java 24.0.2 with PID 26436 (D:\medBack\UserService\target\classes started by Дмитрий in D:\medBack\UserService)
+2025-11-12T15:08:35.542+03:00 DEBUG 26436 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : Running with Spring Boot v3.5.5, Spring v6.2.10
+2025-11-12T15:08:35.543+03:00  INFO 26436 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : The following 1 profile is active: "dev"
+2025-11-12T15:08:36.322+03:00  INFO 26436 --- [medical-center-userservice] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-12T15:08:36.433+03:00  INFO 26436 --- [medical-center-userservice] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 102 ms. Found 12 JPA repository interfaces.
+2025-11-12T15:08:36.931+03:00  INFO 26436 --- [medical-center-userservice] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-11-12T15:08:36.945+03:00  INFO 26436 --- [medical-center-userservice] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-12T15:08:36.946+03:00  INFO 26436 --- [medical-center-userservice] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.44]
+2025-11-12T15:08:36.998+03:00  INFO 26436 --- [medical-center-userservice] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-12T15:08:36.999+03:00  INFO 26436 --- [medical-center-userservice] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1404 ms
+2025-11-12T15:08:37.140+03:00  INFO 26436 --- [medical-center-userservice] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-12T15:08:37.183+03:00  INFO 26436 --- [medical-center-userservice] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.26.Final
+2025-11-12T15:08:37.213+03:00  INFO 26436 --- [medical-center-userservice] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-11-12T15:08:37.473+03:00  INFO 26436 --- [medical-center-userservice] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-12T15:08:37.503+03:00  INFO 26436 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-12T15:08:37.684+03:00  INFO 26436 --- [medical-center-userservice] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4a833595
+2025-11-12T15:08:37.687+03:00  INFO 26436 --- [medical-center-userservice] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-12T15:08:37.716+03:00  WARN 26436 --- [medical-center-userservice] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-12T15:08:37.739+03:00  INFO 26436 --- [medical-center-userservice] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 16.10
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-12T15:08:38.798+03:00  INFO 26436 --- [medical-center-userservice] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-12T15:08:39.672+03:00  INFO 26436 --- [medical-center-userservice] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-12T15:08:40.139+03:00  INFO 26436 --- [medical-center-userservice] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-11-12T15:08:41.832+03:00  WARN 26436 --- [medical-center-userservice] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-12T15:08:42.331+03:00  INFO 26436 --- [medical-center-userservice] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2025-11-12T15:08:42.332+03:00  INFO 26436 --- [medical-center-userservice] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@196ca821]]
+2025-11-12T15:08:42.334+03:00  INFO 26436 --- [medical-center-userservice] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2025-11-12T15:08:42.360+03:00  INFO 26436 --- [medical-center-userservice] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
+2025-11-12T15:08:42.374+03:00  INFO 26436 --- [medical-center-userservice] [main] m.userservice.UserServiceApplication     : Started UserServiceApplication in 7.3 seconds (process running for 7.799)
+2025-11-12T15:09:17.443+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-12T15:09:17.444+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-12T15:09:17.447+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-11-12T15:09:17.647+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-5] m.u.configuration.PresenceEventListener  : WebSocket connected: mxc0vvcv
+2025-11-12T15:09:17.647+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-8] m.u.configuration.PresenceEventListener  : WebSocket connected: anskqrvv
+2025-11-12T15:09:17.648+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-5] m.userservice.service.ChatService        : User mxc0vvcv is now online. Total online: 1
+2025-11-12T15:09:17.649+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-8] m.userservice.service.ChatService        : User anskqrvv is now online. Total online: 2
+2025-11-12T15:09:17.827+03:00  WARN 26436 --- [medical-center-userservice] [http-nio-8081-exec-3] ration$PageModule$WarningLoggingModifier : Serializing PageImpl instances as-is is not supported, meaning that there is no guarantee about the stability of the resulting JSON structure!
+	For a stable JSON structure, please use Spring Data's PagedModel (globally via @EnableSpringDataWebSupport(pageSerializationMode = VIA_DTO))
+	or Spring HATEOAS and Spring Data's PagedResourcesAssembler as documented in https://docs.spring.io/spring-data/commons/reference/repositories/core-extensions.html#core.web.pageables.
+
+2025-11-12T15:09:30.657+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-1] m.u.configuration.PresenceEventListener  : WebSocket connected: pmjq1lib
+2025-11-12T15:09:30.663+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-1] m.userservice.service.ChatService        : User pmjq1lib is now online. Total online: 3
+2025-11-12T15:09:34.981+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-8] m.u.configuration.PresenceEventListener  : WebSocket disconnected: anskqrvv
+2025-11-12T15:09:34.982+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-8] m.userservice.service.ChatService        : User anskqrvv is now offline. Total online: 2
+2025-11-12T15:09:35.251+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-6] m.u.configuration.PresenceEventListener  : WebSocket connected: u4ots0co
+2025-11-12T15:09:35.252+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-6] m.userservice.service.ChatService        : User u4ots0co is now online. Total online: 3
+2025-11-12T15:09:37.227+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-2] m.u.configuration.PresenceEventListener  : WebSocket disconnected: u4ots0co
+2025-11-12T15:09:37.229+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-2] m.userservice.service.ChatService        : User u4ots0co is now offline. Total online: 2
+2025-11-12T15:09:39.019+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-5] m.u.configuration.PresenceEventListener  : WebSocket connected: nrctmmtb
+2025-11-12T15:09:39.020+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-5] m.userservice.service.ChatService        : User nrctmmtb is now online. Total online: 3
+2025-11-12T15:09:42.333+03:00  INFO 26436 --- [medical-center-userservice] [MessageBroker-7] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[3 current WS(3)-HttpStream(0)-HttpPoll(0), 5 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(5)-CONNECTED(5)-DISCONNECT(1)], stompBrokerRelay[null], inboundChannel[pool size = 24, active threads = 0, queued tasks = 0, completed tasks = 39], outboundChannel[pool size = 19, active threads = 0, queued tasks = 0, completed tasks = 19], sockJsScheduler[pool size = 12, active threads = 1, queued tasks = 4, completed tasks = 5]
+2025-11-12T15:09:50.358+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-19] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T15:09:50.358+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-16] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T15:09:50.363+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-16] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T15:09:50.363+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-19] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T15:09:50.622+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-22] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T15:09:50.623+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-22] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T15:09:51.543+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-3] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T15:09:51.544+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-3] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T15:09:51.629+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-5] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T15:09:51.630+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-5] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T15:09:51.688+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-7] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T15:09:51.689+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-7] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T15:09:52.087+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-10] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T15:09:52.088+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-10] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T15:09:53.090+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-15] m.u.controller.ChatMessageController     : User dima kharaneka typing: false
+2025-11-12T15:09:53.091+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-15] m.userservice.service.ChatService        : User dima kharaneka stopped typing
+2025-11-12T15:09:53.197+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-18] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T15:09:53.201+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-18] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T15:09:53.282+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-21] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T15:09:53.283+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-21] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T15:09:53.775+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-23] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T15:09:53.775+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-23] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T15:09:53.813+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-1] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T15:09:53.813+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-1] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T15:09:54.011+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-6] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T15:09:54.012+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-6] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T15:09:54.139+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-12] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T15:09:54.140+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-12] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T15:09:55.144+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-9] m.u.controller.ChatMessageController     : User dima kharaneka typing: false
+2025-11-12T15:09:55.145+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-9] m.userservice.service.ChatService        : User dima kharaneka stopped typing
+2025-11-12T15:09:56.412+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-14] m.u.controller.ChatMessageController     : Received message from anonymous: скидки всем
+2025-11-12T15:09:56.414+03:00  INFO 26436 --- [medical-center-userservice] [clientInboundChannel-14] m.userservice.service.ChatService        : Handling incoming message - sender: dima kharaneka, content: скидки всем, type: OPERATOR
+2025-11-12T15:09:56.415+03:00  INFO 26436 --- [medical-center-userservice] [clientInboundChannel-14] m.userservice.service.ChatService        : Saving message to database...
+2025-11-12T15:09:56.430+03:00  INFO 26436 --- [medical-center-userservice] [clientInboundChannel-14] m.userservice.service.ChatService        : Message saved with ID: 5733b9d1-36f7-4507-859b-6cc6e016177f
+2025-11-12T15:09:56.431+03:00  INFO 26436 --- [medical-center-userservice] [clientInboundChannel-14] m.userservice.service.ChatService        : Broadcasting message to /topic/support
+2025-11-12T15:10:01.008+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-5] m.u.configuration.PresenceEventListener  : WebSocket disconnected: mxc0vvcv
+2025-11-12T15:10:01.010+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-5] m.userservice.service.ChatService        : User mxc0vvcv is now offline. Total online: 2
+2025-11-12T15:10:01.320+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-6] m.u.configuration.PresenceEventListener  : WebSocket connected: 3hl41uvk
+2025-11-12T15:10:01.321+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-6] m.userservice.service.ChatService        : User 3hl41uvk is now online. Total online: 3
+2025-11-12T15:11:32.018+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-4] m.u.configuration.PresenceEventListener  : WebSocket connected: rc2d0yxn
+2025-11-12T15:11:32.019+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-4] m.userservice.service.ChatService        : User rc2d0yxn is now online. Total online: 4
+2025-11-12T15:11:37.034+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-31] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T15:11:37.035+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-31] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T15:11:37.081+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-34] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T15:11:37.082+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-34] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T15:11:37.171+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-37] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T15:11:37.172+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-37] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T15:11:37.601+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-40] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T15:11:37.618+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-40] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T15:11:37.718+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-43] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T15:11:37.721+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-43] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T15:11:37.849+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-46] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T15:11:37.853+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-46] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T15:11:38.848+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-25] m.u.controller.ChatMessageController     : User dima kharaneka typing: false
+2025-11-12T15:11:38.848+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-25] m.userservice.service.ChatService        : User dima kharaneka stopped typing
+2025-11-12T15:11:40.244+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-28] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T15:11:40.246+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-28] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T15:11:40.320+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-32] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T15:11:40.321+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-32] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T15:11:40.494+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-35] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T15:11:40.495+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-35] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T15:11:40.598+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-38] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T15:11:40.598+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-38] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T15:11:40.728+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-41] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T15:11:40.728+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-41] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T15:11:41.563+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-44] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T15:11:41.564+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-44] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T15:11:41.815+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-48] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T15:11:41.816+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-48] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T15:11:41.925+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-27] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T15:11:41.925+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-27] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T15:11:42.019+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-30] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T15:11:42.020+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-30] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T15:11:42.166+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-33] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T15:11:42.166+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-33] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T15:11:42.295+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-36] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T15:11:42.296+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-36] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T15:11:42.403+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-39] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T15:11:42.404+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-39] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T15:11:43.411+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-42] m.u.controller.ChatMessageController     : User dima kharaneka typing: false
+2025-11-12T15:11:43.413+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-42] m.userservice.service.ChatService        : User dima kharaneka stopped typing
+2025-11-12T15:11:43.621+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-45] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T15:11:43.621+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-45] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T15:11:43.711+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-47] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T15:11:43.712+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-47] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T15:11:43.819+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-26] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T15:11:43.820+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-26] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T15:11:44.169+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-28] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T15:11:44.170+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-28] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T15:11:44.278+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-31] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T15:11:44.278+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-31] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T15:11:45.280+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-34] m.u.controller.ChatMessageController     : User dima kharaneka typing: false
+2025-11-12T15:11:45.281+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-34] m.userservice.service.ChatService        : User dima kharaneka stopped typing
+2025-11-12T15:11:45.285+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-38] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T15:11:45.286+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-38] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T15:11:45.344+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-40] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T15:11:45.345+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-40] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T15:11:45.565+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-43] m.u.controller.ChatMessageController     : Received message from anonymous: vsem ku
+2025-11-12T15:11:45.566+03:00  INFO 26436 --- [medical-center-userservice] [clientInboundChannel-43] m.userservice.service.ChatService        : Handling incoming message - sender: dima kharaneka, content: vsem ku, type: OPERATOR
+2025-11-12T15:11:45.567+03:00  INFO 26436 --- [medical-center-userservice] [clientInboundChannel-43] m.userservice.service.ChatService        : Saving message to database...
+2025-11-12T15:11:45.568+03:00  INFO 26436 --- [medical-center-userservice] [clientInboundChannel-43] m.userservice.service.ChatService        : Message saved with ID: f8d9c75d-de41-453e-b0d0-64882ec81afa
+2025-11-12T15:11:45.568+03:00  INFO 26436 --- [medical-center-userservice] [clientInboundChannel-43] m.userservice.service.ChatService        : Broadcasting message to /topic/support
+2025-11-12T15:11:46.347+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-46] m.u.controller.ChatMessageController     : User dima kharaneka typing: false
+2025-11-12T15:11:46.347+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-46] m.userservice.service.ChatService        : User dima kharaneka stopped typing
