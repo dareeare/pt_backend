@@ -46,7 +46,8 @@ public class ChatRestController {
     @GetMapping("/messages")
     public ResponseEntity<Page<ChatMessageDto>> getRecentMessages(
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "50") int size
+            @RequestParam(defaultValue = "50") int size,
+            @RequestParam(defaultValue = "false") boolean operatorOnly
     ) {
         if (size > 100) {
             size = 100;
@@ -54,7 +55,9 @@ public class ChatRestController {
         if (size < 1) {
             size = 50;
         }
-        Page<ChatMessageDto> messages = chatService.getRecentMessages(page, size);
+        Page<ChatMessageDto> messages = operatorOnly 
+            ? chatService.getOperatorMessages(page, size)
+            : chatService.getRecentMessages(page, size);
         return ResponseEntity.ok(messages);
     }
 
@@ -97,6 +100,19 @@ public class ChatRestController {
         
         MessageType type = messageType != null ? messageType : MessageType.USER;
         ChatMessageDto message = chatService.handleIncomingMessage(request, principal, userId, type);
+        return ResponseEntity.status(HttpStatus.CREATED).body(message);
+    }
+
+    @Operation(summary = "Broadcast сообщение от оператора", description = "Отправка сообщения всем пользователям (только для операторов)")
+    @PostMapping("/broadcast")
+    public ResponseEntity<ChatMessageDto> broadcastMessage(
+            @RequestBody @Valid SendMessageRequest request,
+            Principal principal
+    ) {
+        String senderName = principal != null ? principal.getName() : "Operator";
+        // Отправляем broadcast сообщение всем пользователям
+        ChatMessageDto message = chatService.handleIncomingMessage(request, principal, null, MessageType.OPERATOR);
+        log.info("Broadcast message sent by {}: {}", senderName, request.content());
         return ResponseEntity.status(HttpStatus.CREATED).body(message);
     }
 

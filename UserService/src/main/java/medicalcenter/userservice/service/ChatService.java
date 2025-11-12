@@ -40,7 +40,7 @@ public class ChatService {
     public void registerOnline(String username) {
         onlineUsers.add(username);
         log.info("User {} is now online. Total online: {}", username, onlineUsers.size());
-        broadcastSystem(String.format("Пользователь %s подключился к чату", username));
+        // Не отправляем системные сообщения о подключении
         broadcastOnlineUsers();
     }
 
@@ -48,7 +48,7 @@ public class ChatService {
         onlineUsers.remove(username);
         typingUsers.remove(username);
         log.info("User {} is now offline. Total online: {}", username, onlineUsers.size());
-        broadcastSystem(String.format("Пользователь %s отключился от чата", username));
+        // Не отправляем системные сообщения об отключении
         broadcastOnlineUsers();
     }
 
@@ -84,6 +84,9 @@ public class ChatService {
         String senderName = principal != null ? principal.getName() : dto.senderName();
         UUID senderId = dto.senderId();
 
+        log.info("Handling incoming message - sender: {}, content: {}, type: {}", 
+                senderName, dto.content(), dto.type());
+
         ChatMessage message = new ChatMessage();
         message.setSenderId(senderId);
         message.setSenderName(senderName);
@@ -92,9 +95,12 @@ public class ChatService {
         message.setTimestamp(LocalDateTime.now());
         message.setType(dto.type() == null ? MessageType.USER : dto.type());
 
+        log.info("Saving message to database...");
         ChatMessage saved = repository.save(message);
+        log.info("Message saved with ID: {}", saved.getId());
 
         ChatMessageDto out = toDto(saved);
+        log.info("Broadcasting message to /topic/support");
         messagingTemplate.convertAndSend("/topic/support", out);
         return out;
     }
@@ -125,13 +131,9 @@ public class ChatService {
     }
 
     public void broadcastSystem(String content) {
-        ChatMessage sys = new ChatMessage();
-        sys.setContent(content);
-        sys.setSenderName("system");
-        sys.setTimestamp(LocalDateTime.now());
-        sys.setType(MessageType.SYSTEM);
-        repository.save(sys);
-        messagingTemplate.convertAndSend("/topic/support", toDto(sys));
+        // Не отправляем системные сообщения о подключении/отключении
+        // Эти сообщения не нужны в чате
+        log.debug("System message (not broadcasting): {}", content);
     }
 
     public void broadcastOnlineUsers() {
@@ -162,8 +164,24 @@ public class ChatService {
     }
 
     public Page<ChatMessageDto> getRecentMessages(int page, int size) {
-        Pageable pageable = PageRequest.of(page, size);
+        Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "timestamp"));
         Page<ChatMessage> messages = repository.findAllByOrderByTimestampDesc(pageable);
+        return messages.map(this::toDto);
+    }
+
+    /**
+     * Получить только сообщения от операторов и системы (для пользователей)
+     */
+    public Page<ChatMessageDto> getOperatorMessages(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "timestamp"));
+        Specification<ChatMessage> spec = ChatMessageSpecifications.searchMessages(null, null, null, null, null)
+                .and((root, query, cb) -> 
+                    cb.or(
+                        cb.equal(root.get("type"), MessageType.OPERATOR),
+                        cb.equal(root.get("type"), MessageType.SYSTEM)
+                    )
+                );
+        Page<ChatMessage> messages = repository.findAll(spec, pageable);
         return messages.map(this::toDto);
     }
 

@@ -60,8 +60,9 @@ public class AuthController {
     public ResponseEntity<?> resend(@RequestParam String email) {
         log.trace("resend method in auth controller");
         try {
-            authService.resendVerificationCode(email);
-            return ResponseEntity.ok("Verification code resend successfully");
+            boolean resent = authService.resendVerificationCode(email);
+            String message = resent ? "Verification code resent successfully" : "Account is already verified";
+            return ResponseEntity.ok(message);
         } catch (RuntimeException e) {
             log.error(e.getMessage());
             return ResponseEntity.badRequest().body(e.getMessage());

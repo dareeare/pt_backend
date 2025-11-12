@@ -14,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -104,5 +105,25 @@ public class VisitService implements CrudService<VisitCreateEditDto, VisitReadDt
 
     public List<VisitReadDto> findByStatus(String status, Pageable pageable) {
         return visitMapper.toDto(visitRepository.findByStatus(status, pageable));
+    }
+
+    public List<VisitReadDto> findPastVisitsByPatientId(UUID patientId, Pageable pageable) {
+        return visitMapper.toDto(visitRepository.findPastVisitsByPatientId(patientId, LocalDateTime.now(), pageable));
+    }
+
+    public List<VisitReadDto> findFutureVisitsByPatientId(UUID patientId, Pageable pageable) {
+        return visitMapper.toDto(visitRepository.findFutureVisitsByPatientId(patientId, LocalDateTime.now(), pageable));
+    }
+
+    public List<VisitReadDto> findPastVisitsByDoctorId(UUID doctorId, Pageable pageable) {
+        return visitMapper.toDto(visitRepository.findPastVisitsByDoctorId(doctorId, LocalDateTime.now(), pageable));
+    }
+
+    public List<VisitReadDto> findFutureVisitsByDoctorId(UUID doctorId, Pageable pageable) {
+        return visitMapper.toDto(visitRepository.findFutureVisitsByDoctorId(doctorId, LocalDateTime.now(), pageable));
+    }
+
+    public List<VisitReadDto> findPastVisitsByDoctorAndPatient(UUID doctorId, UUID patientId, Pageable pageable) {
+        return visitMapper.toDto(visitRepository.findPastVisitsByDoctorAndPatient(doctorId, patientId, LocalDateTime.now(), pageable));
     }
 }
