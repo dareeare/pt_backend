@@ -21,8 +21,8 @@ public interface VisitRepository extends JpaRepository<Visit, UUID> {
 
     @Query("SELECT v FROM Visit v WHERE v.patient.lastName = :lastName AND v.patient.firstName = :firstName")
     List<Visit> findByPatientLastNameAndPatientFirstName(@Param("lastName") String lastName,
-                                                        @Param("firstName") String firstName,
-                                                        Pageable pageable);
+                                                         @Param("firstName") String firstName,
+                                                         Pageable pageable);
 
     @Query("SELECT v FROM Visit v WHERE v.doctor.id = :doctorId")
     List<Visit> findByDoctorId(@Param("doctorId") UUID doctorId, Pageable pageable);
@@ -35,8 +35,34 @@ public interface VisitRepository extends JpaRepository<Visit, UUID> {
 
     @Query("SELECT v FROM Visit v WHERE v.dateOfVisit BETWEEN :startDate AND :endDate")
     List<Visit> findByDateOfVisitBetween(@Param("startDate") LocalDateTime startDate,
-                                        @Param("endDate") LocalDateTime endDate,
-                                        Pageable pageable);
+                                         @Param("endDate") LocalDateTime endDate,
+                                         Pageable pageable);
+
+    @Query("SELECT v FROM Visit v WHERE v.patient.id = :patientId AND v.dateOfVisit < :currentDate ORDER BY v.dateOfVisit DESC")
+    List<Visit> findPastVisitsByPatientId(@Param("patientId") UUID patientId,
+                                          @Param("currentDate") LocalDateTime currentDate,
+                                          Pageable pageable);
+
+    @Query("SELECT v FROM Visit v WHERE v.patient.id = :patientId AND v.dateOfVisit >= :currentDate ORDER BY v.dateOfVisit ASC")
+    List<Visit> findFutureVisitsByPatientId(@Param("patientId") UUID patientId,
+                                            @Param("currentDate") LocalDateTime currentDate,
+                                            Pageable pageable);
+
+    @Query("SELECT v FROM Visit v WHERE v.doctor.id = :doctorId AND v.dateOfVisit < :currentDate ORDER BY v.dateOfVisit DESC")
+    List<Visit> findPastVisitsByDoctorId(@Param("doctorId") UUID doctorId,
+                                         @Param("currentDate") LocalDateTime currentDate,
+                                         Pageable pageable);
+
+    @Query("SELECT v FROM Visit v WHERE v.doctor.id = :doctorId AND v.dateOfVisit >= :currentDate ORDER BY v.dateOfVisit ASC")
+    List<Visit> findFutureVisitsByDoctorId(@Param("doctorId") UUID doctorId,
+                                           @Param("currentDate") LocalDateTime currentDate,
+                                           Pageable pageable);
+
+    @Query("SELECT v FROM Visit v WHERE v.doctor.id = :doctorId AND v.patient.id = :patientId AND v.dateOfVisit < :currentDate ORDER BY v.dateOfVisit DESC")
+    List<Visit> findPastVisitsByDoctorAndPatient(@Param("doctorId") UUID doctorId,
+                                                 @Param("patientId") UUID patientId,
+                                                 @Param("currentDate") LocalDateTime currentDate,
+                                                 Pageable pageable);
 
     @Modifying(flushAutomatically = true, clearAutomatically = true)
     @Query("""
@@ -52,11 +78,11 @@ public interface VisitRepository extends JpaRepository<Visit, UUID> {
             """)
     @Transactional
     int updateById(@Param("id") UUID id,
-                  @Param("dateOfVisit") LocalDateTime dateOfVisit,
-                  @Param("doctorId") UUID doctorId,
-                  @Param("patientId") UUID patientId,
-                  @Param("status") String status,
-                  @Param("symptoms") String symptoms,
-                  @Param("diagnosis") String diagnosis,
-                  @Param("prescription") String prescription);
+                   @Param("dateOfVisit") LocalDateTime dateOfVisit,
+                   @Param("doctorId") UUID doctorId,
+                   @Param("patientId") UUID patientId,
+                   @Param("status") String status,
+                   @Param("symptoms") String symptoms,
+                   @Param("diagnosis") String diagnosis,
+                   @Param("prescription") String prescription);
 }

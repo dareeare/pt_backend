@@ -13,9 +13,13 @@ import medicalcenter.userservice.service.CrudService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import medicalcenter.userservice.service.FileStorageService;
+import org.springframework.web.multipart.MultipartFile;
+
 
 import java.util.List;
 import java.util.UUID;
+import java.io.IOException;
 
 @Service
 @Transactional(readOnly = true)
@@ -24,6 +28,7 @@ import java.util.UUID;
 public class DoctorService implements CrudService<DoctorCreateEditDto, DoctorReadDto> {
     private final DoctorRepository doctorRepository;
     private final DoctorMapper doctorMapper;
+    private final FileStorageService fileStorageService;
 
     @Override
     public List<DoctorReadDto> findAll(Pageable pageable) {
@@ -83,11 +88,52 @@ public class DoctorService implements CrudService<DoctorCreateEditDto, DoctorRea
                 updatedDoctor.phone(),
                 updatedDoctor.email(),
                 updatedDoctor.information(),
-                updatedDoctor.rating()
+                updatedDoctor.rating(),
+                updatedDoctor.avatarPath()
         );
         if (updated == 0) {
             throw new UpdateException(id);
         }
+    }
+
+    @Transactional
+    public String updateAvatar(UUID id, MultipartFile avatarFile) throws IOException {
+        log.debug("updating avatar for doctor with id {}", id);
+        Doctor doctor = doctorRepository.findById(id).orElseThrow(() -> new NotFoundException(id));
+        if (doctor.getAvatarPath() != null) {
+            fileStorageService.deleteFile(doctor.getAvatarPath());
+        }
+        String avatarPath = fileStorageService.storeFile(avatarFile, id);
+        int updated = doctorRepository.updateAvatarPath(id, avatarPath);
+        if (updated == 0) {
+            throw new UpdateException(id);
+        }
+
+        return avatarPath;
+    }
+
+    @Transactional
+    public void deleteAvatar(UUID id) {
+        log.debug("deleting avatar for doctor with id {}", id);
+
+        Doctor doctor = doctorRepository.findById(id).orElseThrow(() -> new NotFoundException(id));
+
+        if (doctor.getAvatarPath() != null) {
+            fileStorageService.deleteFile(doctor.getAvatarPath());
+            doctorRepository.updateAvatarPath(id, null);
+        }
+    }
+
+    public byte[] getAvatar(UUID id) throws IOException {
+        log.debug("getting avatar for doctor with id {}", id);
+
+        Doctor doctor = doctorRepository.findById(id).orElseThrow(() -> new NotFoundException(id));
+
+        if (doctor.getAvatarPath() == null) {
+            return null;
+        }
+
+        return fileStorageService.loadFile(doctor.getAvatarPath());
     }
 
     @Override

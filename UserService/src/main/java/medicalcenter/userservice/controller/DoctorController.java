@@ -18,8 +18,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import medicalcenter.userservice.model.dto.AvatarUploadDto;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -196,6 +202,102 @@ public class DoctorController {
             @Parameter(description = "UUID врача", required = true)
             @PathVariable UUID id) {
         doctorService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @Operation(
+            summary = "Загрузить аватарку врача",
+            description = "Загружает аватарку для указанного врача"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Аватарка успешно загружена"),
+            @ApiResponse(responseCode = "404", description = "Врач с указанным ID не найден"),
+            @ApiResponse(responseCode = "400", description = "Неверный формат файла"),
+            @ApiResponse(responseCode = "500", description = "Ошибка при сохранении файла")
+    })
+    @PostMapping(value = "/{id}/avatar", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<Map<String, String>> uploadAvatar(
+            @Parameter(description = "UUID врача", required = true)
+            @PathVariable UUID id,
+            @Parameter(description = "Файл аватарки", required = true)
+            @RequestParam("avatarFile") MultipartFile avatarFile) {
+
+        try {
+            // Проверяем тип файла
+            if (avatarFile.isEmpty()) {
+                return ResponseEntity.badRequest().body(Map.of("error", "File is empty"));
+            }
+
+            String contentType = avatarFile.getContentType();
+            if (contentType == null || !contentType.startsWith("image/")) {
+                return ResponseEntity.badRequest().body(Map.of("error", "Only image files are allowed"));
+            }
+
+            String avatarPath = doctorService.updateAvatar(id, avatarFile);
+            return ResponseEntity.ok(Map.of("avatarPath", avatarPath));
+
+        } catch (IOException e) {
+            log.error("Error uploading avatar for doctor {}", id, e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(Map.of("error", "Could not upload file"));
+        }
+    }
+
+    @Operation(
+            summary = "Получить аватарку врача",
+            description = "Возвращает аватарку врача в виде массива байтов"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Аватарка найдена"),
+            @ApiResponse(responseCode = "404", description = "Врач или аватарка не найдены")
+    })
+    @GetMapping("/{id}/avatar")
+    public ResponseEntity<byte[]> getAvatar(
+            @Parameter(description = "UUID врача", required = true)
+            @PathVariable UUID id) {
+
+        try {
+            byte[] avatar = doctorService.getAvatar(id);
+            if (avatar == null) {
+                return ResponseEntity.notFound().build();
+            }
+
+            // Определяем Content-Type на основе расширения файла
+            String contentType = "image/jpeg"; // по умолчанию
+            DoctorReadDto doctor = doctorService.findOne(id);
+            if (doctor.avatarPath() != null) {
+                String avatarPath = doctor.avatarPath().toLowerCase();
+                if (avatarPath.endsWith(".png")) {
+                    contentType = "image/png";
+                } else if (avatarPath.endsWith(".gif")) {
+                    contentType = "image/gif";
+                }
+            }
+
+            return ResponseEntity.ok()
+                    .contentType(MediaType.parseMediaType(contentType))
+                    .body(avatar);
+
+        } catch (IOException e) {
+            log.error("Error loading avatar for doctor {}", id, e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @Operation(
+            summary = "Удалить аватарку врача",
+            description = "Удаляет аватарку указанного врача"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Аватарка успешно удалена"),
+            @ApiResponse(responseCode = "404", description = "Врач не найден")
+    })
+    @DeleteMapping("/{id}/avatar")
+    public ResponseEntity<Void> deleteAvatar(
+            @Parameter(description = "UUID врача", required = true)
+            @PathVariable UUID id) {
+
+        doctorService.deleteAvatar(id);
         return ResponseEntity.noContent().build();
     }
 }

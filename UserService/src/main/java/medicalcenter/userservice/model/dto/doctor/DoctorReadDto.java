@@ -32,6 +32,9 @@ public record DoctorReadDto(
         String information,
 
         @Schema(description = "Рейтинг врача", example = "4.8")
-        BigDecimal rating
+        BigDecimal rating,
+
+        @Schema(description = "Путь к аватарке врача", example = "/avatars/doctor-123e4567-e89b-12d3-a456-426614174000.jpg")
+        String avatarPath
 ) {
 }

@@ -4,6 +4,8 @@ target/
 !**/src/test/**/target/
 
 ### IntelliJ IDEA ###
+logs/
+UserService/logs/
 .idea/modules.xml
 .idea/dbnavigator.xml
 .idea/jarRepositories.xml

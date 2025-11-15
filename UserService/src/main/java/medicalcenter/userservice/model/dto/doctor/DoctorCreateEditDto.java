@@ -84,6 +84,13 @@ public record DoctorCreateEditDto(
         )
         @DecimalMin(value = "0.00", message = "Rating must be at least 0.00")
         @DecimalMax(value = "5.00", message = "Rating must be at most 5.00")
-        BigDecimal rating
+        BigDecimal rating,
+
+        @Schema(
+                description = "Путь к аватарке врача",
+                example = "/avatars/doctor-123e4567-e89b-12d3-a456-426614174000.jpg",
+                requiredMode = Schema.RequiredMode.NOT_REQUIRED
+        )
+                String avatarPath
 ) {
 }
