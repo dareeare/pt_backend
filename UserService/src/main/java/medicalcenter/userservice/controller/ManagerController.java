@@ -16,10 +16,14 @@ import medicalcenter.userservice.service.impl.ManagerService;
 import medicalcenter.userservice.util.ControllerUtil;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -197,5 +201,135 @@ public class ManagerController {
             @PathVariable UUID id) {
         managerService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @Operation(
+            summary = "Загрузить аватарку менеджера",
+            description = "Загружает аватарку для указанного менеджера. Поддерживаемые форматы: JPEG, PNG, GIF, WEBP. Максимальный размер: 5MB."
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Аватарка успешно загружена"),
+            @ApiResponse(responseCode = "404", description = "Менеджер с указанным ID не найден"),
+            @ApiResponse(responseCode = "400", description = "Неверный формат файла или превышен размер"),
+            @ApiResponse(responseCode = "500", description = "Ошибка при сохранении файла")
+    })
+    @PostMapping(value = "/{id}/avatar", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<Map<String, String>> uploadAvatar(
+            @Parameter(description = "UUID менеджера", required = true)
+            @PathVariable UUID id,
+            @Parameter(description = "Файл аватарки", required = true)
+            @RequestParam("avatarFile") MultipartFile avatarFile) {
+
+        try {
+            if (avatarFile.isEmpty()) {
+                return ResponseEntity.badRequest().body(Map.of("error", "File is empty"));
+            }
+
+            String contentType = avatarFile.getContentType();
+            if (contentType == null || !contentType.startsWith("image/")) {
+                return ResponseEntity.badRequest().body(Map.of("error", "Only image files are allowed"));
+            }
+
+            if (avatarFile.getSize() > 5 * 1024 * 1024) {
+                return ResponseEntity.badRequest().body(Map.of("error", "File size must be less than 5MB"));
+            }
+
+            String avatarPath = managerService.updateAvatar(id, avatarFile);
+            return ResponseEntity.ok(Map.of(
+                    "avatarPath", avatarPath,
+                    "message", "Avatar uploaded successfully"
+            ));
+
+        } catch (IOException e) {
+            log.error("Error uploading avatar for manager {}", id, e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(Map.of("error", "Could not upload file: " + e.getMessage()));
+        }
+    }
+
+    @Operation(
+            summary = "Получить аватарку менеджера",
+            description = "Возвращает аватарку менеджера в виде массива байтов"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Аватарка найдена"),
+            @ApiResponse(responseCode = "404", description = "Менеджер или аватарка не найдены")
+    })
+    @GetMapping("/{id}/avatar")
+    public ResponseEntity<byte[]> getAvatar(
+            @Parameter(description = "UUID менеджера", required = true)
+            @PathVariable UUID id) {
+
+        try {
+            byte[] avatar = managerService.getAvatar(id);
+            if (avatar == null) {
+                return ResponseEntity.notFound().build();
+            }
+
+            String contentType = "image/jpeg"; // по умолчанию
+            ManagerReadDto manager = managerService.findOne(id);
+            if (manager.avatarPath() != null) {
+                String avatarPath = manager.avatarPath().toLowerCase();
+                if (avatarPath.endsWith(".png")) {
+                    contentType = "image/png";
+                } else if (avatarPath.endsWith(".gif")) {
+                    contentType = "image/gif";
+                } else if (avatarPath.endsWith(".webp")) {
+                    contentType = "image/webp";
+                }
+            }
+
+            return ResponseEntity.ok()
+                    .contentType(MediaType.parseMediaType(contentType))
+                    .header("Cache-Control", "max-age=3600") // Кэшируем на 1 час
+                    .body(avatar);
+
+        } catch (IOException e) {
+            log.error("Error loading avatar for manager {}", id, e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @Operation(
+            summary = "Удалить аватарку менеджера",
+            description = "Удаляет аватарку указанного менеджера"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Аватарка успешно удалена"),
+            @ApiResponse(responseCode = "404", description = "Менеджер не найден")
+    })
+    @DeleteMapping("/{id}/avatar")
+    public ResponseEntity<Map<String, String>> deleteAvatar(
+            @Parameter(description = "UUID менеджера", required = true)
+            @PathVariable UUID id) {
+
+        try {
+            managerService.deleteAvatar(id);
+            return ResponseEntity.ok(Map.of("message", "Avatar deleted successfully"));
+        } catch (Exception e) {
+            log.error("Error deleting avatar for manager {}", id, e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(Map.of("error", "Could not delete avatar"));
+        }
+    }
+
+    @Operation(
+            summary = "Поиск менеджера по email",
+            description = "Возвращает менеджера по email адресу"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Менеджер найден",
+                    content = @Content(schema = @Schema(implementation = ManagerReadDto.class))),
+            @ApiResponse(responseCode = "404", description = "Менеджер с указанным email не найден")
+    })
+    @GetMapping(params = {"email", "!lastName", "!firstName", "!middleName", "!phone"})
+    public ResponseEntity<ManagerReadDto> getManagerByEmail(
+            @Parameter(
+                    description = "Email адрес менеджера",
+                    required = true,
+                    example = "manager@example.com"
+            )
+            @RequestParam String email) {
+        return ResponseEntity.ok(managerService.findByEmail(email));
     }
 }
