@@ -103,7 +103,7 @@ public class DoctorService implements CrudService<DoctorCreateEditDto, DoctorRea
         if (doctor.getAvatarPath() != null) {
             fileStorageService.deleteFile(doctor.getAvatarPath());
         }
-        String avatarPath = fileStorageService.storeFile(avatarFile, id);
+        String avatarPath = fileStorageService.storeDoctorFile(avatarFile, id);
         int updated = doctorRepository.updateAvatarPath(id, avatarPath);
         if (updated == 0) {
             throw new UpdateException(id);

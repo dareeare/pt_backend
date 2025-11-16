@@ -110,7 +110,7 @@ public class PatientService implements CrudService<PatientCreateEditDto, Patient
         }
 
         // Сохраняем новую аватарку
-        String avatarPath = fileStorageService.storeFile(avatarFile, id);
+        String avatarPath = fileStorageService.storePatientFile(avatarFile, id);
 
         // Обновляем путь в базе данных
         int updated = patientRepository.updateAvatarPath(id, avatarPath);

@@ -107,7 +107,7 @@ public class ManagerService implements CrudService<ManagerCreateEditDto, Manager
             fileStorageService.deleteFile(manager.getAvatarPath());
         }
 
-        String avatarPath = fileStorageService.storeFile(avatarFile, id);
+        String avatarPath = fileStorageService.storeManagerFile(avatarFile, id);
 
         int updated = managerRepository.updateAvatarPath(id, avatarPath);
         if (updated == 0) {

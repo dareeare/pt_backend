@@ -18,29 +18,50 @@ public class FileStorageService {
     @Value("${app.upload.dir:uploads}")
     private String uploadDir;
 
-    public String storeFile(MultipartFile file, UUID doctorId) throws IOException {
+    public String storeDoctorFile(MultipartFile file, UUID doctorId) throws IOException {
+        return storeFile(file, doctorId, "doctors", "doctor");
+    }
+
+    public String storePatientFile(MultipartFile file, UUID patientId) throws IOException {
+        return storeFile(file, patientId, "patients", "patient");
+    }
+
+    public String storeOperatorFile(MultipartFile file, UUID operatorId) throws IOException {
+        return storeFile(file, operatorId, "operators", "operator");
+    }
+
+    public String storeManagerFile(MultipartFile file, UUID managerId) throws IOException {
+        return storeFile(file, managerId, "managers", "manager");
+    }
+
+    private String storeFile(MultipartFile file, UUID entityId, String entityType, String prefix) throws IOException {
         try {
-            Path uploadPath = Paths.get(uploadDir, "avatars");
+            Path uploadPath = Paths.get(uploadDir, "avatars", entityType);
             if (!Files.exists(uploadPath)) {
                 Files.createDirectories(uploadPath);
             }
 
             String originalFileName = file.getOriginalFilename();
-            String fileExtension = "";
-            if (originalFileName != null && originalFileName.contains(".")) {
-                fileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
-            }
+            String fileExtension = getFileExtension(originalFileName);
 
-            String fileName = "doctor-" + doctorId + fileExtension;
+            String fileName = prefix + "-" + entityId + fileExtension;
             Path filePath = uploadPath.resolve(fileName);
 
             Files.copy(file.getInputStream(), filePath);
 
-            return "/avatars/" + fileName;
+            return "/avatars/" + entityType + "/" + fileName;
+
         } catch (IOException e) {
-            log.error("Could not store file for doctor {}", doctorId, e);
+            log.error("Could not store file for {} {}", prefix, entityId, e);
             throw new IOException("Could not store file: " + file.getOriginalFilename(), e);
         }
+    }
+
+    private String getFileExtension(String fileName) {
+        if (fileName != null && fileName.contains(".")) {
+            return fileName.substring(fileName.lastIndexOf("."));
+        }
+        return ".jpg"; // расширение по умолчанию
     }
 
     public boolean deleteFile(String filePath) {
@@ -60,12 +81,35 @@ public class FileStorageService {
         try {
             if (filePath != null && !filePath.isEmpty()) {
                 Path path = Paths.get(uploadDir, filePath);
-                return Files.readAllBytes(path);
+                if (Files.exists(path)) {
+                    return Files.readAllBytes(path);
+                } else {
+                    log.warn("File not found: {}", filePath);
+                    return null;
+                }
             }
             return null;
         } catch (IOException e) {
             log.error("Could not load file: {}", filePath, e);
             throw new IOException("Could not load file: " + filePath, e);
+        }
+    }
+
+    // Универсальный метод для загрузки любого файла
+    public String storeGenericFile(MultipartFile file, String subDirectory, String fileName) throws IOException {
+        try {
+            Path uploadPath = Paths.get(uploadDir, subDirectory);
+            if (!Files.exists(uploadPath)) {
+                Files.createDirectories(uploadPath);
+            }
+
+            Path filePath = uploadPath.resolve(fileName);
+            Files.copy(file.getInputStream(), filePath);
+
+            return "/" + subDirectory + "/" + fileName;
+        } catch (IOException e) {
+            log.error("Could not store file in directory: {}", subDirectory, e);
+            throw new IOException("Could not store file: " + file.getOriginalFilename(), e);
         }
     }
 }

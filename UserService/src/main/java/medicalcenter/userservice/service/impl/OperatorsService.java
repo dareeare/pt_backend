@@ -101,7 +101,7 @@ public class OperatorsService implements CrudService<OperatorCreateEditDto, Oper
             fileStorageService.deleteFile(operator.getAvatarPath());
         }
 
-        String avatarPath = fileStorageService.storeFile(avatarFile, id);
+        String avatarPath = fileStorageService.storeOperatorFile(avatarFile, id);
 
         int updated = operatorRepository.updateAvatarPath(id, avatarPath);
         if (updated == 0) {
