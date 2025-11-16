@@ -9,10 +9,13 @@ import medicalcenter.userservice.model.dto.patient.*;
 import medicalcenter.userservice.model.entity.Patient;
 import medicalcenter.userservice.repository.PatientRepository;
 import medicalcenter.userservice.service.CrudService;
+import medicalcenter.userservice.service.FileStorageService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,6 +26,7 @@ import java.util.UUID;
 public class PatientService implements CrudService<PatientCreateEditDto, PatientReadDto> {
     private final PatientRepository patientRepository;
     private final PatientMapper patientMapper;
+    private final FileStorageService fileStorageService;
 
     @Override
     public List<PatientReadDto> findAll(Pageable pageable) {
@@ -85,11 +89,63 @@ public class PatientService implements CrudService<PatientCreateEditDto, Patient
                 updatedPatient.phone(),
                 updatedPatient.email(),
                 updatedPatient.dateOfBirth(),
-                updatedPatient.gender()
+                updatedPatient.gender(),
+                updatedPatient.avatarPath()
         );
         if (updated == 0) {
             throw new UpdateException(id);
         }
+    }
+
+    @Transactional
+    public String updateAvatar(UUID id, MultipartFile avatarFile) throws IOException {
+        log.debug("updating avatar for patient with id {}", id);
+
+        // Проверяем, что пациент существует
+        Patient patient = patientRepository.findById(id).orElseThrow(() -> new NotFoundException(id));
+
+        // Удаляем старую аватарку, если она существует
+        if (patient.getAvatarPath() != null) {
+            fileStorageService.deleteFile(patient.getAvatarPath());
+        }
+
+        // Сохраняем новую аватарку
+        String avatarPath = fileStorageService.storeFile(avatarFile, id);
+
+        // Обновляем путь в базе данных
+        int updated = patientRepository.updateAvatarPath(id, avatarPath);
+        if (updated == 0) {
+            throw new UpdateException(id);
+        }
+
+        return avatarPath;
+    }
+
+    @Transactional
+    public void deleteAvatar(UUID id) {
+        log.debug("deleting avatar for patient with id {}", id);
+
+        Patient patient = patientRepository.findById(id).orElseThrow(() -> new NotFoundException(id));
+
+        if (patient.getAvatarPath() != null) {
+            // Удаляем файл
+            fileStorageService.deleteFile(patient.getAvatarPath());
+
+            // Обновляем базу данных
+            patientRepository.updateAvatarPath(id, null);
+        }
+    }
+
+    public byte[] getAvatar(UUID id) throws IOException {
+        log.debug("getting avatar for patient with id {}", id);
+
+        Patient patient = patientRepository.findById(id).orElseThrow(() -> new NotFoundException(id));
+
+        if (patient.getAvatarPath() == null) {
+            return null;
+        }
+
+        return fileStorageService.loadFile(patient.getAvatarPath());
     }
 
     @Override

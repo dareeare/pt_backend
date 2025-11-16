@@ -29,6 +29,9 @@ public record PatientReadDto(
         LocalDate dateOfBirth,
 
         @Schema(description = "Пол пациента", example = "M", allowableValues = {"M", "F", "O"})
-        String gender
+        String gender,
+
+        @Schema(description = "Путь к аватарке пациента", example = "/avatars/patient-123e4567-e89b-12d3-a456-426614174000.jpg")
+        String avatarPath
 ) {
 }
