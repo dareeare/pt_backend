@@ -327,7 +327,7 @@ ADD COLUMN avatar_path VARCHAR(255);
 CREATE INDEX idx_patient_avatar ON Patient(avatar_path);
 COMMENT ON COLUMN Patient.avatar_path IS 'Путь к файлу аватарки пользователя';
 
-ALTER TABLE Operator 
+ALTER TABLE Operators
 ADD COLUMN avatar_path VARCHAR(255);
 CREATE INDEX idx_operator_avatar ON Operator(avatar_path);
 COMMENT ON COLUMN Operator.avatar_path IS 'Путь к файлу аватарки пользователя';
