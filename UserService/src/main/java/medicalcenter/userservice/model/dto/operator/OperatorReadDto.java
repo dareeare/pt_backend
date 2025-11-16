@@ -26,6 +26,9 @@ public record OperatorReadDto(
         String phone,
 
         @Schema(description = "Email адрес", example = "operator@example.com")
-        String email
+        String email,
+
+        @Schema(description = "Путь к аватарке оператора", example = "/avatars/operator-123e4567-e89b-12d3-a456-426614174000.jpg")
+        String avatarPath
 ) {
 }

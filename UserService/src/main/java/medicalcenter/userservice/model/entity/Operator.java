@@ -52,7 +52,21 @@ public class Operator {
     @Column(name = "email")
     private String email;
 
+    @Schema(description = "Путь к файлу аватарки оператора", example = "/avatars/operator-123e4567-e89b-12d3-a456-426614174000.jpg")
+    @Column(name = "avatar_path")
+    private String avatarPath;
+
     @Builder
+    public Operator(String firstName, String lastName, String middleName,
+                    LocalDate dateOfBirth, String phone, String email, String avatarPath) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.middleName = middleName;
+        this.dateOfBirth = dateOfBirth;
+        this.phone = phone;
+        this.email = email;
+        this.avatarPath = avatarPath;
+    }@Builder
     public Operator(String firstName, String lastName, String middleName,
                     LocalDate dateOfBirth, String phone, String email) {
         this.firstName = firstName;

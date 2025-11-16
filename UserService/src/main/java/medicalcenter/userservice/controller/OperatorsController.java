@@ -18,8 +18,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import medicalcenter.userservice.model.dto.AvatarUploadDto;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -217,5 +223,115 @@ public class OperatorsController {
             @PathVariable UUID id) {
         operatorsService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @Operation(
+            summary = "Загрузить аватарку оператора",
+            description = "Загружает аватарку для указанного оператора"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Аватарка успешно загружена"),
+            @ApiResponse(responseCode = "404", description = "Оператор с указанным ID не найден"),
+            @ApiResponse(responseCode = "400", description = "Неверный формат файла"),
+            @ApiResponse(responseCode = "500", description = "Ошибка при сохранении файла")
+    })
+    @PostMapping(value = "/{id}/avatar", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<Map<String, String>> uploadAvatar(
+            @Parameter(description = "UUID оператора", required = true)
+            @PathVariable UUID id,
+            @Parameter(description = "Файл аватарки", required = true)
+            @RequestParam("avatarFile") MultipartFile avatarFile) {
+
+        try {
+            if (avatarFile.isEmpty()) {
+                return ResponseEntity.badRequest().body(Map.of("error", "File is empty"));
+            }
+
+            String contentType = avatarFile.getContentType();
+            if (contentType == null || !contentType.startsWith("image/")) {
+                return ResponseEntity.badRequest().body(Map.of("error", "Only image files are allowed"));
+            }
+
+            if (avatarFile.getSize() > 5 * 1024 * 1024) {
+                return ResponseEntity.badRequest().body(Map.of("error", "File size must be less than 5MB"));
+            }
+
+            String avatarPath = operatorsService.updateAvatar(id, avatarFile);
+            return ResponseEntity.ok(Map.of(
+                    "avatarPath", avatarPath,
+                    "message", "Avatar uploaded successfully"
+            ));
+
+        } catch (IOException e) {
+            log.error("Error uploading avatar for operator {}", id, e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(Map.of("error", "Could not upload file: " + e.getMessage()));
+        }
+    }
+
+    @Operation(
+            summary = "Получить аватарку оператора",
+            description = "Возвращает аватарку оператора в виде массива байтов"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Аватарка найдена"),
+            @ApiResponse(responseCode = "404", description = "Оператор или аватарка не найдены")
+    })
+    @GetMapping("/{id}/avatar")
+    public ResponseEntity<byte[]> getAvatar(
+            @Parameter(description = "UUID оператора", required = true)
+            @PathVariable UUID id) {
+
+        try {
+            byte[] avatar = operatorsService.getAvatar(id);
+            if (avatar == null) {
+                return ResponseEntity.notFound().build();
+            }
+
+            String contentType = "image/jpeg"; // по умолчанию
+            OperatorReadDto operator = operatorsService.findOne(id);
+            if (operator.avatarPath() != null) {
+                String avatarPath = operator.avatarPath().toLowerCase();
+                if (avatarPath.endsWith(".png")) {
+                    contentType = "image/png";
+                } else if (avatarPath.endsWith(".gif")) {
+                    contentType = "image/gif";
+                } else if (avatarPath.endsWith(".webp")) {
+                    contentType = "image/webp";
+                }
+            }
+
+            return ResponseEntity.ok()
+                    .contentType(MediaType.parseMediaType(contentType))
+                    .header("Cache-Control", "max-age=3600") // Кэшируем на 1 час
+                    .body(avatar);
+
+        } catch (IOException e) {
+            log.error("Error loading avatar for operator {}", id, e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @Operation(
+            summary = "Удалить аватарку оператора",
+            description = "Удаляет аватарку указанного оператора"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Аватарка успешно удалена"),
+            @ApiResponse(responseCode = "404", description = "Оператор не найден")
+    })
+    @DeleteMapping("/{id}/avatar")
+    public ResponseEntity<Map<String, String>> deleteAvatar(
+            @Parameter(description = "UUID оператора", required = true)
+            @PathVariable UUID id) {
+
+        try {
+            operatorsService.deleteAvatar(id);
+            return ResponseEntity.ok(Map.of("message", "Avatar deleted successfully"));
+        } catch (Exception e) {
+            log.error("Error deleting avatar for operator {}", id, e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(Map.of("error", "Could not delete avatar"));
+        }
     }
 }

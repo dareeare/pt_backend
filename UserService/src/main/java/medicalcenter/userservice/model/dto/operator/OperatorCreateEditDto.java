@@ -64,6 +64,13 @@ public record OperatorCreateEditDto(
                 requiredMode = Schema.RequiredMode.NOT_REQUIRED
         )
         @Email(message = "Email should be valid")
-        String email
+        String email,
+
+        @Schema(
+                description = "Путь к аватарке оператора",
+                example = "/avatars/operator-123e4567-e89b-12d3-a456-426614174000.jpg",
+                requiredMode = Schema.RequiredMode.NOT_REQUIRED
+        )
+        String avatarPath
 ) {
 }

@@ -13,7 +13,10 @@ import medicalcenter.userservice.service.CrudService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import medicalcenter.userservice.service.FileStorageService;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
@@ -24,6 +27,7 @@ import java.util.UUID;
 public class OperatorsService implements CrudService<OperatorCreateEditDto, OperatorReadDto> {
     private final OperatorRepository operatorRepository;
     private final OperatorMapper operatorMapper;
+    private final FileStorageService fileStorageService;
 
     @Override
     public List<OperatorReadDto> findAll(Pageable pageable) {
@@ -81,11 +85,54 @@ public class OperatorsService implements CrudService<OperatorCreateEditDto, Oper
                 updatedOperator.middleName(),
                 updatedOperator.dateOfBirth(),
                 updatedOperator.phone(),
-                updatedOperator.email()
+                updatedOperator.email(),
+                updatedOperator.avatarPath()
         );
         if (updated == 0) {
             throw new UpdateException(id);
         }
+    }
+
+    @Transactional
+    public String updateAvatar(UUID id, MultipartFile avatarFile) throws IOException {
+        log.debug("updating avatar for operator with id {}", id);
+        Operator operator = operatorRepository.findById(id).orElseThrow(() -> new NotFoundException(id));
+        if (operator.getAvatarPath() != null) {
+            fileStorageService.deleteFile(operator.getAvatarPath());
+        }
+
+        String avatarPath = fileStorageService.storeFile(avatarFile, id);
+
+        int updated = operatorRepository.updateAvatarPath(id, avatarPath);
+        if (updated == 0) {
+            throw new UpdateException(id);
+        }
+
+        return avatarPath;
+    }
+
+    @Transactional
+    public void deleteAvatar(UUID id) {
+        log.debug("deleting avatar for operator with id {}", id);
+
+        Operator operator = operatorRepository.findById(id).orElseThrow(() -> new NotFoundException(id));
+
+        if (operator.getAvatarPath() != null) {
+            fileStorageService.deleteFile(operator.getAvatarPath());
+            operatorRepository.updateAvatarPath(id, null);
+        }
+    }
+
+    public byte[] getAvatar(UUID id) throws IOException {
+        log.debug("getting avatar for operator with id {}", id);
+
+        Operator operator = operatorRepository.findById(id).orElseThrow(() -> new NotFoundException(id));
+
+        if (operator.getAvatarPath() == null) {
+            return null;
+        }
+
+        return fileStorageService.loadFile(operator.getAvatarPath());
     }
 
     @Override

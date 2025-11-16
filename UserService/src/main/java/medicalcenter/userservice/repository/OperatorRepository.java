@@ -44,15 +44,23 @@ public interface OperatorRepository extends JpaRepository<Operator, UUID> {
                 o.middleName = :middleName,
                 o.dateOfBirth = :dateOfBirth,
                 o.phone = :phone,
-                o.email = :email
+                o.email = :email,
+                o.avatarPath = :avatarPath
             WHERE o.id = :id
             """)
     @Transactional
     int updateById(@Param("id") UUID id,
-                  @Param("lastName") String lastName,
-                  @Param("firstName") String firstName,
-                  @Param("middleName") String middleName,
-                  @Param("dateOfBirth") LocalDate dateOfBirth,
-                  @Param("phone") String phone,
-                  @Param("email") String email);
+                   @Param("lastName") String lastName,
+                   @Param("firstName") String firstName,
+                   @Param("middleName") String middleName,
+                   @Param("dateOfBirth") LocalDate dateOfBirth,
+                   @Param("phone") String phone,
+                   @Param("email") String email,
+                   @Param("avatarPath") String avatarPath);
+
+    @Modifying(flushAutomatically = true, clearAutomatically = true)
+    @Query("UPDATE Operator o SET o.avatarPath = :avatarPath WHERE o.id = :id")
+    @Transactional
+
+    int updateAvatarPath(@Param("id") UUID id, @Param("avatarPath") String avatarPath);
 }
