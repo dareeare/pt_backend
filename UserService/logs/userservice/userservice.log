@@ -1215,3 +1215,351 @@ Caused by: java.lang.ClassNotFoundException: SendMessageRequest
 2025-11-12T15:11:45.568+03:00  INFO 26436 --- [medical-center-userservice] [clientInboundChannel-43] m.userservice.service.ChatService        : Broadcasting message to /topic/support
 2025-11-12T15:11:46.347+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-46] m.u.controller.ChatMessageController     : User dima kharaneka typing: false
 2025-11-12T15:11:46.347+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-46] m.userservice.service.ChatService        : User dima kharaneka stopped typing
+2025-11-12T15:22:21.678+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-6] m.u.configuration.PresenceEventListener  : WebSocket disconnected: nrctmmtb
+2025-11-12T15:22:21.678+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-7] m.u.configuration.PresenceEventListener  : WebSocket disconnected: 3hl41uvk
+2025-11-12T15:22:21.678+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-10] m.u.configuration.PresenceEventListener  : WebSocket disconnected: pmjq1lib
+2025-11-12T15:22:21.678+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-3] m.u.configuration.PresenceEventListener  : WebSocket disconnected: rc2d0yxn
+2025-11-12T15:22:21.679+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-6] m.userservice.service.ChatService        : User nrctmmtb is now offline. Total online: 3
+2025-11-12T15:22:21.680+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-7] m.userservice.service.ChatService        : User 3hl41uvk is now offline. Total online: 2
+2025-11-12T15:22:21.680+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-10] m.userservice.service.ChatService        : User pmjq1lib is now offline. Total online: 1
+2025-11-12T15:22:21.680+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-3] m.userservice.service.ChatService        : User rc2d0yxn is now offline. Total online: 0
+2025-11-12T15:25:16.162+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-2] m.u.configuration.PresenceEventListener  : WebSocket connected: cgi55xht
+2025-11-12T15:25:16.162+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-2] m.userservice.service.ChatService        : User cgi55xht is now online. Total online: 1
+2025-11-12T15:25:17.368+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-3] m.u.configuration.PresenceEventListener  : WebSocket connected: 3wdniatr
+2025-11-12T15:25:17.370+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-3] m.userservice.service.ChatService        : User 3wdniatr is now online. Total online: 2
+2025-11-12T15:25:17.386+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-8] m.u.configuration.PresenceEventListener  : WebSocket connected: sitgsf1s
+2025-11-12T15:25:17.387+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-8] m.userservice.service.ChatService        : User sitgsf1s is now online. Total online: 3
+2025-11-12T15:25:18.354+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-10] m.u.configuration.PresenceEventListener  : WebSocket connected: 2twikzqd
+2025-11-12T15:25:18.355+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-10] m.userservice.service.ChatService        : User 2twikzqd is now online. Total online: 4
+2025-11-12T15:25:52.961+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-5] m.u.configuration.PresenceEventListener  : WebSocket connected: xirzutms
+2025-11-12T15:25:52.961+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-5] m.userservice.service.ChatService        : User xirzutms is now online. Total online: 5
+2025-11-12T15:25:54.902+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-67] m.u.controller.ChatMessageController     : User Stas Hartov typing: true
+2025-11-12T15:25:54.903+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-67] m.userservice.service.ChatService        : User Stas Hartov started typing
+2025-11-12T15:25:54.904+03:00  INFO 26436 --- [medical-center-userservice] [clientOutboundChannel-84] m.u.configuration.PresenceEventListener  : WebSocket disconnected: cgi55xht
+2025-11-12T15:25:54.904+03:00  INFO 26436 --- [medical-center-userservice] [clientOutboundChannel-84] m.userservice.service.ChatService        : User cgi55xht is now offline. Total online: 4
+2025-11-12T15:25:54.948+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-73] m.u.controller.ChatMessageController     : User Stas Hartov typing: true
+2025-11-12T15:25:54.948+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-73] m.userservice.service.ChatService        : User Stas Hartov started typing
+2025-11-12T15:25:55.041+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-76] m.u.controller.ChatMessageController     : User Stas Hartov typing: true
+2025-11-12T15:25:55.042+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-76] m.userservice.service.ChatService        : User Stas Hartov started typing
+2025-11-12T15:25:55.650+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-79] m.u.controller.ChatMessageController     : User Stas Hartov typing: true
+2025-11-12T15:25:55.650+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-79] m.userservice.service.ChatService        : User Stas Hartov started typing
+2025-11-12T15:25:55.758+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-82] m.u.controller.ChatMessageController     : User Stas Hartov typing: true
+2025-11-12T15:25:55.759+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-82] m.userservice.service.ChatService        : User Stas Hartov started typing
+2025-11-12T15:25:55.865+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-63] m.u.controller.ChatMessageController     : User Stas Hartov typing: true
+2025-11-12T15:25:55.866+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-63] m.userservice.service.ChatService        : User Stas Hartov started typing
+2025-11-12T15:25:56.868+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-64] m.u.controller.ChatMessageController     : User Stas Hartov typing: false
+2025-11-12T15:25:56.868+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-64] m.userservice.service.ChatService        : User Stas Hartov stopped typing
+2025-11-12T15:25:59.285+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-69] m.u.controller.ChatMessageController     : User Stas Hartov typing: true
+2025-11-12T15:25:59.286+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-69] m.userservice.service.ChatService        : User Stas Hartov started typing
+2025-11-12T15:25:59.340+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-71] m.u.controller.ChatMessageController     : User Stas Hartov typing: true
+2025-11-12T15:25:59.341+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-71] m.userservice.service.ChatService        : User Stas Hartov started typing
+2025-11-12T15:25:59.780+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-74] m.u.controller.ChatMessageController     : User Stas Hartov typing: true
+2025-11-12T15:25:59.781+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-74] m.userservice.service.ChatService        : User Stas Hartov started typing
+2025-11-12T15:26:00.783+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-78] m.u.controller.ChatMessageController     : User Stas Hartov typing: false
+2025-11-12T15:26:00.784+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-78] m.userservice.service.ChatService        : User Stas Hartov stopped typing
+2025-11-12T15:26:01.317+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-81] m.u.controller.ChatMessageController     : User Stas Hartov typing: true
+2025-11-12T15:26:01.319+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-81] m.userservice.service.ChatService        : User Stas Hartov started typing
+2025-11-12T15:26:01.638+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-83] m.u.controller.ChatMessageController     : User Stas Hartov typing: true
+2025-11-12T15:26:01.639+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-83] m.userservice.service.ChatService        : User Stas Hartov started typing
+2025-11-12T15:26:01.745+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-61] m.u.controller.ChatMessageController     : User Stas Hartov typing: true
+2025-11-12T15:26:01.750+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-61] m.userservice.service.ChatService        : User Stas Hartov started typing
+2025-11-12T15:26:01.944+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-66] m.u.controller.ChatMessageController     : User Stas Hartov typing: true
+2025-11-12T15:26:01.944+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-66] m.userservice.service.ChatService        : User Stas Hartov started typing
+2025-11-12T15:26:02.949+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-68] m.u.controller.ChatMessageController     : User Stas Hartov typing: false
+2025-11-12T15:26:02.949+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-68] m.userservice.service.ChatService        : User Stas Hartov stopped typing
+2025-11-12T15:26:02.981+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-72] m.u.controller.ChatMessageController     : User Stas Hartov typing: true
+2025-11-12T15:26:02.982+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-72] m.userservice.service.ChatService        : User Stas Hartov started typing
+2025-11-12T15:26:03.068+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-75] m.u.controller.ChatMessageController     : User Stas Hartov typing: true
+2025-11-12T15:26:03.068+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-75] m.userservice.service.ChatService        : User Stas Hartov started typing
+2025-11-12T15:26:03.403+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-76] m.u.controller.ChatMessageController     : Received message from anonymous: chto-to
+2025-11-12T15:26:03.406+03:00  INFO 26436 --- [medical-center-userservice] [clientInboundChannel-76] m.userservice.service.ChatService        : Handling incoming message - sender: Stas Hartov, content: chto-to, type: OPERATOR
+2025-11-12T15:26:03.406+03:00  INFO 26436 --- [medical-center-userservice] [clientInboundChannel-76] m.userservice.service.ChatService        : Saving message to database...
+2025-11-12T15:26:03.407+03:00  INFO 26436 --- [medical-center-userservice] [clientInboundChannel-76] m.userservice.service.ChatService        : Message saved with ID: 4019a646-b09c-4e38-9960-a8368696d797
+2025-11-12T15:26:03.408+03:00  INFO 26436 --- [medical-center-userservice] [clientInboundChannel-76] m.userservice.service.ChatService        : Broadcasting message to /topic/support
+2025-11-12T15:26:04.078+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-79] m.u.controller.ChatMessageController     : User Stas Hartov typing: false
+2025-11-12T15:26:04.078+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-79] m.userservice.service.ChatService        : User Stas Hartov stopped typing
+2025-11-12T15:26:04.777+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-10] m.u.configuration.PresenceEventListener  : WebSocket disconnected: sitgsf1s
+2025-11-12T15:26:04.777+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-10] m.userservice.service.ChatService        : User sitgsf1s is now offline. Total online: 3
+2025-11-12T15:26:05.027+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-2] m.u.configuration.PresenceEventListener  : WebSocket connected: 2jeajej4
+2025-11-12T15:26:05.028+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-2] m.userservice.service.ChatService        : User 2jeajej4 is now online. Total online: 4
+2025-11-12T15:26:07.506+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-1] m.u.configuration.PresenceEventListener  : WebSocket disconnected: 3wdniatr
+2025-11-12T15:26:07.517+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-1] m.userservice.service.ChatService        : User 3wdniatr is now offline. Total online: 3
+2025-11-12T15:26:07.862+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-7] m.u.configuration.PresenceEventListener  : WebSocket connected: jun1wpew
+2025-11-12T15:26:07.862+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-7] m.userservice.service.ChatService        : User jun1wpew is now online. Total online: 4
+2025-11-12T15:26:09.522+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-9] m.u.configuration.PresenceEventListener  : WebSocket disconnected: 2twikzqd
+2025-11-12T15:26:09.522+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-9] m.userservice.service.ChatService        : User 2twikzqd is now offline. Total online: 3
+2025-11-12T15:26:09.775+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-5] m.u.configuration.PresenceEventListener  : WebSocket connected: kqyy4vw2
+2025-11-12T15:26:09.775+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-5] m.userservice.service.ChatService        : User kqyy4vw2 is now online. Total online: 4
+2025-11-12T15:26:17.272+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-4] m.u.configuration.PresenceEventListener  : WebSocket disconnected: 2jeajej4
+2025-11-12T15:26:17.272+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-4] m.userservice.service.ChatService        : User 2jeajej4 is now offline. Total online: 3
+2025-11-12T15:26:18.693+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-7] m.u.configuration.PresenceEventListener  : WebSocket disconnected: jun1wpew
+2025-11-12T15:26:18.693+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-7] m.userservice.service.ChatService        : User jun1wpew is now offline. Total online: 2
+2025-11-12T15:31:04.466+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-9] m.u.configuration.PresenceEventListener  : WebSocket connected: pgv5gn42
+2025-11-12T15:31:04.466+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-9] m.userservice.service.ChatService        : User pgv5gn42 is now online. Total online: 3
+2025-11-12T15:31:07.612+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-91] m.u.controller.ChatMessageController     : User Stas Hartov typing: true
+2025-11-12T15:31:07.613+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-91] m.userservice.service.ChatService        : User Stas Hartov started typing
+2025-11-12T15:31:07.636+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-94] m.u.controller.ChatMessageController     : User Stas Hartov typing: true
+2025-11-12T15:31:07.637+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-94] m.userservice.service.ChatService        : User Stas Hartov started typing
+2025-11-12T15:31:07.656+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-97] m.u.controller.ChatMessageController     : User Stas Hartov typing: true
+2025-11-12T15:31:07.657+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-97] m.userservice.service.ChatService        : User Stas Hartov started typing
+2025-11-12T15:31:07.688+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-100] m.u.controller.ChatMessageController     : User Stas Hartov typing: true
+2025-11-12T15:31:07.689+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-100] m.userservice.service.ChatService        : User Stas Hartov started typing
+2025-11-12T15:31:07.700+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-103] m.u.controller.ChatMessageController     : User Stas Hartov typing: true
+2025-11-12T15:31:07.701+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-103] m.userservice.service.ChatService        : User Stas Hartov started typing
+2025-11-12T15:31:07.780+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-106] m.u.controller.ChatMessageController     : User Stas Hartov typing: true
+2025-11-12T15:31:07.781+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-106] m.userservice.service.ChatService        : User Stas Hartov started typing
+2025-11-12T15:31:07.782+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-85] m.u.controller.ChatMessageController     : User Stas Hartov typing: true
+2025-11-12T15:31:07.784+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-85] m.userservice.service.ChatService        : User Stas Hartov started typing
+2025-11-12T15:31:07.872+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-88] m.u.controller.ChatMessageController     : User Stas Hartov typing: true
+2025-11-12T15:31:07.872+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-88] m.userservice.service.ChatService        : User Stas Hartov started typing
+2025-11-12T15:31:08.146+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-92] m.u.controller.ChatMessageController     : Received message from anonymous: skjfbsks
+2025-11-12T15:31:08.149+03:00  INFO 26436 --- [medical-center-userservice] [clientInboundChannel-92] m.userservice.service.ChatService        : Handling incoming message - sender: Stas Hartov, content: skjfbsks, type: OPERATOR
+2025-11-12T15:31:08.149+03:00  INFO 26436 --- [medical-center-userservice] [clientInboundChannel-92] m.userservice.service.ChatService        : Saving message to database...
+2025-11-12T15:31:08.150+03:00  INFO 26436 --- [medical-center-userservice] [clientInboundChannel-92] m.userservice.service.ChatService        : Message saved with ID: dfcf6845-7dac-476a-9d55-9532347a5748
+2025-11-12T15:31:08.150+03:00  INFO 26436 --- [medical-center-userservice] [clientInboundChannel-92] m.userservice.service.ChatService        : Broadcasting message to /topic/support
+2025-11-12T15:31:08.875+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-95] m.u.controller.ChatMessageController     : User Stas Hartov typing: false
+2025-11-12T15:31:08.876+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-95] m.userservice.service.ChatService        : User Stas Hartov stopped typing
+2025-11-12T15:39:42.334+03:00  INFO 26436 --- [medical-center-userservice] [MessageBroker-6] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[3 current WS(3)-HttpStream(0)-HttpPoll(0), 16 total, 0 closed abnormally (0 connect failure, 0 send limit, 4 transport error)], stompSubProtocol[processed CONNECT(16)-CONNECTED(16)-DISCONNECT(1)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 366], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 389], sockJsScheduler[pool size = 12, active threads = 1, queued tasks = 4, completed tasks = 561]
+2025-11-12T15:44:39.506+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-5] m.u.configuration.PresenceEventListener  : WebSocket disconnected: pgv5gn42
+2025-11-12T15:44:39.506+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-1] m.u.configuration.PresenceEventListener  : WebSocket disconnected: kqyy4vw2
+2025-11-12T15:44:39.507+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-5] m.userservice.service.ChatService        : User pgv5gn42 is now offline. Total online: 2
+2025-11-12T15:44:39.508+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-1] m.userservice.service.ChatService        : User kqyy4vw2 is now offline. Total online: 1
+2025-11-12T15:44:39.510+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-5] m.u.configuration.PresenceEventListener  : WebSocket disconnected: xirzutms
+2025-11-12T15:44:39.511+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-5] m.userservice.service.ChatService        : User xirzutms is now offline. Total online: 0
+2025-11-12T15:50:31.640+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-2] m.u.configuration.PresenceEventListener  : WebSocket connected: 4rmwx3oq
+2025-11-12T15:50:31.641+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-2] m.userservice.service.ChatService        : User 4rmwx3oq is now online. Total online: 1
+2025-11-12T15:50:31.647+03:00  WARN 26436 --- [medical-center-userservice] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=5m53s864ms589µs800ns).
+2025-11-12T15:50:31.703+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-8] m.u.configuration.PresenceEventListener  : WebSocket connected: dfco5sxt
+2025-11-12T15:50:31.704+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-8] m.userservice.service.ChatService        : User dfco5sxt is now online. Total online: 2
+2025-11-12T15:50:32.108+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-10] m.u.configuration.PresenceEventListener  : WebSocket connected: abjosf3z
+2025-11-12T15:50:32.109+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-10] m.userservice.service.ChatService        : User abjosf3z is now online. Total online: 3
+2025-11-12T15:50:44.243+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-5] m.u.configuration.PresenceEventListener  : WebSocket disconnected: 4rmwx3oq
+2025-11-12T15:50:44.243+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-8] m.u.configuration.PresenceEventListener  : WebSocket disconnected: dfco5sxt
+2025-11-12T15:50:44.243+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-1] m.u.configuration.PresenceEventListener  : WebSocket disconnected: abjosf3z
+2025-11-12T15:50:44.243+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-5] m.userservice.service.ChatService        : User 4rmwx3oq is now offline. Total online: 2
+2025-11-12T15:50:44.245+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-8] m.userservice.service.ChatService        : User dfco5sxt is now offline. Total online: 1
+2025-11-12T15:50:44.246+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-1] m.userservice.service.ChatService        : User abjosf3z is now offline. Total online: 0
+2025-11-12T15:50:54.169+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-10] m.u.configuration.PresenceEventListener  : WebSocket connected: iinxj2b5
+2025-11-12T15:50:54.171+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-10] m.userservice.service.ChatService        : User iinxj2b5 is now online. Total online: 1
+2025-11-12T15:50:54.187+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-2] m.u.configuration.PresenceEventListener  : WebSocket connected: 1cow2qwb
+2025-11-12T15:50:54.187+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-2] m.userservice.service.ChatService        : User 1cow2qwb is now online. Total online: 2
+2025-11-12T15:50:54.221+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-7] m.u.configuration.PresenceEventListener  : WebSocket connected: x5g23wpo
+2025-11-12T15:50:54.222+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-7] m.userservice.service.ChatService        : User x5g23wpo is now online. Total online: 3
+2025-11-12T15:52:07.662+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-1] m.u.configuration.PresenceEventListener  : WebSocket disconnected: iinxj2b5
+2025-11-12T15:52:07.662+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-8] m.u.configuration.PresenceEventListener  : WebSocket disconnected: 1cow2qwb
+2025-11-12T15:52:07.662+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-2] m.u.configuration.PresenceEventListener  : WebSocket disconnected: x5g23wpo
+2025-11-12T15:52:07.662+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-1] m.userservice.service.ChatService        : User iinxj2b5 is now offline. Total online: 2
+2025-11-12T15:52:07.664+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-8] m.userservice.service.ChatService        : User 1cow2qwb is now offline. Total online: 1
+2025-11-12T15:52:07.665+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-2] m.userservice.service.ChatService        : User x5g23wpo is now offline. Total online: 0
+2025-11-12T15:52:30.840+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-7] m.u.configuration.PresenceEventListener  : WebSocket connected: y0vz54pq
+2025-11-12T15:52:30.844+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-7] m.userservice.service.ChatService        : User y0vz54pq is now online. Total online: 1
+2025-11-12T15:52:31.092+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-2] m.u.configuration.PresenceEventListener  : WebSocket connected: hwjfr1bo
+2025-11-12T15:52:31.093+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-2] m.userservice.service.ChatService        : User hwjfr1bo is now online. Total online: 2
+2025-11-12T15:52:31.116+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-6] m.u.configuration.PresenceEventListener  : WebSocket connected: munelsvy
+2025-11-12T15:52:31.118+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-6] m.userservice.service.ChatService        : User munelsvy is now online. Total online: 3
+2025-11-12T15:53:01.312+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-10] m.u.configuration.PresenceEventListener  : WebSocket disconnected: munelsvy
+2025-11-12T15:53:01.312+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-1] m.u.configuration.PresenceEventListener  : WebSocket disconnected: y0vz54pq
+2025-11-12T15:53:01.313+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-10] m.userservice.service.ChatService        : User munelsvy is now offline. Total online: 2
+2025-11-12T15:53:01.313+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-8] m.u.configuration.PresenceEventListener  : WebSocket disconnected: hwjfr1bo
+2025-11-12T15:53:01.316+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-1] m.userservice.service.ChatService        : User y0vz54pq is now offline. Total online: 1
+2025-11-12T15:53:01.320+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-8] m.userservice.service.ChatService        : User hwjfr1bo is now offline. Total online: 0
+2025-11-12T15:59:44.182+03:00  WARN 26436 --- [medical-center-userservice] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=7m7s878ms586µs100ns).
+2025-11-12T15:59:44.379+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-6] m.u.configuration.PresenceEventListener  : WebSocket connected: mgvzsww1
+2025-11-12T15:59:44.380+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-6] m.userservice.service.ChatService        : User mgvzsww1 is now online. Total online: 1
+2025-11-12T15:59:44.494+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-1] m.u.configuration.PresenceEventListener  : WebSocket connected: 1l5kqxum
+2025-11-12T15:59:44.494+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-1] m.userservice.service.ChatService        : User 1l5kqxum is now online. Total online: 2
+2025-11-12T15:59:44.586+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-5] m.u.configuration.PresenceEventListener  : WebSocket connected: ds3pnu4u
+2025-11-12T15:59:44.587+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-5] m.userservice.service.ChatService        : User ds3pnu4u is now online. Total online: 3
+2025-11-12T16:03:23.867+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-1] m.u.configuration.PresenceEventListener  : WebSocket connected: azny5zhc
+2025-11-12T16:03:23.868+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-1] m.userservice.service.ChatService        : User azny5zhc is now online. Total online: 4
+2025-11-12T16:03:30.435+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-6] m.u.configuration.PresenceEventListener  : WebSocket connected: kbhc11yj
+2025-11-12T16:03:30.435+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-6] m.userservice.service.ChatService        : User kbhc11yj is now online. Total online: 5
+2025-11-12T16:03:35.411+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-3] m.u.configuration.PresenceEventListener  : WebSocket disconnected: kbhc11yj
+2025-11-12T16:03:35.413+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-3] m.userservice.service.ChatService        : User kbhc11yj is now offline. Total online: 4
+2025-11-12T16:03:35.740+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-8] m.u.configuration.PresenceEventListener  : WebSocket connected: gsw3h4wg
+2025-11-12T16:03:35.741+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-8] m.userservice.service.ChatService        : User gsw3h4wg is now online. Total online: 5
+2025-11-12T16:03:46.067+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-183] m.u.controller.ChatMessageController     : User Stas Hartov typing: true
+2025-11-12T16:03:46.069+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-183] m.userservice.service.ChatService        : User Stas Hartov started typing
+2025-11-12T16:03:46.172+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-162] m.u.controller.ChatMessageController     : User Stas Hartov typing: true
+2025-11-12T16:03:46.173+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-162] m.userservice.service.ChatService        : User Stas Hartov started typing
+2025-11-12T16:03:47.215+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-165] m.u.controller.ChatMessageController     : User Stas Hartov typing: false
+2025-11-12T16:03:47.216+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-165] m.userservice.service.ChatService        : User Stas Hartov stopped typing
+2025-11-12T16:03:49.304+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-168] m.u.controller.ChatMessageController     : Received message from anonymous: hi
+2025-11-12T16:03:49.340+03:00  INFO 26436 --- [medical-center-userservice] [clientInboundChannel-168] m.userservice.service.ChatService        : Handling incoming message - sender: Stas Hartov, content: hi, type: OPERATOR
+2025-11-12T16:03:49.341+03:00  INFO 26436 --- [medical-center-userservice] [clientInboundChannel-168] m.userservice.service.ChatService        : Saving message to database...
+2025-11-12T16:03:49.343+03:00  INFO 26436 --- [medical-center-userservice] [clientInboundChannel-168] m.userservice.service.ChatService        : Message saved with ID: 3c8249a3-fe80-461b-be09-dccf000059c3
+2025-11-12T16:03:49.344+03:00  INFO 26436 --- [medical-center-userservice] [clientInboundChannel-168] m.userservice.service.ChatService        : Broadcasting message to /topic/support
+2025-11-12T16:04:51.348+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-10] m.u.configuration.PresenceEventListener  : WebSocket disconnected: azny5zhc
+2025-11-12T16:04:51.349+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-10] m.userservice.service.ChatService        : User azny5zhc is now offline. Total online: 4
+2025-11-12T16:04:51.558+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-2] m.u.configuration.PresenceEventListener  : WebSocket connected: kr4qg0ka
+2025-11-12T16:04:51.559+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-2] m.userservice.service.ChatService        : User kr4qg0ka is now online. Total online: 5
+2025-11-12T16:07:20.587+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-195] m.u.controller.ChatMessageController     : User Stas Hartov typing: true
+2025-11-12T16:07:20.589+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-195] m.userservice.service.ChatService        : User Stas Hartov started typing
+2025-11-12T16:07:21.329+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-198] m.u.controller.ChatMessageController     : User Stas Hartov typing: true
+2025-11-12T16:07:21.330+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-198] m.userservice.service.ChatService        : User Stas Hartov started typing
+2025-11-12T16:07:22.344+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-201] m.u.controller.ChatMessageController     : User Stas Hartov typing: false
+2025-11-12T16:07:22.345+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-201] m.userservice.service.ChatService        : User Stas Hartov stopped typing
+2025-11-12T16:07:22.375+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-204] m.u.controller.ChatMessageController     : User Stas Hartov typing: true
+2025-11-12T16:07:22.376+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-204] m.userservice.service.ChatService        : User Stas Hartov started typing
+2025-11-12T16:07:22.587+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-207] m.u.controller.ChatMessageController     : User Stas Hartov typing: true
+2025-11-12T16:07:22.592+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-207] m.userservice.service.ChatService        : User Stas Hartov started typing
+2025-11-12T16:07:23.269+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-210] m.u.controller.ChatMessageController     : Received message from anonymous: hi
+2025-11-12T16:07:23.277+03:00  INFO 26436 --- [medical-center-userservice] [clientInboundChannel-210] m.userservice.service.ChatService        : Handling incoming message - sender: Stas Hartov, content: hi, type: OPERATOR
+2025-11-12T16:07:23.278+03:00  INFO 26436 --- [medical-center-userservice] [clientInboundChannel-210] m.userservice.service.ChatService        : Saving message to database...
+2025-11-12T16:07:23.280+03:00  INFO 26436 --- [medical-center-userservice] [clientInboundChannel-210] m.userservice.service.ChatService        : Message saved with ID: f7c52154-9718-4b46-9d0b-749854c78813
+2025-11-12T16:07:23.281+03:00  INFO 26436 --- [medical-center-userservice] [clientInboundChannel-210] m.userservice.service.ChatService        : Broadcasting message to /topic/support
+2025-11-12T16:07:23.594+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-213] m.u.controller.ChatMessageController     : User Stas Hartov typing: false
+2025-11-12T16:07:23.595+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-213] m.userservice.service.ChatService        : User Stas Hartov stopped typing
+2025-11-12T16:08:38.638+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-2] m.u.configuration.PresenceEventListener  : WebSocket disconnected: kr4qg0ka
+2025-11-12T16:08:38.639+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-2] m.userservice.service.ChatService        : User kr4qg0ka is now offline. Total online: 4
+2025-11-12T16:08:42.896+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-6] m.u.configuration.PresenceEventListener  : WebSocket connected: ciqkfhfs
+2025-11-12T16:08:42.897+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-6] m.userservice.service.ChatService        : User ciqkfhfs is now online. Total online: 5
+2025-11-12T16:08:46.227+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-3] m.u.configuration.PresenceEventListener  : WebSocket disconnected: ciqkfhfs
+2025-11-12T16:08:46.228+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-3] m.userservice.service.ChatService        : User ciqkfhfs is now offline. Total online: 4
+2025-11-12T16:08:46.408+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-8] m.u.configuration.PresenceEventListener  : WebSocket connected: fuvgs0dl
+2025-11-12T16:08:46.409+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-8] m.userservice.service.ChatService        : User fuvgs0dl is now online. Total online: 5
+2025-11-12T16:09:00.529+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-234] m.u.controller.ChatMessageController     : User Stas Hartov typing: true
+2025-11-12T16:09:00.531+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-234] m.userservice.service.ChatService        : User Stas Hartov started typing
+2025-11-12T16:09:00.636+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-237] m.u.controller.ChatMessageController     : User Stas Hartov typing: true
+2025-11-12T16:09:00.637+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-237] m.userservice.service.ChatService        : User Stas Hartov started typing
+2025-11-12T16:09:01.067+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-216] m.u.controller.ChatMessageController     : Received message from anonymous: hi
+2025-11-12T16:09:01.071+03:00  INFO 26436 --- [medical-center-userservice] [clientInboundChannel-216] m.userservice.service.ChatService        : Handling incoming message - sender: Stas Hartov, content: hi, type: OPERATOR
+2025-11-12T16:09:01.071+03:00  INFO 26436 --- [medical-center-userservice] [clientInboundChannel-216] m.userservice.service.ChatService        : Saving message to database...
+2025-11-12T16:09:01.073+03:00  INFO 26436 --- [medical-center-userservice] [clientInboundChannel-216] m.userservice.service.ChatService        : Message saved with ID: c03f8daa-fe80-48cb-a184-7f5415869718
+2025-11-12T16:09:01.073+03:00  INFO 26436 --- [medical-center-userservice] [clientInboundChannel-216] m.userservice.service.ChatService        : Broadcasting message to /topic/support
+2025-11-12T16:09:01.643+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-219] m.u.controller.ChatMessageController     : User Stas Hartov typing: false
+2025-11-12T16:09:01.649+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-219] m.userservice.service.ChatService        : User Stas Hartov stopped typing
+2025-11-12T16:09:42.006+03:00  INFO 26436 --- [medical-center-userservice] [MessageBroker-6] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[5 current WS(5)-HttpStream(0)-HttpPoll(0), 34 total, 0 closed abnormally (0 connect failure, 0 send limit, 16 transport error)], stompSubProtocol[processed CONNECT(34)-CONNECTED(34)-DISCONNECT(1)], stompBrokerRelay[null], inboundChannel[pool size = 23, active threads = 0, queued tasks = 0, completed tasks = 567], outboundChannel[pool size = 24, active threads = 0, queued tasks = 0, completed tasks = 580], sockJsScheduler[pool size = 12, active threads = 1, queued tasks = 6, completed tasks = 1046]
+2025-11-12T16:16:11.086+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-3] m.u.configuration.PresenceEventListener  : WebSocket disconnected: fuvgs0dl
+2025-11-12T16:16:11.087+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-3] m.userservice.service.ChatService        : User fuvgs0dl is now offline. Total online: 4
+2025-11-12T16:17:04.923+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-8] m.u.configuration.PresenceEventListener  : WebSocket connected: at24apwq
+2025-11-12T16:17:04.923+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-8] m.userservice.service.ChatService        : User at24apwq is now online. Total online: 5
+2025-11-12T16:21:27.492+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-3] m.u.configuration.PresenceEventListener  : WebSocket connected: klpbi3ut
+2025-11-12T16:21:27.492+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-3] m.userservice.service.ChatService        : User klpbi3ut is now online. Total online: 6
+2025-11-12T16:21:31.321+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-8] m.u.configuration.PresenceEventListener  : WebSocket disconnected: klpbi3ut
+2025-11-12T16:21:31.323+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-8] m.userservice.service.ChatService        : User klpbi3ut is now offline. Total online: 5
+2025-11-12T16:21:32.194+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-4] m.u.configuration.PresenceEventListener  : WebSocket connected: yhamcdsa
+2025-11-12T16:21:32.195+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-4] m.userservice.service.ChatService        : User yhamcdsa is now online. Total online: 6
+2025-11-12T16:21:51.701+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-10] m.u.configuration.PresenceEventListener  : WebSocket connected: 4ochonsd
+2025-11-12T16:21:51.701+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-10] m.userservice.service.ChatService        : User 4ochonsd is now online. Total online: 7
+2025-11-12T16:21:56.806+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-2] m.u.configuration.PresenceEventListener  : WebSocket disconnected: gsw3h4wg
+2025-11-12T16:21:56.806+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-2] m.userservice.service.ChatService        : User gsw3h4wg is now offline. Total online: 6
+2025-11-12T16:21:57.106+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-6] m.u.configuration.PresenceEventListener  : WebSocket connected: gbwxmpko
+2025-11-12T16:21:57.107+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-6] m.userservice.service.ChatService        : User gbwxmpko is now online. Total online: 7
+2025-11-12T16:22:00.813+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-10] m.u.configuration.PresenceEventListener  : WebSocket disconnected: gbwxmpko
+2025-11-12T16:22:00.813+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-10] m.userservice.service.ChatService        : User gbwxmpko is now offline. Total online: 6
+2025-11-12T16:22:01.057+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-2] m.u.configuration.PresenceEventListener  : WebSocket connected: 0niasb2x
+2025-11-12T16:22:01.057+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-2] m.userservice.service.ChatService        : User 0niasb2x is now online. Total online: 7
+2025-11-12T16:22:05.058+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-7] m.u.configuration.PresenceEventListener  : WebSocket disconnected: 0niasb2x
+2025-11-12T16:22:05.059+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-7] m.userservice.service.ChatService        : User 0niasb2x is now offline. Total online: 6
+2025-11-12T16:22:05.174+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-10] m.u.configuration.PresenceEventListener  : WebSocket connected: rsusr4my
+2025-11-12T16:22:05.175+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-10] m.userservice.service.ChatService        : User rsusr4my is now online. Total online: 7
+2025-11-12T16:22:06.103+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-5] m.u.configuration.PresenceEventListener  : WebSocket disconnected: rsusr4my
+2025-11-12T16:22:06.105+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-5] m.userservice.service.ChatService        : User rsusr4my is now offline. Total online: 6
+2025-11-12T16:22:06.353+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-7] m.u.configuration.PresenceEventListener  : WebSocket connected: aj4sthb4
+2025-11-12T16:22:06.354+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-7] m.userservice.service.ChatService        : User aj4sthb4 is now online. Total online: 7
+2025-11-12T16:22:07.774+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-1] m.u.configuration.PresenceEventListener  : WebSocket disconnected: aj4sthb4
+2025-11-12T16:22:07.775+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-1] m.userservice.service.ChatService        : User aj4sthb4 is now offline. Total online: 6
+2025-11-12T16:22:07.882+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-5] m.u.configuration.PresenceEventListener  : WebSocket connected: xsgucvmi
+2025-11-12T16:22:07.883+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-5] m.userservice.service.ChatService        : User xsgucvmi is now online. Total online: 7
+2025-11-12T16:22:09.548+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-7] m.u.configuration.PresenceEventListener  : WebSocket disconnected: xsgucvmi
+2025-11-12T16:22:09.548+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-7] m.userservice.service.ChatService        : User xsgucvmi is now offline. Total online: 6
+2025-11-12T16:22:09.651+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-10] m.u.configuration.PresenceEventListener  : WebSocket connected: vaqhkc0q
+2025-11-12T16:22:09.652+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-10] m.userservice.service.ChatService        : User vaqhkc0q is now online. Total online: 7
+2025-11-12T16:22:20.202+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-8] m.u.configuration.PresenceEventListener  : WebSocket disconnected: vaqhkc0q
+2025-11-12T16:22:20.202+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-8] m.userservice.service.ChatService        : User vaqhkc0q is now offline. Total online: 6
+2025-11-12T16:22:20.443+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-4] m.u.configuration.PresenceEventListener  : WebSocket connected: piws24hk
+2025-11-12T16:22:20.444+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-4] m.userservice.service.ChatService        : User piws24hk is now online. Total online: 7
+2025-11-12T16:22:25.737+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-10] m.u.configuration.PresenceEventListener  : WebSocket disconnected: 4ochonsd
+2025-11-12T16:22:25.738+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-10] m.userservice.service.ChatService        : User 4ochonsd is now offline. Total online: 6
+2025-11-12T16:22:26.574+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-1] m.u.configuration.PresenceEventListener  : WebSocket disconnected: yhamcdsa
+2025-11-12T16:22:26.575+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-1] m.userservice.service.ChatService        : User yhamcdsa is now offline. Total online: 5
+2025-11-12T16:22:27.830+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-2] m.u.configuration.PresenceEventListener  : WebSocket disconnected: piws24hk
+2025-11-12T16:22:27.830+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-2] m.userservice.service.ChatService        : User piws24hk is now offline. Total online: 4
+2025-11-12T16:22:28.379+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-6] m.u.configuration.PresenceEventListener  : WebSocket connected: tkuun0ku
+2025-11-12T16:22:28.380+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-6] m.userservice.service.ChatService        : User tkuun0ku is now online. Total online: 5
+2025-11-12T16:22:29.185+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-3] m.u.configuration.PresenceEventListener  : WebSocket disconnected: tkuun0ku
+2025-11-12T16:22:29.185+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-3] m.userservice.service.ChatService        : User tkuun0ku is now offline. Total online: 4
+2025-11-12T16:22:29.426+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-2] m.u.configuration.PresenceEventListener  : WebSocket connected: ltln14zk
+2025-11-12T16:22:29.429+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-2] m.userservice.service.ChatService        : User ltln14zk is now online. Total online: 5
+2025-11-12T16:22:30.229+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-4] m.u.configuration.PresenceEventListener  : WebSocket disconnected: ltln14zk
+2025-11-12T16:22:30.229+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-4] m.userservice.service.ChatService        : User ltln14zk is now offline. Total online: 4
+2025-11-12T16:22:30.446+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-3] m.u.configuration.PresenceEventListener  : WebSocket connected: ir1hs54v
+2025-11-12T16:22:30.448+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-3] m.userservice.service.ChatService        : User ir1hs54v is now online. Total online: 5
+2025-11-12T16:22:34.512+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-8] m.u.configuration.PresenceEventListener  : WebSocket disconnected: ir1hs54v
+2025-11-12T16:22:34.513+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-8] m.userservice.service.ChatService        : User ir1hs54v is now offline. Total online: 4
+2025-11-12T16:22:36.804+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-6] m.u.configuration.PresenceEventListener  : WebSocket disconnected: at24apwq
+2025-11-12T16:22:36.805+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-6] m.userservice.service.ChatService        : User at24apwq is now offline. Total online: 3
+2025-11-12T16:22:37.144+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-9] m.u.configuration.PresenceEventListener  : WebSocket connected: 0p0bnubh
+2025-11-12T16:22:37.145+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-9] m.userservice.service.ChatService        : User 0p0bnubh is now online. Total online: 4
+2025-11-12T16:22:46.419+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-10] m.u.configuration.PresenceEventListener  : WebSocket disconnected: 0p0bnubh
+2025-11-12T16:22:46.420+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-10] m.userservice.service.ChatService        : User 0p0bnubh is now offline. Total online: 3
+2025-11-12T16:23:07.536+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-8] m.u.configuration.PresenceEventListener  : WebSocket connected: otqlii03
+2025-11-12T16:23:07.537+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-8] m.userservice.service.ChatService        : User otqlii03 is now online. Total online: 4
+2025-11-12T16:23:13.314+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-4] m.u.configuration.PresenceEventListener  : WebSocket disconnected: 1l5kqxum
+2025-11-12T16:23:13.315+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-4] m.userservice.service.ChatService        : User 1l5kqxum is now offline. Total online: 3
+2025-11-12T16:23:28.530+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-3] m.u.configuration.PresenceEventListener  : WebSocket connected: mkhlrjes
+2025-11-12T16:23:28.533+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-3] m.userservice.service.ChatService        : User mkhlrjes is now online. Total online: 4
+2025-11-12T16:23:31.436+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-8] m.u.configuration.PresenceEventListener  : WebSocket disconnected: mkhlrjes
+2025-11-12T16:23:31.437+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-8] m.userservice.service.ChatService        : User mkhlrjes is now offline. Total online: 3
+2025-11-12T16:23:31.823+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-4] m.u.configuration.PresenceEventListener  : WebSocket connected: cpugiamc
+2025-11-12T16:23:31.881+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-4] m.userservice.service.ChatService        : User cpugiamc is now online. Total online: 4
+2025-11-12T16:23:48.272+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-10] m.u.configuration.PresenceEventListener  : WebSocket disconnected: cpugiamc
+2025-11-12T16:23:48.273+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-10] m.userservice.service.ChatService        : User cpugiamc is now offline. Total online: 3
+2025-11-12T16:23:48.615+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-8] m.u.configuration.PresenceEventListener  : WebSocket connected: 3zjvpjhn
+2025-11-12T16:23:48.616+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-8] m.userservice.service.ChatService        : User 3zjvpjhn is now online. Total online: 4
+2025-11-12T16:23:49.300+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-9] m.u.configuration.PresenceEventListener  : WebSocket disconnected: 3zjvpjhn
+2025-11-12T16:23:49.301+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-9] m.userservice.service.ChatService        : User 3zjvpjhn is now offline. Total online: 3
+2025-11-12T16:23:49.467+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-10] m.u.configuration.PresenceEventListener  : WebSocket connected: zxaafkux
+2025-11-12T16:23:49.468+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-10] m.userservice.service.ChatService        : User zxaafkux is now online. Total online: 4
+2025-11-12T16:23:52.742+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-284] m.u.controller.ChatMessageController     : User Stas Hartov typing: true
+2025-11-12T16:23:52.743+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-284] m.userservice.service.ChatService        : User Stas Hartov started typing
+2025-11-12T16:23:53.473+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-250] m.u.controller.ChatMessageController     : User Stas Hartov typing: true
+2025-11-12T16:23:53.474+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-250] m.userservice.service.ChatService        : User Stas Hartov started typing
+2025-11-12T16:23:54.415+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-288] m.u.controller.ChatMessageController     : User Stas Hartov typing: false
+2025-11-12T16:23:54.416+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-288] m.userservice.service.ChatService        : User Stas Hartov stopped typing
+2025-11-12T16:25:44.213+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-9] m.u.configuration.PresenceEventListener  : WebSocket disconnected: ds3pnu4u
+2025-11-12T16:25:44.213+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-9] m.userservice.service.ChatService        : User ds3pnu4u is now offline. Total online: 3
+2025-11-12T16:25:45.744+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-10] m.u.configuration.PresenceEventListener  : WebSocket connected: dugom4qb
+2025-11-12T16:25:45.745+03:00  INFO 26436 --- [medical-center-userservice] [http-nio-8081-exec-10] m.userservice.service.ChatService        : User dugom4qb is now online. Total online: 4
+2025-11-12T16:25:47.547+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-298] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T16:25:47.550+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-298] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T16:25:48.549+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-301] m.u.controller.ChatMessageController     : User dima kharaneka typing: false
+2025-11-12T16:25:48.551+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-301] m.userservice.service.ChatService        : User dima kharaneka stopped typing
+2025-11-12T16:25:49.250+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-304] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T16:25:49.252+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-304] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T16:25:50.250+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-307] m.u.controller.ChatMessageController     : User dima kharaneka typing: false
+2025-11-12T16:25:50.253+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-307] m.userservice.service.ChatService        : User dima kharaneka stopped typing
+2025-11-12T16:33:16.030+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-310] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T16:33:16.031+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-310] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T16:33:17.031+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-313] m.u.controller.ChatMessageController     : User dima kharaneka typing: false
+2025-11-12T16:33:17.032+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-313] m.userservice.service.ChatService        : User dima kharaneka stopped typing
+2025-11-12T16:33:17.119+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-316] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T16:33:17.129+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-316] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T16:33:18.115+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-319] m.u.controller.ChatMessageController     : User dima kharaneka typing: false
+2025-11-12T16:33:18.116+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-319] m.userservice.service.ChatService        : User dima kharaneka stopped typing
+2025-11-12T16:33:23.466+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-322] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T16:33:23.470+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-322] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T16:33:23.510+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-325] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T16:33:23.512+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-325] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T16:33:23.554+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-328] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T16:33:23.556+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-328] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T16:33:23.695+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-331] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T16:33:23.698+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-331] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T16:33:23.758+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-311] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T16:33:23.760+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-311] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T16:33:23.764+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-314] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T16:33:23.769+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-314] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T16:33:23.785+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-317] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T16:33:23.786+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-317] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T16:33:23.843+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-321] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T16:33:23.844+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-321] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T16:33:23.943+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-324] m.u.controller.ChatMessageController     : User dima kharaneka typing: true
+2025-11-12T16:33:23.945+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-324] m.userservice.service.ChatService        : User dima kharaneka started typing
+2025-11-12T16:33:24.844+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-326] m.u.controller.ChatMessageController     : Received message from anonymous: vngfdfvsc
+2025-11-12T16:33:24.849+03:00  INFO 26436 --- [medical-center-userservice] [clientInboundChannel-326] m.userservice.service.ChatService        : Handling incoming message - sender: dima kharaneka, content: vngfdfvsc, type: OPERATOR
+2025-11-12T16:33:24.850+03:00  INFO 26436 --- [medical-center-userservice] [clientInboundChannel-326] m.userservice.service.ChatService        : Saving message to database...
+2025-11-12T16:33:24.852+03:00  INFO 26436 --- [medical-center-userservice] [clientInboundChannel-326] m.userservice.service.ChatService        : Message saved with ID: a647af44-d699-4ee9-bfbd-2117373e9d9d
+2025-11-12T16:33:24.854+03:00  INFO 26436 --- [medical-center-userservice] [clientInboundChannel-326] m.userservice.service.ChatService        : Broadcasting message to /topic/support
+2025-11-12T16:33:24.945+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-329] m.u.controller.ChatMessageController     : User dima kharaneka typing: false
+2025-11-12T16:33:24.946+03:00 DEBUG 26436 --- [medical-center-userservice] [clientInboundChannel-329] m.userservice.service.ChatService        : User dima kharaneka stopped typing
