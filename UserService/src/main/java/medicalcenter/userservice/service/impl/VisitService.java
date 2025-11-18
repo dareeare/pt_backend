@@ -1,7 +1,7 @@
 package medicalcenter.userservice.service.impl;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import medicalcenter.userservice.exception.NotFoundException;
 import medicalcenter.userservice.exception.UpdateException;
 import medicalcenter.userservice.mapper.VisitMapper;
@@ -14,13 +14,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
-@Log4j2
+@Slf4j
 public class VisitService implements CrudService<VisitCreateEditDto, VisitReadDto> {
     private final VisitRepository visitRepository;
     private final VisitMapper visitMapper;
@@ -104,5 +105,25 @@ public class VisitService implements CrudService<VisitCreateEditDto, VisitReadDt
 
     public List<VisitReadDto> findByStatus(String status, Pageable pageable) {
         return visitMapper.toDto(visitRepository.findByStatus(status, pageable));
+    }
+
+    public List<VisitReadDto> findPastVisitsByPatientId(UUID patientId, Pageable pageable) {
+        return visitMapper.toDto(visitRepository.findPastVisitsByPatientId(patientId, LocalDateTime.now(), pageable));
+    }
+
+    public List<VisitReadDto> findFutureVisitsByPatientId(UUID patientId, Pageable pageable) {
+        return visitMapper.toDto(visitRepository.findFutureVisitsByPatientId(patientId, LocalDateTime.now(), pageable));
+    }
+
+    public List<VisitReadDto> findPastVisitsByDoctorId(UUID doctorId, Pageable pageable) {
+        return visitMapper.toDto(visitRepository.findPastVisitsByDoctorId(doctorId, LocalDateTime.now(), pageable));
+    }
+
+    public List<VisitReadDto> findFutureVisitsByDoctorId(UUID doctorId, Pageable pageable) {
+        return visitMapper.toDto(visitRepository.findFutureVisitsByDoctorId(doctorId, LocalDateTime.now(), pageable));
+    }
+
+    public List<VisitReadDto> findPastVisitsByDoctorAndPatient(UUID doctorId, UUID patientId, Pageable pageable) {
+        return visitMapper.toDto(visitRepository.findPastVisitsByDoctorAndPatient(doctorId, patientId, LocalDateTime.now(), pageable));
     }
 }

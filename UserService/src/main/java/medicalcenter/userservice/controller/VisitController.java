@@ -226,4 +226,32 @@ public class VisitController {
         visitService.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/patient/{patientId}/past")
+    public ResponseEntity<List<VisitReadDto>> getPastVisitsByPatientId(@PathVariable UUID patientId, Pageable pageable) {
+        return ControllerUtil.getListResponseEntity(visitService.findPastVisitsByPatientId(patientId, pageable));
+    }
+
+    @GetMapping("/patient/{patientId}/future")
+    public ResponseEntity<List<VisitReadDto>> getFutureVisitsByPatientId(@PathVariable UUID patientId, Pageable pageable) {
+        return ControllerUtil.getListResponseEntity(visitService.findFutureVisitsByPatientId(patientId, pageable));
+    }
+
+    @GetMapping("/doctor/{doctorId}/past")
+    public ResponseEntity<List<VisitReadDto>> getPastVisitsByDoctorId(@PathVariable UUID doctorId, Pageable pageable) {
+        return ControllerUtil.getListResponseEntity(visitService.findPastVisitsByDoctorId(doctorId, pageable));
+    }
+
+    @GetMapping("/doctor/{doctorId}/future")
+    public ResponseEntity<List<VisitReadDto>> getFutureVisitsByDoctorId(@PathVariable UUID doctorId, Pageable pageable) {
+        return ControllerUtil.getListResponseEntity(visitService.findFutureVisitsByDoctorId(doctorId, pageable));
+    }
+
+    @GetMapping("/doctor/{doctorId}/patient/{patientId}/past")
+    public ResponseEntity<List<VisitReadDto>> getPastVisitsByDoctorAndPatient(
+            @PathVariable UUID doctorId, 
+            @PathVariable UUID patientId, 
+            Pageable pageable) {
+        return ControllerUtil.getListResponseEntity(visitService.findPastVisitsByDoctorAndPatient(doctorId, patientId, pageable));
+    }
 }
