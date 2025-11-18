@@ -22,8 +22,8 @@ public interface ScheduleRepository extends JpaRepository<Schedule, UUID> {
 
     @Query("SELECT s FROM Schedule s WHERE s.doctor.lastName = :lastName AND s.doctor.firstName = :firstName")
     List<Schedule> findByDoctorLastNameAndDoctorFirstName(@Param("lastName") String lastName,
-                                                         @Param("firstName") String firstName,
-                                                         Pageable pageable);
+                                                          @Param("firstName") String firstName,
+                                                          Pageable pageable);
 
     @Query("SELECT s FROM Schedule s WHERE s.doctor.id = :doctorId")
     List<Schedule> findByDoctorId(@Param("doctorId") UUID doctorId, Pageable pageable);
@@ -33,13 +33,13 @@ public interface ScheduleRepository extends JpaRepository<Schedule, UUID> {
 
     @Query("SELECT s FROM Schedule s WHERE s.doctor.id = :doctorId AND s.workDay = :workDay")
     List<Schedule> findByDoctorIdAndWorkDay(@Param("doctorId") UUID doctorId,
-                                           @Param("workDay") LocalDate workDay,
-                                           Pageable pageable);
+                                            @Param("workDay") LocalDate workDay,
+                                            Pageable pageable);
 
     @Query("SELECT s FROM Schedule s WHERE s.workDay BETWEEN :startDate AND :endDate")
     List<Schedule> findByWorkDayBetween(@Param("startDate") LocalDate startDate,
-                                       @Param("endDate") LocalDate endDate,
-                                       Pageable pageable);
+                                        @Param("endDate") LocalDate endDate,
+                                        Pageable pageable);
 
     @Modifying(flushAutomatically = true, clearAutomatically = true)
     @Query("""
@@ -52,8 +52,18 @@ public interface ScheduleRepository extends JpaRepository<Schedule, UUID> {
             """)
     @Transactional
     int updateById(@Param("id") UUID id,
-                  @Param("startTime") LocalDateTime startTime,
-                  @Param("endTime") LocalDateTime endTime,
-                  @Param("workDay") LocalDate workDay,
-                  @Param("doctorId") UUID doctorId);
+                   @Param("startTime") LocalDateTime startTime,
+                   @Param("endTime") LocalDateTime endTime,
+                   @Param("workDay") LocalDate workDay,
+                   @Param("doctorId") UUID doctorId);
+
+    @Query("""
+            SELECT s FROM Schedule s
+            WHERE s.doctor.lastName = :lastName
+            AND s.doctor.firstName = :firstName
+            AND s.doctor.middleName = :middleName
+            """)
+    List<Schedule> findByDoctorFullName(@Param("lastName") String lastName,
+                                        @Param("firstName") String firstName,
+                                        @Param("middleName") String middleName);
 }

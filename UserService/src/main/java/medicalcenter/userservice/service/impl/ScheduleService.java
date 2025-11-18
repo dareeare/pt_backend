@@ -55,6 +55,10 @@ public class ScheduleService implements CrudService<ScheduleCreateEditDto, Sched
         throw new UnsupportedOperationException("Method not supported for Schedule entity");
     }
 
+    public List<ScheduleReadDto> findByDoctorFullName(String lastName, String firstName, String middleName) {
+        return scheduleMapper.toDto(scheduleRepository.findByDoctorFullName(lastName, firstName, middleName));
+    }
+
     @Override
     public ScheduleReadDto findByPhone(String phone) {
         throw new UnsupportedOperationException("Method not supported for Schedule entity");

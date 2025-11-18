@@ -36,8 +36,8 @@ public class ServiceService implements CrudService<ServiceCreateEditDto, Service
     }
 
     @Override
-    public List<ServiceReadDto> findAllByLastFirstName(String name, String unused, Pageable pageable) {
-        return findAllByLastName(name, pageable);
+    public List<ServiceReadDto> findAllByLastFirstName(String firstName, String lastName, Pageable pageable) {
+        throw new UnsupportedOperationException("Method not supported for Service entity");
     }
 
     @Override
@@ -98,5 +98,9 @@ public class ServiceService implements CrudService<ServiceCreateEditDto, Service
 
     public List<ServiceReadDto> findByCostBetween(Double minCost, Double maxCost, Pageable pageable) {
         return serviceMapper.toDto(serviceRepository.findByCostBetween(minCost, maxCost, pageable));
+    }
+
+    public List<ServiceReadDto> findByInformation(String info, Pageable pageable) {
+        return serviceMapper.toDto(serviceRepository.findByInformation(info, pageable));
     }
 }

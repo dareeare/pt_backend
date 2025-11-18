@@ -44,4 +44,7 @@ public interface ServiceRepository extends JpaRepository<Service, UUID> {
                   @Param("durationMinutes") Integer durationMinutes,
                   @Param("information") String information,
                   @Param("doctorId") UUID doctorId);
+
+    @Query("SELECT s FROM Service s WHERE LOWER(s.information) LIKE LOWER(CONCAT('%', :info, '%'))")
+    List<Service> findByInformation(@Param("info") String information, Pageable pageable);
 }
