@@ -79,6 +79,13 @@ public record PatientCreateEditDto(
         @NotEmpty(message = "Gender should not be empty")
         @Size(max = 1, message = "Gender consists of 1 character")
         @Pattern(regexp = "^[MFO]$", message = "Gender must be one of 'M', 'F', or 'O'")
-        String gender
+        String gender,
+
+        @Schema(
+                description = "Путь к аватарке пациента",
+                example = "/avatars/patient-123e4567-e89b-12d3-a456-426614174000.jpg",
+                requiredMode = Schema.RequiredMode.NOT_REQUIRED
+        )
+        String avatarPath
 ) {
 }

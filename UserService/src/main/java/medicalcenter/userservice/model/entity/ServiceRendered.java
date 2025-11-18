@@ -19,7 +19,7 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "ServiceRendered")
+@Table(name = "servicerendered")
 public class ServiceRendered {
     @Id
     @Column(name = "sr_id")

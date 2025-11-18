@@ -42,19 +42,19 @@ public interface PatientRepository extends JpaRepository<Patient, UUID> {
     Optional<Patient> findByPhone(String phone);
 
     @Modifying(flushAutomatically = true, clearAutomatically = true)
-    @Query(
-            """
-                    UPDATE Patient p
-                    SET
-                        p.lastName = :lastName,
-                        p.firstName = :firstName,
-                        p.middleName = :middleName,
-                        p.phone = :phone,
-                        p.email = :email,
-                        p.dateOfBirth = :dateOfBirth,
-                        p.gender = :gender
-                    WHERE p.id = :id
-                    """)
+    @Query("""
+            UPDATE Patient p
+            SET
+                p.lastName = :lastName,
+                p.firstName = :firstName,
+                p.middleName = :middleName,
+                p.phone = :phone,
+                p.email = :email,
+                p.dateOfBirth = :dateOfBirth,
+                p.gender = :gender,
+                p.avatarPath = :avatarPath
+            WHERE p.id = :id
+            """)
     @Transactional
     int updateById(
             @Param("id") UUID id,
@@ -64,5 +64,12 @@ public interface PatientRepository extends JpaRepository<Patient, UUID> {
             @Param("phone") String phone,
             @Param("email") String email,
             @Param("dateOfBirth") LocalDate dateOfBirth,
-            @Param("gender") String gender);
+            @Param("gender") String gender,
+            @Param("avatarPath") String avatarPath);
+
+    @Modifying(flushAutomatically = true, clearAutomatically = true)
+    @Query("UPDATE Patient p SET p.avatarPath = :avatarPath WHERE p.id = :id")
+    @Transactional
+    int updateAvatarPath(@Param("id") UUID id, @Param("avatarPath") String avatarPath);
+
 }
