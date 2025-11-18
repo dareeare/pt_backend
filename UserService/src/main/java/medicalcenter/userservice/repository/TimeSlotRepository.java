@@ -46,6 +46,9 @@ public interface TimeSlotRepository extends JpaRepository<TimeSlot, UUID> {
                                                              @Param("slotDate") LocalDate slotDate,
                                                              @Param("startTime") LocalTime startTime);
 
+    @Query("SELECT ts FROM TimeSlot ts WHERE ts.visit.id = :visitId")
+    Optional<TimeSlot> findByVisitId(@Param("visitId") UUID visitId);
+
     @Modifying(flushAutomatically = true, clearAutomatically = true)
     @Query("""
             UPDATE TimeSlot ts
