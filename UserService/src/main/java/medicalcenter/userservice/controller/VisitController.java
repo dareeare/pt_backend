@@ -249,8 +249,8 @@ public class VisitController {
 
     @GetMapping("/doctor/{doctorId}/patient/{patientId}/past")
     public ResponseEntity<List<VisitReadDto>> getPastVisitsByDoctorAndPatient(
-            @PathVariable UUID doctorId,
-            @PathVariable UUID patientId,
+            @PathVariable UUID doctorId, 
+            @PathVariable UUID patientId, 
             Pageable pageable) {
         return ControllerUtil.getListResponseEntity(visitService.findPastVisitsByDoctorAndPatient(doctorId, patientId, pageable));
     }

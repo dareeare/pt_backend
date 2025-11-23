@@ -1,7 +1,7 @@
 package medicalcenter.userservice.service.impl;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import medicalcenter.userservice.exception.NotFoundException;
 import medicalcenter.userservice.exception.UpdateException;
 import medicalcenter.userservice.mapper.ScheduleExceptionsMapper;
@@ -21,7 +21,7 @@ import java.util.UUID;
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
-@Log4j2
+@Slf4j
 public class ScheduleExceptionsService implements CrudService<ScheduleExceptionCreateEditDto, ScheduleExceptionReadDto> {
     private final ScheduleExceptionRepository scheduleExceptionsRepository;
     private final ScheduleExceptionsMapper scheduleExceptionsMapper;

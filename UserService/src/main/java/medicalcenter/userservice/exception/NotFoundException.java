@@ -1,13 +1,13 @@
 package medicalcenter.userservice.exception;
 
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.io.Serial;
 import java.util.UUID;
 
-@Log4j2
+@Slf4j
 @ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "Entity not found")
 public class NotFoundException extends RuntimeException {
     private static final String MESSAGE_TEMP = "Entity with id '%s' not found";

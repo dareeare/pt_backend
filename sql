@@ -312,3 +312,27 @@ CREATE TRIGGER trigger_check_time_slot
 BEFORE INSERT OR UPDATE ON TimeSlots
 FOR EACH ROW
 EXECUTE FUNCTION check_time_slot_availability();
+
+ALTER TABLE Doctor 
+ADD COLUMN avatar_path VARCHAR(255);
+
+-- Создаем индекс для оптимизации поиска по аватаркам
+CREATE INDEX idx_doctor_avatar ON Doctor(avatar_path);
+
+-- Комментарий к столбцу
+COMMENT ON COLUMN Doctor.avatar_path IS 'Путь к файлу аватарки пользователя';
+
+ALTER TABLE Patient 
+ADD COLUMN avatar_path VARCHAR(255);
+CREATE INDEX idx_patient_avatar ON Patient(avatar_path);
+COMMENT ON COLUMN Patient.avatar_path IS 'Путь к файлу аватарки пользователя';
+
+ALTER TABLE Operators
+ADD COLUMN avatar_path VARCHAR(255);
+CREATE INDEX idx_operators_avatar ON Operators(avatar_path);
+COMMENT ON COLUMN Operators.avatar_path IS 'Путь к файлу аватарки пользователя';
+
+ALTER TABLE Manager
+ADD COLUMN avatar_path VARCHAR(255);
+CREATE INDEX idx_manager_avatar ON Manager(avatar_path);
+COMMENT ON COLUMN Manager.avatar_path IS 'Путь к файлу аватарки пользователя';
