@@ -14,5 +14,8 @@ public record RegisterUserDto(
         @Email String email,
         @Past LocalDate birthDate,
         @NotBlank String password,
-        @NotBlank String avatarUrl
+        @NotBlank String avatarUrl,
+        // Optional fields for specific roles
+        String specialty,
+        String gender
 ) {}

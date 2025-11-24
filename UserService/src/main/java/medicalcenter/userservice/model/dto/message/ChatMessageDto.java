@@ -9,9 +9,10 @@ import java.util.UUID;
 @Builder
 public record ChatMessageDto(
         UUID id,
-        UUID senderId,
-        String senderName,
-        String content,
-        LocalDateTime timestamp,
-        MessageType type,
-        String attachmentUrl) {}
+    UUID senderId,
+    String senderName,
+    String senderAvatarUrl,
+    String content,
+    LocalDateTime timestamp,
+    MessageType type,
+    String attachmentUrl) {}

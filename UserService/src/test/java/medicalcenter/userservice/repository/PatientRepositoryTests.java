@@ -238,7 +238,8 @@ public class PatientRepositoryTests {
                 "999",
                 "new@ex",
                 LocalDate.of(2000,12,12),
-                "F"
+                "F",
+                "/avatars/patients/new.png"
         );
 
 
@@ -255,5 +256,6 @@ public class PatientRepositoryTests {
         assertThat(ap.getEmail()).isEqualTo("new@ex");
         assertThat(ap.getDateOfBirth()).isEqualTo(LocalDate.of(2000,12,12));
         assertThat(ap.getGender()).isEqualTo("F");
+        assertThat(ap.getAvatarPath()).isEqualTo("/avatars/patients/new.png");
     }
 }

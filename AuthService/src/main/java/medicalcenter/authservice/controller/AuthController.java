@@ -2,6 +2,7 @@ package medicalcenter.authservice.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import medicalcenter.authservice.model.RoleEnum;
 import medicalcenter.authservice.model.dto.JwtResponse;
 import medicalcenter.authservice.model.dto.LoginRequest;
 import medicalcenter.authservice.model.dto.RefreshTokenRequest;
@@ -12,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,6 +28,24 @@ public class AuthController {
     public ResponseEntity<Void> register(@RequestBody @Valid RegisterUserDto dto) {
         authService.register(dto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+    
+    @PostMapping("/signup/staff")
+    public ResponseEntity<?> registerStaff(
+            @RequestBody @Valid RegisterUserDto dto,
+            @RequestParam RoleEnum role,
+            @RequestHeader(value = "X-Admin-Secret", required = false) String secret) {
+        
+        if (!"admin-secret-key-123".equals(secret)) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid admin secret");
+        }
+        
+        try {
+            authService.registerStaff(dto, role);
+            return ResponseEntity.status(HttpStatus.CREATED).body("Staff registered successfully");
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @PostMapping("/login")

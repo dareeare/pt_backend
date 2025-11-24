@@ -13,6 +13,7 @@ import medicalcenter.authservice.model.dto.VerifyUserDto;
 import medicalcenter.authservice.model.entity.RefreshToken;
 import medicalcenter.authservice.model.entity.Role;
 import medicalcenter.authservice.model.entity.User;
+import medicalcenter.authservice.repository.RoleRepository;
 import medicalcenter.authservice.repository.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -21,7 +22,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
@@ -29,18 +29,22 @@ import java.util.Random;
 @RequiredArgsConstructor
 public class AuthService {
     private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     private final RefreshTokenService refreshTokenService;
     private final JwtService jwtService;
     private final EmailService emailService;
+    private final UserSyncService userSyncService;
 
+    @org.springframework.transaction.annotation.Transactional
     public void register(RegisterUserDto request) {
         if (userRepository.existsByPhone(request.phone())) {
-            throw new AlreadyExistsException("User with email '%s' already exisits".formatted(request.phone()));
+            throw new AlreadyExistsException("User with phone '%s' already exisits".formatted(request.phone()));
         }
 
-        Role role = new Role(1L, RoleEnum.ROLE_DOCTOR, List.of());
+        Role role = roleRepository.findByRole(RoleEnum.ROLE_PATIENT)
+                .orElseThrow(() -> new RuntimeException("Role PATIENT not initialized in database"));
 
         User user = User.builder()
                 .firstName(request.firstName())
@@ -52,14 +56,50 @@ public class AuthService {
                 .avatarUrl(request.avatarUrl())
                 .role(role)
                 .isEmailVerified(false)
-
                 .build();
 
         user.setVerificationCode(generateVerificationCode());
         user.setVerificationExpiration(LocalDateTime.now().plusMinutes(15));
         user.setIsActive(false);
         sendVerificationEmail(user);
-        userRepository.save(user);
+        User savedUser = userRepository.save(user);
+        
+        userSyncService.syncUser(savedUser, request);
+    }
+
+    @org.springframework.transaction.annotation.Transactional
+    public void registerStaff(RegisterUserDto request, RoleEnum roleEnum) {
+        if (userRepository.existsByPhone(request.phone())) {
+            throw new AlreadyExistsException("User with phone '%s' already exisits".formatted(request.phone()));
+        }
+
+        Role role = roleRepository.findByRole(roleEnum)
+                .orElseThrow(() -> new RuntimeException("Role " + roleEnum + " not initialized in database"));
+
+        User user = User.builder()
+                .firstName(request.firstName())
+                .lastName(request.lastName())
+                .phone(request.phone())
+                .email(request.email())
+                .birthDate(request.birthDate())
+                .password(passwordEncoder.encode(request.password()))
+                .avatarUrl(request.avatarUrl())
+                .role(role)
+                .isEmailVerified(true)
+                .isActive(true)
+                .build();
+
+        User savedUser = userRepository.save(user);
+        
+        userSyncService.syncUser(savedUser, request);
+    }
+
+    public void deleteUser(String phone) {
+        User user = userRepository.findByPhone(phone)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        // Удаляем токены перед удалением пользователя
+        refreshTokenService.deleteByUser(user);
+        userRepository.delete(user);
     }
 
     public JwtResponse login(LoginRequest request) {

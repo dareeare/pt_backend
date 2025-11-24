@@ -237,10 +237,11 @@ class ManagerRepositoryTest {
         LocalDate newDateOfBirth = LocalDate.of(1986, 6, 20);
         String newPhone = "80170000000";
         String newEmail = "anna.smirnova@medicalcenter.com";
+        String newAvatarPath = "/avatars/managers/smirnova.png";
 
         int updatedCount = managerRepository.updateById(
                 managerId, newLastName, newFirstName, newMiddleName,
-                newDateOfBirth, newPhone, newEmail
+                newDateOfBirth, newPhone, newEmail, newAvatarPath
         );
 
         assertThat(updatedCount).isEqualTo(1);
@@ -254,6 +255,7 @@ class ManagerRepositoryTest {
         assertThat(manager.getDateOfBirth()).isEqualTo(newDateOfBirth);
         assertThat(manager.getPhone()).isEqualTo(newPhone);
         assertThat(manager.getEmail()).isEqualTo(newEmail);
+        assertThat(manager.getAvatarPath()).isEqualTo(newAvatarPath);
     }
 
     @Test
@@ -262,7 +264,7 @@ class ManagerRepositoryTest {
 
         int updatedCount = managerRepository.updateById(
                 nonExistingId, "НоваяФамилия", "НовоеИмя", "НовоеОтчество",
-                LocalDate.of(1990, 1, 1), "80330000000", "new@medicalcenter.com"
+                LocalDate.of(1990, 1, 1), "80330000000", "new@medicalcenter.com", "/avatars/none.png"
         );
 
         assertThat(updatedCount).isEqualTo(0);
@@ -274,7 +276,7 @@ class ManagerRepositoryTest {
 
         int updatedCount = managerRepository.updateById(
                 managerId, "НоваяФамилия", "НовоеИмя", null,
-                LocalDate.of(1990, 1, 1), "80440000000", null
+                LocalDate.of(1990, 1, 1), "80440000000", null, null
         );
 
         assertThat(updatedCount).isEqualTo(1);

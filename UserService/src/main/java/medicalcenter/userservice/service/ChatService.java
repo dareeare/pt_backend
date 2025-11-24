@@ -9,6 +9,9 @@ import medicalcenter.userservice.model.dto.message.TypingEvent;
 import medicalcenter.userservice.model.entity.ChatMessage;
 import medicalcenter.userservice.repository.ChatMessageRepository;
 import medicalcenter.userservice.repository.ChatMessageSpecifications;
+import medicalcenter.userservice.repository.DoctorRepository;
+import medicalcenter.userservice.repository.OperatorRepository;
+import medicalcenter.userservice.repository.PatientRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -33,14 +36,19 @@ import java.util.concurrent.ConcurrentHashMap;
 public class ChatService {
     private final SimpMessagingTemplate messagingTemplate;
     private final ChatMessageRepository repository;
+    private final PatientRepository patientRepository;
+    private final DoctorRepository doctorRepository;
+    private final OperatorRepository operatorRepository;
 
     private final Set<String> onlineUsers = ConcurrentHashMap.newKeySet();
     private final Map<String, LocalDateTime> typingUsers = new ConcurrentHashMap<>();
 
+    // Helper record to hold resolved user info
+    private record UserInfo(String name, String avatarUrl) {}
+
     public void registerOnline(String username) {
         onlineUsers.add(username);
         log.info("User {} is now online. Total online: {}", username, onlineUsers.size());
-        // Не отправляем системные сообщения о подключении
         broadcastOnlineUsers();
     }
 
@@ -48,59 +56,96 @@ public class ChatService {
         onlineUsers.remove(username);
         typingUsers.remove(username);
         log.info("User {} is now offline. Total online: {}", username, onlineUsers.size());
-        // Не отправляем системные сообщения об отключении
         broadcastOnlineUsers();
     }
 
     @Transactional
     public ChatMessageDto handleIncomingMessage(SendMessageRequest request, Principal principal, UUID senderId, MessageType messageType) {
-        String senderName = principal != null ? principal.getName() : "Anonymous";
-        
-        // Останавливаем typing indicator при отправке сообщения
-        if (senderName != null) {
-            typingUsers.remove(senderName);
-            broadcastTypingStatus(senderName, false);
+        String phone = principal != null ? principal.getName() : "Anonymous";
+        String senderName = phone;
+        String senderAvatarUrl = null;
+
+        if (principal != null) {
+             UserInfo userInfo = resolveUserInfoByPhone(phone);
+             senderName = userInfo.name();
+             senderAvatarUrl = userInfo.avatarUrl();
+        }
+
+        if (phone != null) {
+            typingUsers.remove(phone);
+            broadcastTypingStatus(phone, false);
         }
 
         ChatMessage message = new ChatMessage();
         message.setSenderId(senderId);
         message.setSenderName(senderName);
+        message.setSenderAvatarUrl(senderAvatarUrl);
         message.setContent(request.content());
         message.setAttachmentUrl(request.attachmentUrl());
         message.setTimestamp(LocalDateTime.now());
         message.setType(messageType != null ? messageType : MessageType.USER);
 
         ChatMessage saved = repository.save(message);
-        log.debug("Message saved: id={}, sender={}, content={}", saved.getId(), senderName, saved.getContent().substring(0, Math.min(50, saved.getContent().length())));
+        log.debug("Message saved: id={}, sender={}, content={}", saved.getId(), senderName, saved.getContent());
 
         ChatMessageDto dto = toDto(saved);
-        // Рассылка всем онлайн пользователям
         messagingTemplate.convertAndSend("/topic/support", dto);
         return dto;
     }
 
+    private UserInfo resolveUserInfoByPhone(String phone) {
+        var op = operatorRepository.findByPhone(phone);
+        if (op.isPresent()) {
+            return new UserInfo(
+                op.get().getFirstName() + " " + op.get().getLastName(), 
+                op.get().getAvatarPath()
+            );
+        }
+        var doc = doctorRepository.findByPhone(phone);
+        if (doc.isPresent()) {
+            return new UserInfo(
+                doc.get().getFirstName() + " " + doc.get().getLastName(), 
+                doc.get().getAvatarPath()
+            );
+        }
+        var pat = patientRepository.findByPhone(phone);
+        if (pat.isPresent()) {
+            return new UserInfo(
+                pat.get().getFirstName() + " " + pat.get().getLastName(), 
+                pat.get().getAvatarPath()
+            );
+        }
+        return new UserInfo(phone, null);
+    }
+
     @Transactional
     public ChatMessageDto handleIncomingMessage(ChatMessageDto dto, Principal principal) {
-        String senderName = principal != null ? principal.getName() : dto.senderName();
+        String phone = principal != null ? principal.getName() : dto.senderName();
         UUID senderId = dto.senderId();
+        String senderName = phone;
+        String senderAvatarUrl = null;
 
-        log.info("Handling incoming message - sender: {}, content: {}, type: {}", 
-                senderName, dto.content(), dto.type());
+        if (principal != null) {
+            UserInfo userInfo = resolveUserInfoByPhone(phone);
+            senderName = userInfo.name();
+            senderAvatarUrl = userInfo.avatarUrl();
+        }
+
+        if (senderName.equals(phone) && !"Anonymous".equals(phone)) {
+            // User not found in DB
+        }
 
         ChatMessage message = new ChatMessage();
         message.setSenderId(senderId);
         message.setSenderName(senderName);
+        message.setSenderAvatarUrl(senderAvatarUrl);
         message.setContent(dto.content());
         message.setAttachmentUrl(dto.attachmentUrl());
         message.setTimestamp(LocalDateTime.now());
         message.setType(dto.type() == null ? MessageType.USER : dto.type());
 
-        log.info("Saving message to database...");
         ChatMessage saved = repository.save(message);
-        log.info("Message saved with ID: {}", saved.getId());
-
         ChatMessageDto out = toDto(saved);
-        log.info("Broadcasting message to /topic/support");
         messagingTemplate.convertAndSend("/topic/support", out);
         return out;
     }
@@ -109,11 +154,9 @@ public class ChatService {
         if (isTyping) {
             typingUsers.put(username, LocalDateTime.now());
             broadcastTypingStatus(username, true);
-            log.debug("User {} started typing", username);
         } else {
             typingUsers.remove(username);
             broadcastTypingStatus(username, false);
-            log.debug("User {} stopped typing", username);
         }
     }
 
@@ -131,9 +174,7 @@ public class ChatService {
     }
 
     public void broadcastSystem(String content) {
-        // Не отправляем системные сообщения о подключении/отключении
-        // Эти сообщения не нужны в чате
-        log.debug("System message (not broadcasting): {}", content);
+        log.debug("System message: {}", content);
     }
 
     public void broadcastOnlineUsers() {
@@ -169,9 +210,6 @@ public class ChatService {
         return messages.map(this::toDto);
     }
 
-    /**
-     * Получить только сообщения от операторов и системы (для пользователей)
-     */
     public Page<ChatMessageDto> getOperatorMessages(int page, int size) {
         Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "timestamp"));
         Specification<ChatMessage> spec = ChatMessageSpecifications.searchMessages(null, null, null, null, null)
@@ -190,6 +228,7 @@ public class ChatService {
                 .id(entity.getId())
                 .senderId(entity.getSenderId())
                 .senderName(entity.getSenderName())
+                .senderAvatarUrl(entity.getSenderAvatarUrl())
                 .content(entity.getContent())
                 .timestamp(entity.getTimestamp())
                 .type(entity.getType())

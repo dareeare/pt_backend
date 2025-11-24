@@ -15,6 +15,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -105,6 +106,7 @@ public class ChatRestController {
 
     @Operation(summary = "Broadcast сообщение от оператора", description = "Отправка сообщения всем пользователям (только для операторов)")
     @PostMapping("/broadcast")
+    @PreAuthorize("hasAnyRole('OPERATOR', 'MANAGER')")
     public ResponseEntity<ChatMessageDto> broadcastMessage(
             @RequestBody @Valid SendMessageRequest request,
             Principal principal
@@ -118,6 +120,7 @@ public class ChatRestController {
 
     @Operation(summary = "Получить список онлайн пользователей", description = "Возвращает список пользователей, которые сейчас онлайн")
     @GetMapping("/online-users")
+    @PreAuthorize("hasAnyRole('OPERATOR', 'MANAGER')")
     public ResponseEntity<OnlineUsersResponse> getOnlineUsers() {
         var onlineUsers = chatService.getOnlineUsers();
         OnlineUsersResponse response = new OnlineUsersResponse(onlineUsers, onlineUsers.size());

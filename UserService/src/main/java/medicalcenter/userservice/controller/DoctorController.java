@@ -163,6 +163,8 @@ public class DoctorController {
             @ApiResponse(responseCode = "400", description = "Неверные данные врача")
     })
     @PostMapping
+    // Разрешаем создание врачей, так как этот метод вызывается из AuthService при синхронизации
+    // В продакшене здесь должна быть проверка на специальную роль или scope
     public ResponseEntity<DoctorReadDto> createDoctor(
             @Parameter(description = "Данные для создания врача", required = true)
             @RequestBody @Valid DoctorCreateEditDto dto) {

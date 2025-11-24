@@ -39,6 +39,11 @@ public class RefreshTokenService {
     }
 
     @Transactional
+    public void deleteByUser(User user) {
+        tokenRepository.deleteByUser(user);
+    }
+
+    @Transactional
     public RefreshToken verifyExpiration(RefreshToken token) {
         if (token.getExpiryDate().isBefore(LocalDateTime.now())) {
             tokenRepository.deleteById(token.getId());

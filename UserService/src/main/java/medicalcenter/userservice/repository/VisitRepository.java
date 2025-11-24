@@ -64,32 +64,6 @@ public interface VisitRepository extends JpaRepository<Visit, UUID> {
                                                  @Param("currentDate") LocalDateTime currentDate,
                                                  Pageable pageable);
 
-    @Query("SELECT v FROM Visit v WHERE v.patient.id = :patientId AND v.dateOfVisit < :currentDate ORDER BY v.dateOfVisit DESC")
-    List<Visit> findPastVisitsByPatientId(@Param("patientId") UUID patientId, 
-                                         @Param("currentDate") LocalDateTime currentDate,
-                                         Pageable pageable);
-
-    @Query("SELECT v FROM Visit v WHERE v.patient.id = :patientId AND v.dateOfVisit >= :currentDate ORDER BY v.dateOfVisit ASC")
-    List<Visit> findFutureVisitsByPatientId(@Param("patientId") UUID patientId, 
-                                           @Param("currentDate") LocalDateTime currentDate,
-                                           Pageable pageable);
-
-    @Query("SELECT v FROM Visit v WHERE v.doctor.id = :doctorId AND v.dateOfVisit < :currentDate ORDER BY v.dateOfVisit DESC")
-    List<Visit> findPastVisitsByDoctorId(@Param("doctorId") UUID doctorId, 
-                                        @Param("currentDate") LocalDateTime currentDate,
-                                        Pageable pageable);
-
-    @Query("SELECT v FROM Visit v WHERE v.doctor.id = :doctorId AND v.dateOfVisit >= :currentDate ORDER BY v.dateOfVisit ASC")
-    List<Visit> findFutureVisitsByDoctorId(@Param("doctorId") UUID doctorId, 
-                                          @Param("currentDate") LocalDateTime currentDate,
-                                          Pageable pageable);
-
-    @Query("SELECT v FROM Visit v WHERE v.doctor.id = :doctorId AND v.patient.id = :patientId AND v.dateOfVisit < :currentDate ORDER BY v.dateOfVisit DESC")
-    List<Visit> findPastVisitsByDoctorAndPatient(@Param("doctorId") UUID doctorId,
-                                                 @Param("patientId") UUID patientId,
-                                                 @Param("currentDate") LocalDateTime currentDate,
-                                                 Pageable pageable);
-
     @Modifying(flushAutomatically = true, clearAutomatically = true)
     @Query("""
             UPDATE Visit v

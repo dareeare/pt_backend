@@ -6,3 +6,4 @@ public interface ClientLogService {
     void persist(ClientLogDto dto, String sourceIp);
 }
 
+

@@ -33,6 +33,8 @@ public class ChatMessage {
 
     private String senderName;
 
+    private String senderAvatarUrl;
+
     @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
 
