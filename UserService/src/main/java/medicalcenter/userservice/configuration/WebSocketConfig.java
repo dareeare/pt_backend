@@ -22,6 +22,7 @@ import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Configuration
@@ -45,6 +46,14 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
         registry.addEndpoint("/ws-support")
                 .setAllowedOriginPatterns("*")
                 .withSockJS();
+        
+        registry.addEndpoint("/ws-private")
+                .setAllowedOriginPatterns("*")
+                .withSockJS();
+        
+        registry.addEndpoint("/ws")
+                .setAllowedOriginPatterns("*")
+                .withSockJS();
     }
 
     @Override
@@ -55,15 +64,24 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
                 StompHeaderAccessor accessor = MessageHeaderAccessor.getAccessor(message, StompHeaderAccessor.class);
                 
                 if (accessor != null && StompCommand.CONNECT.equals(accessor.getCommand())) {
+                    log.info("🔗 WebSocket CONNECT attempt received");
+                    log.info("   Session ID: {}", accessor.getSessionId());
+                    log.info("   Origin: {}", accessor.getFirstNativeHeader("Origin"));
+                    
                     String authHeader = accessor.getFirstNativeHeader("Authorization");
-                    log.debug("WebSocket CONNECT: Auth header found: {}", authHeader != null);
+                    log.info("   Authorization header present: {}", authHeader != null);
                     
                     if (authHeader != null && authHeader.startsWith("Bearer ")) {
                         String token = authHeader.substring(7);
+                        log.info("   Token length: {}", token.length());
+                        log.info("   Token preview: {}...", token.substring(0, Math.min(20, token.length())));
+                        
                         try {
                             if (jwtUtil.isTokenValid(token)) {
                                 String userPhone = jwtUtil.extractUsername(token);
                                 List<String> roles = jwtUtil.extractRoles(token);
+                                
+                                log.info("✅ WebSocket AUTHENTICATED: {} with roles: {}", userPhone, roles);
                                 
                                 var authorities = roles.stream()
                                         .map(SimpleGrantedAuthority::new)
@@ -76,16 +94,45 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
                                 );
                                 
                                 accessor.setUser(auth);
-                                log.info("WebSocket Authenticated user: {}", userPhone);
+                                log.info("   Authentication successfully set for user: {}", userPhone);
                             } else {
-                                log.warn("WebSocket Token invalid");
+                                log.warn("❌ WebSocket Token validation failed");
+                                setAnonymousAuthentication(accessor, "Token validation failed");
                             }
                         } catch (Exception e) {
-                            log.error("WebSocket Authentication error: {}", e.getMessage());
+                            log.error("🚨 WebSocket Authentication error: {}", e.getMessage());
+                            setAnonymousAuthentication(accessor, "Authentication error: " + e.getMessage());
                         }
+                    } else {
+                        if (authHeader == null) {
+                            log.warn("❌ WebSocket NO Authorization header");
+                        } else {
+                            log.warn("❌ WebSocket Malformed Authorization header (no Bearer prefix)");
+                            log.info("   Auth header: {}", authHeader);
+                        }
+                        setAnonymousAuthentication(accessor, "No valid Authorization header");
                     }
                 }
+                
+                // Логирование для отладки других команд
+                if (accessor != null && accessor.getUser() != null) {
+                    log.debug("WebSocket {} by user: {} to: {}", 
+                            accessor.getCommand(), 
+                            accessor.getUser().getName(), 
+                            accessor.getDestination());
+                }
+                
                 return message;
+            }
+            
+            private void setAnonymousAuthentication(StompHeaderAccessor accessor, String reason) {
+                UsernamePasswordAuthenticationToken anonymousAuth = new UsernamePasswordAuthenticationToken(
+                        "anonymous",
+                        null,
+                        List.of(new SimpleGrantedAuthority("ROLE_ANONYMOUS"))
+                );
+                accessor.setUser(anonymousAuth);
+                log.info("🔓 WebSocket set as ANONYMOUS - Reason: {}", reason);
             }
         });
     }

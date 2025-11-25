@@ -32,10 +32,35 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         // Public endpoints
+                        .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
-                        .requestMatchers("/ws-support/**").permitAll() // Handshake allowed, auth in interceptor
-                        .requestMatchers("/uploads/**").permitAll()
-                        // All other API endpoints
+                        
+                        // WebSocket endpoints - handshake allowed, auth in interceptor
+                        .requestMatchers("/ws-support/**", "/ws-private/**", "/ws/**").permitAll()
+                        
+                        // File uploads access
+                        .requestMatchers("/uploads/**", "/avatars/**").permitAll()
+                        
+                        // Health check and monitoring
+                        .requestMatchers("/actuator/health", "/health").permitAll()
+                        
+                        // Support chat API endpoints - require operator/admin role
+                        .requestMatchers("/api/support/**").hasAnyRole("OPERATOR", "ADMIN")
+                        
+                        // User management endpoints
+                        .requestMatchers("/api/users/**").authenticated()
+                        .requestMatchers("/api/doctors/**").hasAnyRole("OPERATOR", "ADMIN", "DOCTOR")
+                        .requestMatchers("/api/patients/**").hasAnyRole("OPERATOR", "ADMIN", "DOCTOR")
+                        .requestMatchers("/api/operators/**").hasAnyRole("ADMIN")
+                        
+                        // WebSocket message destinations - require authentication
+                        .requestMatchers("/app/private/**").authenticated()
+                        .requestMatchers("/app/support/**").hasAnyRole("OPERATOR", "ADMIN")
+                        
+                        // Private chat API endpoints - require authentication
+                        .requestMatchers("/api/private/chat/**").authenticated()
+                        
+                        // All other API endpoints require authentication
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
@@ -48,12 +73,13 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOriginPatterns(List.of("*"));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS", "HEAD"));
-        configuration.setAllowedHeaders(List.of("*"));
-        configuration.setExposedHeaders(List.of("Authorization", "Content-Type"));
+        configuration.setAllowedHeaders(List.of("Authorization", "Content-Type", "X-Requested-With", "Accept", "Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers"));
+        configuration.setExposedHeaders(List.of("Authorization", "Content-Type", "Access-Control-Allow-Origin", "Access-Control-Allow-Credentials"));
         configuration.setAllowCredentials(true);
+        configuration.setMaxAge(3600L);
+        
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
 }
-
