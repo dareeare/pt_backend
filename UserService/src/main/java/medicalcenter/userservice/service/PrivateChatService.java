@@ -16,10 +16,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -41,15 +42,29 @@ public class PrivateChatService {
     private record UserInfo(String name, String avatarUrl) {}
 
     public void registerOnline(String username) {
+        // Проверяем аутентификацию вручную
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (!isAuthenticated(auth)) {
+            log.warn("⚠️ Попытка регистрации онлайн от неаутентифицированного пользователя");
+            return;
+        }
+
         onlineUsers.add(username);
-        log.info("User {} is now online for private chat. Total online: {}", username, onlineUsers.size());
+        log.info("🟢 User {} is now online for private chat. Total online: {}", username, onlineUsers.size());
         broadcastOnlineUsers();
     }
 
     public void registerOffline(String username) {
+        // Проверяем аутентификацию вручную
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (!isAuthenticated(auth)) {
+            log.warn("⚠️ Попытка регистрации оффлайн от неаутентифицированного пользователя");
+            return;
+        }
+
         onlineUsers.remove(username);
         typingUsers.remove(username);
-        log.info("User {} is now offline from private chat. Total online: {}", username, onlineUsers.size());
+        log.info("🔴 User {} is now offline from private chat. Total online: {}", username, onlineUsers.size());
         broadcastOnlineUsers();
     }
 
@@ -60,8 +75,15 @@ public class PrivateChatService {
     }
 
     @Transactional
-    public PrivateChatMessageDto sendPrivateMessage(PrivateSendMessageRequest request, Principal principal) {
-        String currentUser = principal.getName();
+    public PrivateChatMessageDto sendPrivateMessage(PrivateSendMessageRequest request) {
+        // Проверяем аутентификацию вручную
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (!isAuthenticated(auth)) {
+            log.warn("❌ Неаутентифицированный пользователь пытается отправить сообщение");
+            throw new SecurityException("Authentication required");
+        }
+
+        String currentUser = auth.getName();
         String recipient = request.recipient();
         
         if (currentUser.equals(recipient)) {
@@ -86,7 +108,7 @@ public class PrivateChatService {
                 .build();
 
         PrivateChatMessage saved = privateChatMessageRepository.save(message);
-        log.debug("Private message saved: id={}, from={}, to={}", saved.getId(), currentUser, recipient);
+        log.debug("✅ Private message saved: id={}, from={}, to={}", saved.getId(), currentUser, recipient);
 
         PrivateChatMessageDto dto = toDto(saved);
         
@@ -100,26 +122,18 @@ public class PrivateChatService {
         return dto;
     }
 
-    @Transactional(readOnly = true)
-    public List<PrivateChatMessageDto> getChatMessages(String currentUser, String otherUser) {
-        List<PrivateChatMessage> messages = privateChatMessageRepository.findChatBetweenUsers(currentUser, otherUser);
-        return messages.stream()
-                .map(this::toDto)
-                .toList();
-    }
-
-    @Transactional(readOnly = true)
-    public Page<PrivateChatMessageDto> getChatMessagesPaginated(String currentUser, String otherUser, int page, int size) {
-        String chatRoomId = generateChatRoomId(currentUser, otherUser);
-        Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "timestamp"));
-        Page<PrivateChatMessage> messages = privateChatMessageRepository.findByChatRoomIdOrderByTimestampDesc(chatRoomId, pageable);
-        return messages.map(this::toDto);
-    }
-
     @Transactional
-    public void markMessagesAsRead(String currentUser, String sender) {
+    public void markMessagesAsRead(String sender) {
+        // Проверяем аутентификацию вручную
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (!isAuthenticated(auth)) {
+            log.warn("❌ Неаутентифицированный пользователь пытается отметить сообщения как прочитанные");
+            return;
+        }
+
+        String currentUser = auth.getName();
         privateChatMessageRepository.markMessagesAsRead(currentUser, sender);
-        log.debug("Marked messages as read from {} to {}", sender, currentUser);
+        log.debug("✅ Marked messages as read from {} to {}", sender, currentUser);
         
         // Notify sender that messages were read
         String chatRoomId = generateChatRoomId(currentUser, sender);
@@ -131,22 +145,53 @@ public class PrivateChatService {
     }
 
     @Transactional(readOnly = true)
-    public long getUnreadMessageCount(String username) {
+    public long getUnreadMessageCount() {
+        // Проверяем аутентификацию вручную
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (!isAuthenticated(auth)) {
+            log.warn("⚠️ Неаутентифицированный пользователь пытается получить количество непрочитанных сообщений");
+            return 0;
+        }
+
+        String username = auth.getName();
         return privateChatMessageRepository.countUnreadMessages(username);
     }
 
     @Transactional(readOnly = true)
-    public long getUnreadMessageCountFromUser(String username, String sender) {
+    public long getUnreadMessageCountFromUser(String sender) {
+        // Проверяем аутентификацию вручную
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (!isAuthenticated(auth)) {
+            log.warn("⚠️ Неаутентифицированный пользователь пытается получить количество непрочитанных сообщений");
+            return 0;
+        }
+
+        String username = auth.getName();
         return privateChatMessageRepository.countUnreadMessagesFromSender(username, sender);
     }
 
     @Transactional(readOnly = true)
-    public List<String> getChatPartners(String username) {
+    public List<String> getChatPartners() {
+        // Проверяем аутентификацию вручную
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (!isAuthenticated(auth)) {
+            log.warn("⚠️ Неаутентифицированный пользователь пытается получить список чат-партнеров");
+            return List.of();
+        }
+
+        String username = auth.getName();
         return privateChatMessageRepository.findChatPartners(username);
     }
 
     public void handlePrivateTypingEvent(PrivateTypingEvent event) {
-        String username = event.username();
+        // Проверяем аутентификацию вручную
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (!isAuthenticated(auth)) {
+            log.warn("⚠️ Неаутентифицированный пользователь пытается отправить событие набора текста");
+            return;
+        }
+
+        String username = auth.getName();
         String chatRoomId = event.chatRoomId();
         boolean isTyping = event.isTyping();
 
@@ -183,16 +228,32 @@ public class PrivateChatService {
         }
     }
 
-    public void joinPrivateChatRoom(String username, String chatRoomId) {
+    public void joinPrivateChatRoom(String chatRoomId) {
+        // Проверяем аутентификацию вручную
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (!isAuthenticated(auth)) {
+            log.warn("⚠️ Неаутентифицированный пользователь пытается присоединиться к чату");
+            return;
+        }
+
+        String username = auth.getName();
         messagingTemplate.convertAndSend("/topic/private/" + chatRoomId, 
             createSystemMessage(username + " joined the chat", chatRoomId));
-        log.debug("User {} joined private chat room: {}", username, chatRoomId);
+        log.debug("✅ User {} joined private chat room: {}", username, chatRoomId);
     }
 
-    public void leavePrivateChatRoom(String username, String chatRoomId) {
+    public void leavePrivateChatRoom(String chatRoomId) {
+        // Проверяем аутентификацию вручную
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (!isAuthenticated(auth)) {
+            log.warn("⚠️ Неаутентифицированный пользователь пытается покинуть чат");
+            return;
+        }
+
+        String username = auth.getName();
         messagingTemplate.convertAndSend("/topic/private/" + chatRoomId,
             createSystemMessage(username + " left the chat", chatRoomId));
-        log.debug("User {} left private chat room: {}", username, chatRoomId);
+        log.debug("✅ User {} left private chat room: {}", username, chatRoomId);
     }
 
     private PrivateChatMessageDto createSystemMessage(String content, String chatRoomId) {
@@ -221,6 +282,13 @@ public class PrivateChatService {
 
     public boolean isUserOnline(String username) {
         return onlineUsers.contains(username);
+    }
+
+    // Утилитный метод для проверки аутентификации
+    private boolean isAuthenticated(Authentication auth) {
+        return auth != null && 
+               auth.isAuthenticated() && 
+               !"anonymous".equals(auth.getName());
     }
 
     private UserInfo resolveUserInfoByPhone(String phone) {
@@ -262,4 +330,32 @@ public class PrivateChatService {
                 .read(entity.isRead())
                 .build();
     }
+
+    @Transactional(readOnly = true)
+public List<PrivateChatMessageDto> getChatMessages(String otherUser) {
+    // Разрешаем анонимный доступ к чтению чатов
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    String currentUser = auth != null ? auth.getName() : "anonymous";
+    
+    log.debug("User {} accessing chat with {}", currentUser, otherUser);
+    
+    List<PrivateChatMessage> messages = privateChatMessageRepository.findChatBetweenUsers(currentUser, otherUser);
+    return messages.stream()
+            .map(this::toDto)
+            .toList();
+}
+
+@Transactional(readOnly = true)
+public Page<PrivateChatMessageDto> getChatMessagesPaginated(String otherUser, int page, int size) {
+    // Разрешаем анонимный доступ к чтению чатов
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    String currentUser = auth != null ? auth.getName() : "anonymous";
+    
+    log.debug("User {} accessing paginated chat with {}", currentUser, otherUser);
+    
+    String chatRoomId = generateChatRoomId(currentUser, otherUser);
+    Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "timestamp"));
+    Page<PrivateChatMessage> messages = privateChatMessageRepository.findByChatRoomIdOrderByTimestampDesc(chatRoomId, pageable);
+    return messages.map(this::toDto);
+}
 }
