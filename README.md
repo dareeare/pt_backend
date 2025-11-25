@@ -2,9 +2,9 @@
 
 ## Краткое описание
 
-Backend сервиса для веб‑приложения "Медицинский центр" — REST API для управления пользователями, врачами, услугами, расписанием и записями, авторизации по номеру телефона (SMS-код), рассылки уведомлений и формирования отчетов для менеджеров.
+Backend сервиса для веб‑приложения "Медицинский центр" — REST API для управления пользователями, врачами, услугами, расписанием и записями, авторизации по номеру телефона (SMS-код) / Email, рассылки уведомлений и формирования отчетов.
 
-Проект реализует функции, описанные в требованиях заказчика: онлайн‑запись, личные кабинеты пациентов и врачей, роли (Guest/Patient/Doctor/Operator/Manager/System), модерация отзывов, генерация отчетов и интеграции (SMS, e‑mail).
+Проект реализует функции: онлайн‑запись, личные кабинеты, ролевая модель (Guest/Patient/Doctor/Operator/Manager), модерация отзывов.
 
 ## Технологии
 
@@ -19,165 +19,76 @@ Backend сервиса для веб‑приложения "Медицинск�
 
 ![All entities](images/er.png)
 
-## Роли пользователей и их действия
+## API по Ролям Пользователей
 
-![patient abilities](images/patient.png)
-![guest abilities](images/guest.png)
-![manager abilities](images/manager.png)
-![operator abilities](images/operator.png)
+### 1. Guest (Неавторизованный пользователь)
+Доступны базовые операции регистрации и входа, а также просмотр общедоступной информации.
 
+**Authentication:**
+- `POST /api/auth/signup` - Регистрация пациента
+- `POST /api/auth/login` - Вход в систему (получение токена)
+- `POST /api/auth/refresh` - Обновление токена
+- `POST /api/auth/verify` - Подтверждение email
+- `POST /api/auth/resend` - Повторная отправка кода
 
-## Medical Center API Endpoints
+**Public Data:**
+- `GET /api/doctors` - Просмотр списка врачей
+- `GET /api/doctors/{id}` - Просмотр профиля врача
+- `GET /api/services` - Просмотр списка услуг
+- `GET /api/reviews` - Просмотр отзывов
 
-### Patients
-- `GET /patients`
-- `GET /patients/{id}`
-- `GET /patients/search/by-lastname?lastName={lastName}`
-- `GET /patients/search/by-fullname?lastName={lastName}&firstName={firstName}&middleName={middleName}`
-- `GET /patients/search/by-phone?phone={phone}`
-- `POST /patients`
-- `PUT /patients/{id}`
-- `DELETE /patients/{id}`
+### 2. Patient (Пациент)
+Доступ ко всем функциям Guest, плюс управление личным профилем и записями.
 
-### Doctors
-- `GET /doctors`
-- `GET /doctors/{id}`
-- `GET /doctors/search/by-specialty?specialty={specialty}`
-- `GET /doctors/search/by-rating?minRating={minRating}`
-- `GET /doctors/{id}/rating`
-- `GET /doctors/{id}/rating/stats`
-- `POST /doctors`
-- `PUT /doctors/{id}`
-- `DELETE /doctors/{id}`
+**Profile:**
+- `GET /api/patients/{id}` - Просмотр своего профиля
+- `PUT /api/patients/{id}` - Обновление данных профиля
+- `POST /api/patients/{id}/avatar` - Загрузка фото
 
-### Services
-- `GET /services`
-- `GET /services/{id}`
-- `GET /services/search/by-doctor?doctorId={doctorId}`
-- `GET /services/search/by-cost?minCost={minCost}&maxCost={maxCost}`
-- `POST /services`
-- `PUT /services/{id}`
-- `DELETE /services/{id}`
+**Visits & Schedule:**
+- `POST /api/visits` - Создание записи на прием
+- `GET /api/visits/search/by-patient?patientId={id}` - История своих визитов
+- `GET /api/schedules` - Просмотр расписания
+- `GET /api/timeslots/available` - Поиск свободных слотов
 
-### Visits
-- `GET /visits`
-- `GET /visits/{id}`
-- `GET /visits/search/by-doctor?doctorId={doctorId}`
-- `GET /visits/search/by-patient?patientId={patientId}`
-- `GET /visits/search/by-status?status={status}`
-- `POST /visits`
-- `PUT /visits/{id}`
-- `DELETE /visits/{id}`
+**Feedback:**
+- `POST /api/reviews` - Оставить отзыв о враче
 
-### Schedule
-- `GET /schedules`
-- `GET /schedules/search/by-doctor?doctorId={doctorId}`
-- `GET /schedules/search/by-date?workDay={yyyy-MM-dd}`
-- `POST /schedules`
-- `PUT /schedules/{id}`
-- `DELETE /schedules/{id}`
+### 3. Doctor (Врач)
+Доступ к управлению своим профилем, просмотру пациентов и работе с расписанием.
 
-### TimeSlots
-- `GET /timeslots`
-- `GET /timeslots/search/by-doctor?doctorId={doctorId}`
-- `GET /timeslots/available`
-- `GET /timeslots/available/by-doctor?doctorId={doctorId}`
-- `GET /timeslots/search/by-date?slotDate={yyyy-MM-dd}`
-- `PUT /timeslots/{id}/book?visitId={visitId}`
-- `PUT /timeslots/{id}/release`
+**Workspace:**
+- `GET /api/doctors/{id}` - Просмотр своего профиля
+- `PUT /api/doctors/{id}` - Изменение данных
+- `GET /api/schedules/search/by-doctor?doctorId={id}` - Личное расписание
+- `GET /api/visits/search/by-doctor?doctorId={id}` - Список записей к врачу
 
-### DoctorReviews
-- `GET /reviews`
-- `GET /reviews/search/by-doctor?doctorId={doctorId}`
-- `GET /reviews/search/by-patient?patientId={patientId}`
-- `GET /reviews/search/by-visit?visitId={visitId}`
-- `POST /reviews`
-- `PUT /reviews/{id}/approve`
-- `PUT /reviews/{id}`
-- `DELETE /reviews/{id}`
+**Patient Management:**
+- `GET /api/patients` - Просмотр списка пациентов
+- `GET /api/patients/{id}` - Просмотр карты пациента
+- `POST /api/service-rendered` - Фиксация оказанных услуг
 
-### ServiceRendered
-- `GET /service-rendered`
-- `GET /service-rendered/search/by-visit?visitId={visitId}`
-- `GET /service-rendered/visit/{visitId}/total-cost`
-- `POST /service-rendered`
+### 4. Manager / Operator (Администратор)
+Полный доступ к управлению сущностями системы.
 
-### ScheduleExceptions
-- `GET /schedule-exceptions`
-- `GET /schedule-exceptions/search/by-doctor?doctorId={doctorId}`
-- `POST /schedule-exceptions`
+**User Management:**
+- `POST /api/auth/signup/staff` - Регистрация сотрудников
+- `GET /api/managers`, `GET /api/operators` - Списки персонала
+- `DELETE /api/doctors/{id}`, `DELETE /api/patients/{id}` - Удаление пользователей
 
-### Operators
-- `GET /operators`
-- `POST /operators`
+**Content Management:**
+- `POST /api/services`, `PUT /api/services/{id}`, `DELETE` - Управление услугами
+- `PUT /api/reviews/{id}/approve` - Модерация отзывов
 
-### Managers
-- `GET /managers`
-- `POST /managers`
+**Schedule Management:**
+- `POST /api/schedules` - Создание расписания
+- `POST /api/schedule-exceptions` - Управление исключениями (больничные/отгулы)
 
-### Common Parameters
-- `page` - page number (starts from 0)
-- `size` - page size (default: 20)
-- `sort` - sorting field (e.g., `lastName,asc`)
+## Documentation & Swagger
 
-## Документация API с использованием Swagger
-Этот проект использует Swagger (OpenAPI 3.0) для документирования REST API. Документация предоставляет интерактивный интерфейс для исследования всех доступных эндпоинтов, схем запросов/ответов и возможности тестирования.
+Интерактивная документация доступна после запуска:
+- **Swagger UI**: http://localhost:8080/swagger-ui.html
+- **JSON Spec**: http://localhost:8080/api-docs
 
-### Точки доступа к документации
-#### 1. Swagger UI (Интерактивная документация)
-* URL: http://localhost:8080/swagger-ui.html
-* Описание: Интерактивный веб-интерфейс для исследования и тестирования API эндпоинтов
-* Возможности: просмотр всех доступных эндпоинтов, сгруппированных по категориям, просмотр детальных схем запросов и ответов, выполнение API вызовов напрямую из браузера, просмотр требований аутентификации, скачивание спецификаций API
-
-#### 2. OpenAPI JSON спецификация
-* URL: http://localhost:8080/api-docs
-* Описание: Сырая спецификация OpenAPI в формате JSON
-* Использование: импорт в API клиенты, генерация клиентских библиотек, интеграция с инструментами тестирования API, конфигурация API шлюзов
-
-#### 3. OpenAPI YAML спецификация
-* URL: http://localhost:8080/api-docs.yaml
-* Описание: Сырая спецификация OpenAPI в формате YAML
-* Использование: Альтернативный формат для инструментов, предпочитающих YAML
-
-### Использование Swagger UI
-* Навигация
-1. Откройте http://localhost:8080/swagger-ui.html в вашем браузере
-2. Раскройте секции, нажимая на названия категорий (например, "Patients Management", "Doctors Management")
-3. Просмотрите доступные эндпоинты для каждой секции
-
-* Тестирование эндпоинтов
-1. Нажмите на любой эндпоинт, чтобы раскрыть его детали
-2. Нажмите кнопку "Try it out" для включения режима тестирования
-3. Заполните необходимые параметры: параметры пути (в URL), параметры запроса, тело запроса (для POST/PUT запросов)
-4. Нажмите "Execute" для отправки запроса
-5. Просмотрите ответ, включая HTTP статус код, тело ответа, заголовки ответа, эквивалент curl команды
-
-* Понимание документации эндпоинтов
-Каждый эндпоинт показывает:
-1. HTTP Метод (GET, POST, PUT, DELETE)
-2. Путь эндпоинта с параметрами
-3. Описание того, что делает эндпоинт
-4. Параметры с типами, требованиями и примерами
-5. Схему тела запроса (для POST/PUT)
-6. Схемы ответов для разных статус кодов
-7. Требования аутентификации
-
-### Группы API (Теги)
-Swagger документация выполнена для следующих групп API:
-* Patients Management - CRUD операции с пациентами и поиск
-* Doctors Management - Управление врачами и специализациями
-* Visits Management - Запись на прием и отслеживание визитов
-* Services Management - Медицинские услуги и процедуры
-* Schedule Management - Расписание врачей и доступность
-* Reviews Management - Отзывы пациентов и рейтинги
-* Staff Management - Операторы и менеджеры
-
-### Генерация клиентского кода
-Использование OpenAPI Generator
-bash
-* Генерация Java клиента:
-`openapi-generator generate -i http://localhost:8080/api-docs -g java -o ./medicalcenter-client`
-
-* Использование swagger-codegen
-bash
-`swagger-codegen generate -i http://localhost:8080/api-docs -l java -o ./medicalcenter-client`
+### Генерация клиента
+`openapi-generator generate -i http://localhost:8080/api-docs -g java -o ./client`
