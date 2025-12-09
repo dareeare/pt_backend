@@ -2,7 +2,7 @@ package medicalcenter.authservice.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import medicalcenter.authservice.model.RoleEnum;
 import medicalcenter.authservice.model.dto.JwtResponse;
 import medicalcenter.authservice.model.dto.LoginRequest;
 import medicalcenter.authservice.model.dto.RefreshTokenRequest;
@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,51 +21,61 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
-@Slf4j
 public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/signup")
     public ResponseEntity<Void> register(@RequestBody @Valid RegisterUserDto dto) {
-        log.trace("register method in auth controller");
         authService.register(dto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+    
+    @PostMapping("/signup/staff")
+    public ResponseEntity<?> registerStaff(
+            @RequestBody @Valid RegisterUserDto dto,
+            @RequestParam RoleEnum role,
+            @RequestHeader(value = "X-Admin-Secret", required = false) String secret) {
+        
+        if (!"admin-secret-key-123".equals(secret)) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid admin secret");
+        }
+        
+        try {
+            authService.registerStaff(dto, role);
+            return ResponseEntity.status(HttpStatus.CREATED).body("Staff registered successfully");
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @PostMapping("/login")
     public ResponseEntity<JwtResponse> login(@Valid @RequestBody LoginRequest request) {
-        log.trace("login method in auth controller");
         JwtResponse login = authService.login(request);
         return ResponseEntity.ok(login);
     }
 
     @PostMapping("/refresh")
     public ResponseEntity<JwtResponse> refresh(@Valid @RequestBody RefreshTokenRequest request) {
-        log.trace("refresh method in auth controller");
         return ResponseEntity.ok(authService.refresh(request));
     }
 
     @PostMapping("/verify")
     public ResponseEntity<?> verify(@Valid @RequestBody VerifyUserDto dto) {
-        log.trace("verify method in auth controller");
         try {
             authService.verifyUser(dto);
             return ResponseEntity.ok("Account verified successfully.");
         } catch (RuntimeException ex) {
-            log.error(ex.getMessage());
             return ResponseEntity.badRequest().body(ex.getMessage());
         }
     }
 
     @PostMapping("/resend")
     public ResponseEntity<?> resend(@RequestParam String email) {
-        log.trace("resend method in auth controller");
         try {
             boolean resent = authService.resendVerificationCode(email);
             String message = resent ? "Verification code resent successfully" : "Account is already verified";
             return ResponseEntity.ok(message);
         } catch (RuntimeException e) {
-            log.error(e.getMessage());
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }

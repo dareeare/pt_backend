@@ -67,10 +67,14 @@ public class Patient {
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Visit> visits;
 
+    @Schema(description = "Путь к файлу аватарки пациента", example = "/avatars/patient-123e4567-e89b-12d3-a456-426614174000.jpg")
+    @Column(name = "avatar_path")
+    private String avatarPath;
+
     @Builder
     public Patient(String firstName, String lastName, String middleName,
                    String phone, String email, String gender, LocalDate dateOfBirth,
-                   List<Visit> visits) {
+                   List<Visit> visits, String avatarPath) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.middleName = middleName;
@@ -79,5 +83,6 @@ public class Patient {
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
         this.visits = visits;
+        this.avatarPath = avatarPath;
     }
 }

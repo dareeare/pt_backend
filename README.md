@@ -2,9 +2,9 @@
 
 ## Краткое описание
 
-Backend сервиса для веб‑приложения "Медицинский центр" — REST API для управления пользователями, врачами, услугами, расписанием и записями, авторизации по номеру телефона (SMS-код), рассылки уведомлений и формирования отчетов для менеджеров.
+Backend сервиса для веб‑приложения "Медицинский центр" — REST API для управления пользователями, врачами, услугами, расписанием и записями, авторизации по номеру телефона (SMS-код) / Email, рассылки уведомлений и формирования отчетов.
 
-Проект реализует функции, описанные в требованиях заказчика: онлайн‑запись, личные кабинеты пациентов и врачей, роли (Guest/Patient/Doctor/Operator/Manager/System), модерация отзывов, генерация отчетов и интеграции (SMS, e‑mail).
+Проект реализует функции: онлайн‑запись, личные кабинеты, ролевая модель (Guest/Patient/Doctor/Operator/Manager), модерация отзывов.
 
 ## Технологии
 
@@ -19,123 +19,76 @@ Backend сервиса для веб‑приложения "Медицинск�
 
 ![All entities](images/er.png)
 
-## Роли пользователей и их действия
+## API по Ролям Пользователей
 
-![patient abilities](images/patient.png)
-![guest abilities](images/guest.png)
-![manager abilities](images/manager.png)
-![operator abilities](images/operator.png)
+### 1. Guest (Неавторизованный пользователь)
+Доступны базовые операции регистрации и входа, а также просмотр общедоступной информации.
 
+**Authentication:**
+- `POST /api/auth/signup` - Регистрация пациента
+- `POST /api/auth/login` - Вход в систему (получение токена)
+- `POST /api/auth/refresh` - Обновление токена
+- `POST /api/auth/verify` - Подтверждение email
+- `POST /api/auth/resend` - Повторная отправка кода
 
-## Medical Center API Endpoints
+**Public Data:**
+- `GET /api/doctors` - Просмотр списка врачей
+- `GET /api/doctors/{id}` - Просмотр профиля врача
+- `GET /api/services` - Просмотр списка услуг
+- `GET /api/reviews` - Просмотр отзывов
 
-### Patients
-- `GET /patients`
-- `GET /patients/{id}`
-- `GET /patients/search/by-lastname?lastName={lastName}`
-- `GET /patients/search/by-fullname?lastName={lastName}&firstName={firstName}&middleName={middleName}`
-- `GET /patients/search/by-phone?phone={phone}`
-- `POST /patients`
-- `PUT /patients/{id}`
-- `DELETE /patients/{id}`
+### 2. Patient (Пациент)
+Доступ ко всем функциям Guest, плюс управление личным профилем и записями.
 
-### Doctors
-- `GET /doctors`
-- `GET /doctors/{id}`
-- `GET /doctors/search/by-specialty?specialty={specialty}`
-- `GET /doctors/search/by-rating?minRating={minRating}`
-- `GET /doctors/{id}/rating`
-- `GET /doctors/{id}/rating/stats`
-- `POST /doctors`
-- `PUT /doctors/{id}`
-- `DELETE /doctors/{id}`
+**Profile:**
+- `GET /api/patients/{id}` - Просмотр своего профиля
+- `PUT /api/patients/{id}` - Обновление данных профиля
+- `POST /api/patients/{id}/avatar` - Загрузка фото
 
-### Services
-- `GET /services`
-- `GET /services/{id}`
-- `GET /services/search/by-doctor?doctorId={doctorId}`
-- `GET /services/search/by-cost?minCost={minCost}&maxCost={maxCost}`
-- `POST /services`
-- `PUT /services/{id}`
-- `DELETE /services/{id}`
+**Visits & Schedule:**
+- `POST /api/visits` - Создание записи на прием
+- `GET /api/visits/search/by-patient?patientId={id}` - История своих визитов
+- `GET /api/schedules` - Просмотр расписания
+- `GET /api/timeslots/available` - Поиск свободных слотов
 
-### Visits
-- `GET /visits`
-- `GET /visits/{id}`
-- `GET /visits/search/by-doctor?doctorId={doctorId}`
-- `GET /visits/search/by-patient?patientId={patientId}`
-- `GET /visits/search/by-status?status={status}`
-- `POST /visits`
-- `PUT /visits/{id}`
-- `DELETE /visits/{id}`
+**Feedback:**
+- `POST /api/reviews` - Оставить отзыв о враче
 
-### Schedule
-- `GET /schedules`
-- `GET /schedules/search/by-doctor?doctorId={doctorId}`
-- `GET /schedules/search/by-date?workDay={yyyy-MM-dd}`
-- `POST /schedules`
-- `PUT /schedules/{id}`
-- `DELETE /schedules/{id}`
+### 3. Doctor (Врач)
+Доступ к управлению своим профилем, просмотру пациентов и работе с расписанием.
 
-### TimeSlots
-- `GET /timeslots`
-- `GET /timeslots/search/by-doctor?doctorId={doctorId}`
-- `GET /timeslots/available`
-- `GET /timeslots/available/by-doctor?doctorId={doctorId}`
-- `GET /timeslots/search/by-date?slotDate={yyyy-MM-dd}`
-- `PUT /timeslots/{id}/book?visitId={visitId}`
-- `PUT /timeslots/{id}/release`
+**Workspace:**
+- `GET /api/doctors/{id}` - Просмотр своего профиля
+- `PUT /api/doctors/{id}` - Изменение данных
+- `GET /api/schedules/search/by-doctor?doctorId={id}` - Личное расписание
+- `GET /api/visits/search/by-doctor?doctorId={id}` - Список записей к врачу
 
-### DoctorReviews
-- `GET /reviews`
-- `GET /reviews/search/by-doctor?doctorId={doctorId}`
-- `GET /reviews/search/by-patient?patientId={patientId}`
-- `GET /reviews/search/by-visit?visitId={visitId}`
-- `POST /reviews`
-- `PUT /reviews/{id}/approve`
-- `PUT /reviews/{id}`
-- `DELETE /reviews/{id}`
+**Patient Management:**
+- `GET /api/patients` - Просмотр списка пациентов
+- `GET /api/patients/{id}` - Просмотр карты пациента
+- `POST /api/service-rendered` - Фиксация оказанных услуг
 
-### ServiceRendered
-- `GET /service-rendered`
-- `GET /service-rendered/search/by-visit?visitId={visitId}`
-- `GET /service-rendered/visit/{visitId}/total-cost`
-- `POST /service-rendered`
+### 4. Manager / Operator (Администратор)
+Полный доступ к управлению сущностями системы.
 
-### ScheduleExceptions
-- `GET /schedule-exceptions`
-- `GET /schedule-exceptions/search/by-doctor?doctorId={doctorId}`
-- `POST /schedule-exceptions`
+**User Management:**
+- `POST /api/auth/signup/staff` - Регистрация сотрудников
+- `GET /api/managers`, `GET /api/operators` - Списки персонала
+- `DELETE /api/doctors/{id}`, `DELETE /api/patients/{id}` - Удаление пользователей
 
-### Operators
-- `GET /operators`
-- `POST /operators`
+**Content Management:**
+- `POST /api/services`, `PUT /api/services/{id}`, `DELETE` - Управление услугами
+- `PUT /api/reviews/{id}/approve` - Модерация отзывов
 
-### Managers
-- `GET /managers`
-- `POST /managers`
+**Schedule Management:**
+- `POST /api/schedules` - Создание расписания
+- `POST /api/schedule-exceptions` - Управление исключениями (больничные/отгулы)
 
-### Common Parameters
-- `page` - page number (starts from 0)
-- `size` - page size (default: 20)
-- `sort` - sorting field (e.g., `lastName,asc`)
+## Documentation & Swagger
 
-## Network setup: backend on one machine, frontend on another
+Интерактивная документация доступна после запуска:
+- **Swagger UI**: http://localhost:8080/swagger-ui.html
+- **JSON Spec**: http://localhost:8080/api-docs
 
-(private LAN over VPN)
-
-Radmin VPN creates a virtual LAN. The frontend connects to the backend over the VPN IP without exposing to the Internet.
-
-1) Install Radmin VPN on backend and frontend PCs, join the same VPN network (same network name/password).
-2) On the backend PC, find the VPN IPv4 in Radmin UI (usually 26.x.x.x).
-3) Allow inbound ports in Windows Firewall (backend PC):
-```powershell
-netsh advfirewall firewall add rule name="AuthService_8080" dir=in action=allow protocol=TCP localport=8080
-netsh advfirewall firewall add rule name="UserService_8081" dir=in action=allow protocol=TCP localport=8081
-```
-4) Run services locally as usual (AuthService on 8080, UserService on 8081).
-5) On the frontend PC, set Angular proxy targets to `http://<VPN_IP>:8080` and `http://<VPN_IP>:8081` (see medCenter/README.md), then `npm start`.
-
-Troubleshooting:
-- Ensure both PCs are in the same Radmin network and can ping each other.
-- If ports are blocked, temporarily disable firewall or create explicit inbound rules for 8080/8081.
+### Генерация клиента
+`openapi-generator generate -i http://localhost:8080/api-docs -g java -o ./client`

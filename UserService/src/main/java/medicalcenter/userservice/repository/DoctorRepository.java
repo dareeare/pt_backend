@@ -49,7 +49,8 @@ public interface DoctorRepository extends JpaRepository<Doctor, UUID> {
                 d.phone = :phone,
                 d.email = :email,
                 d.information = :information,
-                d.rating = :rating
+                d.rating = :rating,
+                d.avatarPath = :avatarPath
             WHERE d.id = :id
             """)
     @Transactional
@@ -61,5 +62,11 @@ public interface DoctorRepository extends JpaRepository<Doctor, UUID> {
                    @Param("phone") String phone,
                    @Param("email") String email,
                    @Param("information") String information,
-                   @Param("rating") BigDecimal rating);
+                   @Param("rating") BigDecimal rating,
+                   @Param("avatarPath") String avatarPath);
+
+    @Modifying(flushAutomatically = true, clearAutomatically = true)
+    @Query("UPDATE Doctor d SET d.avatarPath = :avatarPath WHERE d.id = :id")
+    @Transactional
+    int updateAvatarPath(@Param("id") UUID id, @Param("avatarPath") String avatarPath);
 }

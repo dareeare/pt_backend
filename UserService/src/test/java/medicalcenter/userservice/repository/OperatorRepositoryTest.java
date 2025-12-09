@@ -237,10 +237,11 @@ class OperatorRepositoryTest {
         LocalDate newDateOfBirth = LocalDate.of(1994, 5, 18);
         String newPhone = "80170000000";
         String newEmail = "ekaterina.orlova@medicalcenter.com";
+        String newAvatarPath = "/avatars/operators/orlova.png";
 
         int updatedCount = operatorRepository.updateById(
                 operatorId, newLastName, newFirstName, newMiddleName,
-                newDateOfBirth, newPhone, newEmail
+                newDateOfBirth, newPhone, newEmail, newAvatarPath
         );
 
         assertThat(updatedCount).isEqualTo(1);
@@ -254,6 +255,7 @@ class OperatorRepositoryTest {
         assertThat(operator.getDateOfBirth()).isEqualTo(newDateOfBirth);
         assertThat(operator.getPhone()).isEqualTo(newPhone);
         assertThat(operator.getEmail()).isEqualTo(newEmail);
+        assertThat(operator.getAvatarPath()).isEqualTo(newAvatarPath);
     }
 
     @Test
@@ -262,7 +264,7 @@ class OperatorRepositoryTest {
 
         int updatedCount = operatorRepository.updateById(
                 nonExistingId, "НоваяФамилия", "НовоеИмя", "НовоеОтчество",
-                LocalDate.of(1990, 1, 1), "80330000000", "new@medicalcenter.com"
+                LocalDate.of(1990, 1, 1), "80330000000", "new@medicalcenter.com", "/avatars/none.png"
         );
 
         assertThat(updatedCount).isEqualTo(0);
@@ -274,7 +276,7 @@ class OperatorRepositoryTest {
 
         int updatedCount = operatorRepository.updateById(
                 operatorId, "НоваяФамилия", "НовоеИмя", null,
-                LocalDate.of(1990, 1, 1), "80440000000", null
+                LocalDate.of(1990, 1, 1), "80440000000", null, null
         );
 
         assertThat(updatedCount).isEqualTo(1);
