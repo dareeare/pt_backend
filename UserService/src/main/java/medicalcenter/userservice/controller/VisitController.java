@@ -227,6 +227,12 @@ public class VisitController {
         return ResponseEntity.noContent().build();
     }
 
+    @PatchMapping("/{id}/cancel")
+    public ResponseEntity<Void> cancelVisit(@PathVariable UUID id) {
+        visitService.cancelVisit(id);
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping("/patient/{patientId}/past")
     public ResponseEntity<List<VisitReadDto>> getPastVisitsByPatientId(@PathVariable UUID patientId, Pageable pageable) {
         return ControllerUtil.getListResponseEntity(visitService.findPastVisitsByPatientId(patientId, pageable));

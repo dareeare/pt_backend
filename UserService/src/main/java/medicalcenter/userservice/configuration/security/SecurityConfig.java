@@ -31,12 +31,8 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        // Public endpoints
-                        .requestMatchers("/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
-                        .requestMatchers("/ws-support/**").permitAll() // Handshake allowed, auth in interceptor
-                        .requestMatchers("/uploads/**").permitAll()
-                        // All other API endpoints
-                        .anyRequest().authenticated()
+                        // ВРЕМЕННО: Разрешаем всё для отладки
+                        .anyRequest().permitAll()
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 

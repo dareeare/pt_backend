@@ -126,4 +126,13 @@ public class VisitService implements CrudService<VisitCreateEditDto, VisitReadDt
     public List<VisitReadDto> findPastVisitsByDoctorAndPatient(UUID doctorId, UUID patientId, Pageable pageable) {
         return visitMapper.toDto(visitRepository.findPastVisitsByDoctorAndPatient(doctorId, patientId, LocalDateTime.now(), pageable));
     }
+
+    @Transactional
+    public void cancelVisit(UUID visitId) {
+        Visit visit = visitRepository.findById(visitId)
+                .orElseThrow(() -> new NotFoundException(visitId));
+        visit.setStatus("cancelled");
+        visitRepository.save(visit);
+        log.info("✅ Visit {} cancelled successfully", visitId);
+    }
 }
