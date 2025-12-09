@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import medicalcenter.userservice.model.dto.visit.RescheduleVisitDto;
 import medicalcenter.userservice.model.dto.visit.VisitCreateEditDto;
 import medicalcenter.userservice.model.dto.visit.VisitReadDto;
 import medicalcenter.userservice.service.impl.VisitService;
@@ -227,10 +228,40 @@ public class VisitController {
         return ResponseEntity.noContent().build();
     }
 
+    @Operation(
+            summary = "Отменить визит",
+            description = "Отменяет визит и освобождает связанный временной слот"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Визит успешно отменен"),
+            @ApiResponse(responseCode = "404", description = "Визит с указанным ID не найден")
+    })
     @PatchMapping("/{id}/cancel")
-    public ResponseEntity<Void> cancelVisit(@PathVariable UUID id) {
+    public ResponseEntity<Void> cancelVisit(
+            @Parameter(description = "UUID визита", required = true)
+            @PathVariable UUID id) {
         visitService.cancelVisit(id);
         return ResponseEntity.ok().build();
+    }
+
+    @Operation(
+            summary = "Перенести визит",
+            description = "Переносит визит на новую дату/время, освобождая старый слот и резервируя новый"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Визит успешно перенесен",
+                    content = @Content(schema = @Schema(implementation = VisitReadDto.class))),
+            @ApiResponse(responseCode = "400", description = "Неверные данные для переноса или слот уже занят"),
+            @ApiResponse(responseCode = "404", description = "Визит или временной слот не найдены")
+    })
+    @PatchMapping("/{id}/reschedule")
+    public ResponseEntity<VisitReadDto> rescheduleVisit(
+            @Parameter(description = "UUID визита", required = true)
+            @PathVariable UUID id,
+            @Parameter(description = "Данные для переноса визита", required = true)
+            @RequestBody @Valid RescheduleVisitDto rescheduleDto) {
+        VisitReadDto rescheduledVisit = visitService.rescheduleVisit(id, rescheduleDto);
+        return ResponseEntity.ok(rescheduledVisit);
     }
 
     @GetMapping("/patient/{patientId}/past")
