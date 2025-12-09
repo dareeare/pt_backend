@@ -69,4 +69,9 @@ public interface DoctorRepository extends JpaRepository<Doctor, UUID> {
     @Query("UPDATE Doctor d SET d.avatarPath = :avatarPath WHERE d.id = :id")
     @Transactional
     int updateAvatarPath(@Param("id") UUID id, @Param("avatarPath") String avatarPath);
+
+    @Modifying(flushAutomatically = true, clearAutomatically = true)
+    @Query("UPDATE Doctor d SET d.rating = :rating WHERE d.id = :id")
+    @Transactional
+    int updateRating(@Param("id") UUID id, @Param("rating") BigDecimal rating);
 }

@@ -1,5 +1,12 @@
 package medicalcenter.userservice.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import medicalcenter.userservice.model.dto.doctorreview.DoctorReviewCreateEditDto;
@@ -17,6 +24,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/doctor-reviews")
 @RequiredArgsConstructor
+@Tag(name = "Doctor Reviews Management", description = "API для управления отзывами о врачах")
 public class DoctorReviewsController {
     private final DoctorReviewsService doctorReviewsService;
 
@@ -52,7 +60,8 @@ public class DoctorReviewsController {
 
     @GetMapping("/doctor/{doctorId}/average-rating")
     public ResponseEntity<Double> getAverageRatingByDoctorId(@PathVariable UUID doctorId) {
-        return ResponseEntity.ok(doctorReviewsService.getAverageRatingByDoctorId(doctorId));
+        Double averageRating = doctorReviewsService.getAverageRatingByDoctorId(doctorId);
+        return ResponseEntity.ok(averageRating != null ? averageRating : 0.0);
     }
 
     @GetMapping("/doctor/{doctorId}/approved-count")
@@ -60,8 +69,20 @@ public class DoctorReviewsController {
         return ResponseEntity.ok(doctorReviewsService.getApprovedReviewsCountByDoctorId(doctorId));
     }
 
+    @Operation(
+            summary = "Создать отзыв о враче",
+            description = "Создает новый отзыв о враче на основе завершенного визита. Рейтинг врача автоматически обновляется, если отзыв сразу одобрен."
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Отзыв успешно создан",
+                    content = @Content(schema = @Schema(implementation = DoctorReviewReadDto.class))),
+            @ApiResponse(responseCode = "400", description = "Неверные данные отзыва или отзыв уже существует для данного визита"),
+            @ApiResponse(responseCode = "404", description = "Врач, пациент или визит не найдены")
+    })
     @PostMapping
-    public ResponseEntity<DoctorReviewReadDto> createReview(@RequestBody @Valid DoctorReviewCreateEditDto dto) {
+    public ResponseEntity<DoctorReviewReadDto> createReview(
+            @Parameter(description = "Данные для создания отзыва", required = true)
+            @RequestBody @Valid DoctorReviewCreateEditDto dto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(doctorReviewsService.save(dto));
     }
 

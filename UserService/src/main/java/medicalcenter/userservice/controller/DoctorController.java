@@ -18,9 +18,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import medicalcenter.userservice.model.dto.AvatarUploadDto;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -301,5 +299,37 @@ public class DoctorController {
 
         doctorService.deleteAvatar(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @Operation(
+            summary = "Получить рейтинг врача",
+            description = "Возвращает текущий рейтинг врача на основе одобренных отзывов"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Рейтинг успешно получен",
+                    content = @Content(schema = @Schema(implementation = java.math.BigDecimal.class))),
+            @ApiResponse(responseCode = "404", description = "Врач с указанным ID не найден")
+    })
+    @GetMapping("/{id}/rating")
+    public ResponseEntity<java.math.BigDecimal> getRating(
+            @Parameter(description = "UUID врача", required = true)
+            @PathVariable UUID id) {
+        return ResponseEntity.ok(doctorService.getRating(id));
+    }
+
+    @Operation(
+            summary = "Пересчитать рейтинг врача",
+            description = "Пересчитывает и обновляет рейтинг врача на основе всех одобренных отзывов"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Рейтинг успешно пересчитан",
+                    content = @Content(schema = @Schema(implementation = java.math.BigDecimal.class))),
+            @ApiResponse(responseCode = "404", description = "Врач с указанным ID не найден")
+    })
+    @PostMapping("/{id}/rating/recalculate")
+    public ResponseEntity<java.math.BigDecimal> recalculateRating(
+            @Parameter(description = "UUID врача", required = true)
+            @PathVariable UUID id) {
+        return ResponseEntity.ok(doctorService.recalculateRating(id));
     }
 }
