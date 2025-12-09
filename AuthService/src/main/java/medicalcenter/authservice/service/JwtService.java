@@ -39,6 +39,11 @@ public class JwtService {
             if (u.getFirstName() != null) claims.put("firstName", u.getFirstName());
             if (u.getLastName() != null) claims.put("lastName", u.getLastName());
             if (u.getAvatarUrl() != null) claims.put("avatarUrl", u.getAvatarUrl());
+            // ВАЖНО: Добавляем userId (patientId) в токен
+            if (u.getId() != null) {
+                claims.put("userId", u.getId().toString());
+                claims.put("patientId", u.getId().toString()); // Для совместимости
+            }
         }
         return createToken(claims, userDetails.getUsername(), accessTokenExpiration);
     }
