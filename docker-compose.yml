@@ -1,13 +1,56 @@
 version: "3.8"
 
 services:
+  authservice:
+    build:
+      context: ./AuthService
+      dockerfile: Dockerfile
+    container_name: AuthService
+    depends_on:
+      - authdb
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+      - ./AuthService/.env
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://authdb:5432/authservice
+      SPRING_DATASOURCE_USERNAME: ${DB_USER}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
+      SECURITY_JWT_SECRET_KEY: ${JWT_SECRET_KEY}
+      SECURITY_JWT_ACCESS_EXPIRATION_TIME: ${JWT_ACCESS_EXP_MS}
+      SECURITY_JWT_REFRESH_EXPIRATION_TIME: ${JWT_REFRESH_EXP_MS}
+      SPRING_MAIL_USERNAME: ${SPRING_MAIL_USERNAME}
+      SPRING_MAIL_PASSWORD: ${SPRING_MAIL_PASSWORD}
+
+  userservice:
+    build:
+      context: ./UserService
+      dockerfile: Dockerfile
+    container_name: UserService
+    depends_on:
+      - userdb
+    ports:
+      - "8081:8081"
+    env_file:
+      - .env
+      - ./UserService/.env
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://userdb:5432/medicalcenter
+      SPRING_DATASOURCE_USERNAME: ${DB_USER}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
+      MEDICALCENTER_OPENAPI_DEV_URL: ${MEDICALCENTER_OPENAPI_DEV_URL}
+      MEDICALCENTER_OPENAPI_PROD_URL: ${MEDICALCENTER_OPENAPI_PROD_URL}
+
   userdb:
     image: postgres:16
     container_name: medcenter-userdb
+    env_file:
+      - .env
     environment:
       POSTGRES_DB: medicalcenter
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: sjsjsqo18ha5
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
     ports:
       - "5433:5432"
     volumes:
@@ -21,10 +64,12 @@ services:
   authdb:
     image: postgres:16
     container_name: medcenter-authdb
+    env_file:
+      - .env
     environment:
       POSTGRES_DB: authservice
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: sjsjsqo18ha5
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
     ports:
       - "5435:5432"
     volumes:

@@ -1,0 +1,15 @@
+target/
+.mvn/
+mvnw
+mvnw.cmd
+*.iml
+.idea/
+.vscode/
+*.log
+logs/
+.git/
+.gitignore
+.gitattributes
+uploads/
+test-data.sql
+
