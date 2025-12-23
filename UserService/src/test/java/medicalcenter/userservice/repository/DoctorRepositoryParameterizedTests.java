@@ -179,7 +179,7 @@ public class DoctorRepositoryParameterizedTests {
         assertThat(updatedDoctor.get().getPhone()).isEqualTo(newPhone);
         assertThat(updatedDoctor.get().getEmail()).isEqualTo(newEmail);
         assertThat(updatedDoctor.get().getInformation()).isEqualTo(newInformation);
-        assertThat(updatedDoctor.get().getRating()).isEqualTo(newRating);
+        assertThat(updatedDoctor.get().getRating()).isEqualByComparingTo(newRating);
     }
 
     /**

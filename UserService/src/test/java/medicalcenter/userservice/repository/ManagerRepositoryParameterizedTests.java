@@ -201,14 +201,21 @@ public class ManagerRepositoryParameterizedTests {
     }
 
     /**
+     * Источник данных для тестирования поиска по фамилии
+     */
+    private static Stream<Arguments> provideManagerDataForFindByLastName() {
+        return Stream.of(
+                Arguments.of("Ivanov", "Alexey", LocalDate.of(1985, 5, 15), "80291234567"),
+                Arguments.of("Petrova", "Maria", LocalDate.of(1990, 8, 20), "80292345678"),
+                Arguments.of("Sidorov", "Dmitry", LocalDate.of(1983, 12, 10), "80293456789")
+        );
+    }
+
+    /**
      * Параметризованный тест для поиска по фамилии
      */
-    @ParameterizedTest
-    @CsvSource({
-            "Ivanov, Alexey, 1985-05-15, 80291234567",
-            "Petrova, Maria, 1990-08-20, 80292345678",
-            "Sidorov, Dmitry, 1983-12-10, 80293456789"
-    })
+    @ParameterizedTest(name = "[{index}] Find manager by last name: {0}")
+    @MethodSource("provideManagerDataForFindByLastName")
     @DisplayName("findAllByLastName() should find managers by last name")
     void testFindAllByLastName_Parameterized(String lastName, String firstName, LocalDate dateOfBirth, String phone) {
         // Arrange

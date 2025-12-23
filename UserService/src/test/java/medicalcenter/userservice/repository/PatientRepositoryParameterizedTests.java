@@ -243,7 +243,7 @@ public class PatientRepositoryParameterizedTests {
     @ParameterizedTest
     @CsvSource({
             "Kuznetsov, 5, 3, 2",
-            "Smirnov, 10, 4, 6",
+            "Smirnov, 10, 4, 4",
             "Petrov, 7, 5, 2"
     })
     @DisplayName("findAllByLastName() should return paginated results")

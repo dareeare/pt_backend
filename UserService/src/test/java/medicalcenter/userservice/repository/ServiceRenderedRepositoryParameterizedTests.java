@@ -210,7 +210,7 @@ public class ServiceRenderedRepositoryParameterizedTests {
 
         Optional<ServiceRendered> updatedSR = repository.findById(serviceRenderedId);
         assertThat(updatedSR).isPresent();
-        assertThat(updatedSR.get().getActualCost()).isEqualTo(newCost);
+        assertThat(updatedSR.get().getActualCost()).isEqualByComparingTo(newCost);
     }
 
     /**

@@ -201,14 +201,21 @@ public class OperatorRepositoryParameterizedTests {
     }
 
     /**
+     * Источник данных для тестирования поиска по фамилии
+     */
+    private static Stream<Arguments> provideOperatorDataForFindByLastName() {
+        return Stream.of(
+                Arguments.of("Sidorova", "Anna", LocalDate.of(1990, 8, 20), "80291234567"),
+                Arguments.of("Kuznetsova", "Olga", LocalDate.of(1993, 3, 15), "80292345678"),
+                Arguments.of("Volkova", "Irina", LocalDate.of(1988, 11, 5), "80293456789")
+        );
+    }
+
+    /**
      * Параметризованный тест для поиска по фамилии
      */
-    @ParameterizedTest
-    @CsvSource({
-            "Sidorova, Anna, 1990-08-20, 80291234567",
-            "Kuznetsova, Olga, 1993-03-15, 80292345678",
-            "Volkova, Irina, 1988-11-05, 80293456789"
-    })
+    @ParameterizedTest(name = "[{index}] Find operator by last name: {0}")
+    @MethodSource("provideOperatorDataForFindByLastName")
     @DisplayName("findAllByLastName() should find operators by last name")
     void testFindAllByLastName_Parameterized(String lastName, String firstName, LocalDate dateOfBirth, String phone) {
         // Arrange

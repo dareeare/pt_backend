@@ -185,7 +185,7 @@ public class ServiceRepositoryParameterizedTests {
         Optional<Service> updatedService = repository.findById(serviceId);
         assertThat(updatedService).isPresent();
         assertThat(updatedService.get().getNameOfService()).isEqualTo(newName);
-        assertThat(updatedService.get().getCost()).isEqualTo(newCost);
+        assertThat(updatedService.get().getCost()).isEqualByComparingTo(newCost);
         assertThat(updatedService.get().getDurationMinutes()).isEqualTo(newDuration);
         assertThat(updatedService.get().getInformation()).isEqualTo(newInfo);
     }

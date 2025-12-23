@@ -8,8 +8,12 @@ import medicalcenter.userservice.mapper.VisitMapper;
 import medicalcenter.userservice.model.dto.visit.RescheduleVisitDto;
 import medicalcenter.userservice.model.dto.visit.VisitCreateEditDto;
 import medicalcenter.userservice.model.dto.visit.VisitReadDto;
+import medicalcenter.userservice.model.entity.Doctor;
+import medicalcenter.userservice.model.entity.Patient;
 import medicalcenter.userservice.model.entity.TimeSlot;
 import medicalcenter.userservice.model.entity.Visit;
+import medicalcenter.userservice.repository.DoctorRepository;
+import medicalcenter.userservice.repository.PatientRepository;
 import medicalcenter.userservice.repository.TimeSlotRepository;
 import medicalcenter.userservice.repository.VisitRepository;
 import medicalcenter.userservice.service.CrudService;
@@ -33,6 +37,8 @@ public class VisitService implements CrudService<VisitCreateEditDto, VisitReadDt
     private final VisitMapper visitMapper;
     private final TimeSlotRepository timeSlotRepository;
     private final TimeSlotsService timeSlotsService;
+    private final PatientRepository patientRepository;
+    private final DoctorRepository doctorRepository;
 
     @Override
     public List<VisitReadDto> findAll(Pageable pageable) {
@@ -72,8 +78,64 @@ public class VisitService implements CrudService<VisitCreateEditDto, VisitReadDt
     @Transactional
     public VisitReadDto save(VisitCreateEditDto visit) {
         log.debug("saving visit: {}", visit);
+        
+        // Валидация: проверяем, что doctorId и patientId не null
+        if (visit.doctorId() == null) {
+            log.error("Doctor ID is null in visit DTO: {}", visit);
+            throw new IllegalArgumentException("Doctor ID cannot be null");
+        }
+        if (visit.patientId() == null) {
+            log.error("Patient ID is null in visit DTO: {}", visit);
+            throw new IllegalArgumentException("Patient ID cannot be null");
+        }
+        
+        // Загружаем Patient и Doctor по их ID
+        Patient patient = patientRepository.findById(visit.patientId())
+                .orElseThrow(() -> {
+                    log.error("Patient not found with ID: {}", visit.patientId());
+                    return new NotFoundException(visit.patientId());
+                });
+        
+        Doctor doctor = doctorRepository.findById(visit.doctorId())
+                .orElseThrow(() -> {
+                    log.error("Doctor not found with ID: {}", visit.doctorId());
+                    return new NotFoundException(visit.doctorId());
+                });
+        
+        // Создаем сущность Visit
         Visit entity = visitMapper.toEntity(visit);
-        return visitMapper.toDto(visitRepository.save(entity));
+        
+        // Устанавливаем загруженные Patient и Doctor
+        entity.setPatient(patient);
+        entity.setDoctor(doctor);
+        
+        // Дополнительная проверка перед сохранением
+        if (entity.getDoctor() == null) {
+            log.error("Doctor entity is null after setting. Visit DTO: {}, Doctor ID: {}", visit, visit.doctorId());
+            throw new IllegalStateException("Doctor entity is null after setting");
+        }
+        if (entity.getPatient() == null) {
+            log.error("Patient entity is null after setting. Visit DTO: {}, Patient ID: {}", visit, visit.patientId());
+            throw new IllegalStateException("Patient entity is null after setting");
+        }
+        
+        // Устанавливаем статус по умолчанию, если не указан
+        if (entity.getStatus() == null || entity.getStatus().isEmpty()) {
+            entity.setStatus("scheduled");
+        }
+        
+        log.debug("Visit entity prepared: patientId={}, doctorId={}, date={}, status={}, entity.doctor={}, entity.patient={}", 
+                visit.patientId(), visit.doctorId(), visit.dateOfVisit(), entity.getStatus(), 
+                entity.getDoctor() != null ? entity.getDoctor().getId() : "NULL", 
+                entity.getPatient() != null ? entity.getPatient().getId() : "NULL");
+        
+        Visit savedVisit = visitRepository.save(entity);
+        log.info("Visit saved successfully with id: {}, doctorId: {}, patientId: {}", 
+                savedVisit.getId(), 
+                savedVisit.getDoctor() != null ? savedVisit.getDoctor().getId() : "NULL",
+                savedVisit.getPatient() != null ? savedVisit.getPatient().getId() : "NULL");
+        
+        return visitMapper.toDto(savedVisit);
     }
 
     @Override
