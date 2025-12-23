@@ -10,6 +10,8 @@ services:
       - authdb
     ports:
       - "8080:8080"
+    networks:
+      - medcenter-network
     env_file:
       - .env
       - ./AuthService/.env
@@ -22,6 +24,7 @@ services:
       SECURITY_JWT_REFRESH_EXPIRATION_TIME: ${JWT_REFRESH_EXP_MS}
       SPRING_MAIL_USERNAME: ${SPRING_MAIL_USERNAME}
       SPRING_MAIL_PASSWORD: ${SPRING_MAIL_PASSWORD}
+      USERSERVICE_URL: http://userservice:8081
 
   userservice:
     build:
@@ -32,6 +35,8 @@ services:
       - userdb
     ports:
       - "8081:8081"
+    networks:
+      - medcenter-network
     env_file:
       - .env
       - ./UserService/.env
@@ -60,6 +65,8 @@ services:
       interval: 10s
       timeout: 5s
       retries: 10
+    networks:
+      - medcenter-network
 
   authdb:
     image: postgres:16
@@ -79,6 +86,13 @@ services:
       interval: 10s
       timeout: 5s
       retries: 10
+    networks:
+      - medcenter-network
+
+networks:
+  medcenter-network:
+    name: medcenter-network
+    driver: bridge
 
 volumes:
   authdb-data:
