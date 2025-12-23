@@ -332,4 +332,40 @@ public class DoctorController {
             @PathVariable UUID id) {
         return ResponseEntity.ok(doctorService.recalculateRating(id));
     }
+
+    @Operation(
+            summary = "Поиск врачей по специальности",
+            description = "Возвращает список врачей с указанной специальностью"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Успешный поиск по специальности"),
+            @ApiResponse(responseCode = "404", description = "Врачи с указанной специальностью не найдены")
+    })
+    @GetMapping("/specialty/{specialty}")
+    public ResponseEntity<List<DoctorReadDto>> getDoctorsBySpecialty(
+            @Parameter(description = "Специальность врача", required = true, example = "Кардиолог")
+            @PathVariable String specialty,
+            @Parameter(description = "Параметры пагинации и сортировки")
+            Pageable pageable) {
+        List<DoctorReadDto> doctors = doctorService.findBySpecialty(specialty, pageable);
+        return ControllerUtil.getListResponseEntity(doctors);
+    }
+
+    @Operation(
+            summary = "Поиск врачей по минимальному рейтингу",
+            description = "Возвращает список врачей с рейтингом не ниже указанного"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Успешный поиск по рейтингу"),
+            @ApiResponse(responseCode = "400", description = "Неверное значение рейтинга")
+    })
+    @GetMapping(value = "/rating", params = {"minRating"})
+    public ResponseEntity<List<DoctorReadDto>> getDoctorsByRating(
+            @Parameter(description = "Минимальный рейтинг", required = true, example = "4.5")
+            @RequestParam Double minRating,
+            @Parameter(description = "Параметры пагинации и сортировки")
+            Pageable pageable) {
+        List<DoctorReadDto> doctors = doctorService.findByRatingGreaterThanEqual(minRating, pageable);
+        return ControllerUtil.getListResponseEntity(doctors);
+    }
 }
